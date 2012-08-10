@@ -71,6 +71,7 @@
         <aspect name="E-Person" path="resource://aspects/EPerson/" />
         <aspect name="Submission and Workflow" path="resource://aspects/Submission/" />
 	    <aspect name="Statistics" path="resource://aspects/Statistics/" />
+	    <aspect name="Statistics - Elastic Search" path="resource://aspects/StatisticsElasticSearch/" />
 	    <aspect name="Original Workflow" path="resource://aspects/Workflow/" />
 	    <!--<aspect name="XMLWorkflow" path="resource://aspects/XMLWorkflow/" />-->
         <!--
@@ -121,6 +122,7 @@
         <!-- <theme name="Test Theme 2" regex="community-list" path="theme2/"/> -->
 
         <!-- Default theme -->
+        <theme name="Elastic Search Statistics Theme" regex="stats" path="dashboard/" />
         <theme name="Default Reference Theme" regex=".*" path="Reference/" />
 
         <!-- Mirage theme, @mire contribution of new theme to support easier development and branding -->
