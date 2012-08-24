@@ -21,6 +21,8 @@ import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.statistics.ElasticSearchLogger;
 import org.dspace.statistics.SolrLogger;
+import org.dspace.statistics.StatisticsService;
+import org.dspace.utils.DSpace;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.action.bulk.BulkRequestBuilder;
@@ -366,13 +368,24 @@ public class StatisticsImporterElasticSearch {
             skipReverseDNS = true;
         }
 
-        elasticSearchLoggerInstance = new ElasticSearchLogger();
+
+        DSpace dspace = new DSpace();
+        //elasticSearchLoggerInstance = dspace.getServiceManager().getServiceByName(ElasticSearchLogger.class.getName(),ElasticSearchLogger.class);
+        StatisticsService statisticsService = dspace.getServiceManager().getServiceByName(StatisticsService.class.getName(),StatisticsService.class);
+
+        //elasticSearchLoggerInstance = new ElasticSearchLogger();
 
         log.info("Getting ElasticSearch Transport Client for StatisticsImporterElasticSearch...");
 
         // This is only invoked via terminal, do not use _this_ node as that data storing node.
         // Need to get a NodeClient or TransportClient, but definitely do not want to get a local data storing client.
-        client = elasticSearchLoggerInstance.getClient(ElasticSearchLogger.ClientType.TRANSPORT);
+
+        // Get an existing client, is available / possible, otherwise will fallback to Transport
+
+        client = statisticsService.getClient(StatisticsService.ClientType.TRANSPORT);
+
+
+        log.info("Got Client class:[" + StatisticsImporterElasticSearch.class.getName() + "] client:[" + client.toString() + "]");
 
         client.admin().indices().prepareRefresh(ElasticSearchLogger.getIndexName()).execute().actionGet();
         bulkRequest = client.prepareBulk();

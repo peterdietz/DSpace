@@ -36,6 +36,7 @@ import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
@@ -45,7 +46,8 @@ import java.util.*;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
-public class ElasticSearchLogger {
+@Service
+public class ElasticSearchLogger implements StatisticsService{
 
     private static Logger log = Logger.getLogger(ElasticSearchLogger.class);
 
@@ -65,9 +67,7 @@ public class ElasticSearchLogger {
 
     private static Client client;
 
-    public static enum ClientType {
-        NODE, LOCAL, TRANSPORT
-    }
+
 
 
     public ElasticSearchLogger() {
@@ -503,7 +503,8 @@ public class ElasticSearchLogger {
         Settings settings = ImmutableSettings.settingsBuilder().put("cluster.name", clusterName).build();
         client = new TransportClient(settings).addTransportAddress(new InetSocketTransportAddress(address, port));
     }
-    
+
+    @Override
     public Client getClient() {
         //Get an available client, otherwise new default is NODE.
         return getClient(ClientType.NODE);
@@ -514,6 +515,7 @@ public class ElasticSearchLogger {
     //   - Local Node, store Data
     //   - Node Client, must discover a master within ES cluster
     //   - Transport Client, specify IP address of server running ES.
+    @Override
     public Client getClient(ClientType clientType) {
         if(client == null) {
             log.error("getClient reports null client");
