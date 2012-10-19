@@ -107,6 +107,17 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
     public static final Message T_metadataPublisher = message("xmlui.statistics.ElasticSearchStatsViewer.metadata.publisher");
     public static final Message T_metadataDate = message("xmlui.statistics.ElasticSearchStatsViewer.metadata.date");
 
+    public static final Message T_viewsPerType = message("xmlui.statistics.ElasticSearchStatsViewer.viewsPerType");
+    public static final Message T_numberFileDownloads = message("xmlui.statistics.ElasticSearchStatsViewer.numberOfFileDownloads");
+    public static final Message T_fileDownloads = message("xmlui.statistics.ElasticSearchStatsViewer.fileDownloads");
+    public static final Message T_totalDownloads = message("xmlui.statistics.ElasticSearchStatsViewer.totalDownloads");
+    public static final Message T_headerCountry = message("xmlui.statistics.ElasticSearchStatsViewer.headerCountry");
+    public static final Message T_headerCity = message("xmlui.statistics.ElasticSearchStatsViewer.headerCity");
+    public static final Message T_headerDownloads = message("xmlui.statistics.ElasticSearchStatsViewer.headerDownloads");
+    public static final Message T_forMoreInformation = message("xmlui.statistics.ElasticSearchStatsViewer.forMoreInformation");
+    public static final Message T_numberOfDownloads = message("xmlui.statistics.ElasticSearchStatsViewer.numberOfDownloads");
+    public static final Message T_countriesWithDownloads = message("xmlui.statistics.ElasticSearchStatsViewer.countriesWithDownloads");
+
     public void addPageMeta(PageMeta pageMeta) throws WingException, SQLException {
         DSpaceObject dso = HandleUtil.obtainHandle(objectModel);
 
@@ -141,6 +152,19 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
             division.addHidden("baseURLStats").setValue(contextPath + "/handle/" + dso.getHandle() + "/" + elasticStatisticsPath);
             Request request = ObjectModelHelper.getRequest(objectModel);
             String[] requestURIElements = request.getRequestURI().split("/");
+
+            //Add Hidden i18n keys for Javascipt to use translated strings
+            division.addHidden("i18nViewsDSOType").setValue(T_viewsPerType);
+            division.addHidden("i18nNumberFileDownloads").setValue(T_numberFileDownloads);
+            division.addHidden("i18nDate").setValue(T_dateHeader);
+            division.addHidden("i18nFileDownloads").setValue(T_fileDownloads);
+            division.addHidden("i18nTotalDownloads").setValue(T_totalDownloads);
+            division.addHidden("i18nHeaderCity").setValue(T_headerCity);
+            division.addHidden("i18nHeaderCountry").setValue(T_headerCountry);
+            division.addHidden("i18nHeaderDownloads").setValue(T_headerDownloads);
+            division.addHidden("i18nForMoreInformation").setValue(T_forMoreInformation);
+            division.addHidden("i18nNumberOfDownloads").setValue(T_numberOfDownloads);
+            division.addHidden("i18nCountriesWithDownloads").setValue(T_countriesWithDownloads);
 
             // If we are on the homepage of the statistics portal, then we just show the summary report
             // Otherwise we will show a form to let user enter more information for deeper detail.

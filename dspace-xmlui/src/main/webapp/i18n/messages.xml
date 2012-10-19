@@ -1941,6 +1941,18 @@
     <message key="xmlui.statistics.ElasticSearchStatsViewer.metadata.publisher">Publisher</message>
     <message key="xmlui.statistics.ElasticSearchStatsViewer.metadata.date">Date</message>
 
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.viewsPerType">Views Per DSpace Object Type</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.numberOfFileDownloads">Number of File Downloads</message>
+
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.fileDownloads">File Downloads</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.totalDownloads">Total Downloads</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.headerCountry">Country</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.headerCity">City</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.headerDownloads">Downloads</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.forMoreInformation">For more information.</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.numberOfDownloads">Number of File Downloads for</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.countriesWithDownloads">Countries with most Downloads</message>
+
 
 
     <message key="xmlui.statistics.StatisticsSearchTransformer.search-terms.head">Top Search Terms</message>

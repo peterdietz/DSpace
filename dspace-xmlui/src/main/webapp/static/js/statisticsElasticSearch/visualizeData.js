@@ -215,7 +215,8 @@
         }
 
         // Set the title for the charts.
-        var options = { title : 'Views per DSpaceObject Type' };
+        var i18nViewsPerDSOType = $('input[name=i18nViewsPerDSOType]').val();
+        var options = { title : i18nViewsPerDSOType };
 
         // ### Start adding charts!
         //
@@ -227,14 +228,23 @@
         var name = $('input[name=containerName]').val();
 
 
+        var i18nNumberFileDownloads = $('input[name=i18nNumberFileDownloads]').val();
+        var i18nDate = $('input[name=i18nDate]').val();
+        var i18nFileDownloads = $('input[name=i18nFileDownloads]').val();
+        var i18nTotalDownloads = $('input[name=i18nTotalDownloads]').val();
+        var i18nHeaderCity = $('input[name=i18nHeaderCity]').val();
+        var i18nHeaderCountry = $('input[name=i18nHeaderCountry]').val();
+        var i18nHeaderDownloads = $('input[name=i18nHeaderDownloads]').val();
 
-        var optionsDownloads = {title: 'Number of File Downloads: ' + name };
+
+
+        var optionsDownloads = {title: i18nNumberFileDownloads + ' : ' + name };
         // Add a chart to show monthly downloads (without the total).
         if ((elasticJSON !== null) && (typeof elasticJSON.facets.monthly_downloads !== 'undefined')) {
             var chartDataNoTotal = chartDataHelper({
                 type : 'date',
-                textKey : 'Date',
-                textValue : 'File Downloads',
+                textKey : i18nDate,
+                textValue : i18nFileDownloads,
                 hasCertainty: true
             });
             chartMaker.addChart({
@@ -248,10 +258,10 @@
             if ($('input[name=reportDepth]').val() == "detail") {
                 var chartDataTotal = chartDataHelper({
                     type : 'date',
-                    textKey : 'Date',
-                    textValue : 'File Downloads',
+                    textKey : i18nDate,
+                    textValue : i18nFileDownloads,
                     includeTotal: true,
-                    textTotal: 'Total Downloads'
+                    textTotal: i18nTotalDownloads
                 });
 
                 // Table with raw data of # Downloads each month
@@ -268,10 +278,10 @@
                 // Chart of Downloads with aggregate total
                 var chartDataTotal2 = chartDataHelper({
                     type : 'date',
-                    textKey : 'Date',
-                    textValue : 'File Downloads',
+                    textKey : i18nDate,
+                    textValue : i18nFileDownloads,
                     includeTotal: true,
-                    textTotal: 'Total Downloads',
+                    textTotal: i18nTotalDownloads,
                     hasCertainty: true
                 });
                 chartMaker.addChart({
@@ -290,8 +300,8 @@
         if ((elasticJSON !== null) && (typeof elasticJSON.facets.top_countries !== 'undefined')) {
             var chartDataGeo = chartDataHelper({
                 type : 'string',
-                textKey : 'Country',
-                textValue : 'Downloads'
+                textKey : i18nHeaderCountry,
+                textValue : i18nHeaderDownloads
             });
             chartMaker.addChart({
                 entries: elasticJSON.facets.top_countries.terms,
@@ -315,8 +325,8 @@
         if ((elasticJSON !== null) && typeof elasticJSON.facets.top_US_cities !== 'undefined' && $('input[name=reportDepth]').val() == "detail") {
             var chartDataGeoUS = chartDataHelper({
                 type : 'string',
-                textKey : 'City',
-                textValue : 'Downloads'
+                textKey : i18nHeaderCity,
+                textValue : i18nHeaderDownloads
             });
             var optionsUS = {region : 'US', displayMode : 'markers', resolution : 'provinces', magnifyingGlass : {enable: true, zoomFactor: 7.5} };
             chartMaker.addChart({
@@ -350,13 +360,16 @@
         var fromDateString = $('input[name=dateStart]').val();
         var toDateString = $('input[name=dateEnd]').val();
 
+        var i18nForMoreInformation = $('input[name=i18nForMoreInformation]').val();
+        var i18nNumberOfDownloads = $('input[name=i18nNumberOfDownloads]').val();
+        var i18nCountriesWithDownloads = $('input[name=i18nCountriesWithDownloads]').val();
         if ($('input[name=reportDepth]').val() == "summary") {
-            $('<p>'+timeRangeString+' <a href="'+ baseURLStats + '/itemsAdded">For more information.</a></p>').insertBefore('#aspect_statisticsElasticSearch_ElasticSearchStatsViewer_table_itemsAddedGrid');
-            $('<p>'+timeRangeString+' <a href="'+ baseURLStats + '/filesAdded">For more information.</a></p>').insertBefore('#aspect_statisticsElasticSearch_ElasticSearchStatsViewer_table_filesInContainer-grid');
-            $('<h3>Number of File Downloads for ' + name + '</h3>'+timeRangeString+' <a href="'+ baseURLStats + '/fileDownloads">For more information.</a>').insertBefore('#dspaceChart_downloadsMonthly');
-            $('<h3>Countries with most Downloads ' + name + '</h3>'+timeRangeString+' <a href="'+ baseURLStats + '/topCountries">For more information.</a>').insertBefore('#dspaceChart_topCountries');
-            $('<p>'+timeRangeString+' <a href="'+ baseURLStats + '/topUSCities">For more information.</a></p>').insertBefore('#dspaceChart_topUSCities');
-            $('<p>'+timeRangeString+' <a href="'+ baseURLStats + '/topDownloads">For more information.</a></p>').insertBefore('#aspect_statisticsElasticSearch_ElasticSearchStatsViewer_table_facet-Bitstream');
+            $('<p>'+timeRangeString+' <a href="'+ baseURLStats + '/itemsAdded">' + i18nForMoreInformation + '</a></p>').insertBefore('#aspect_statisticsElasticSearch_ElasticSearchStatsViewer_table_itemsAddedGrid');
+            $('<p>'+timeRangeString+' <a href="'+ baseURLStats + '/filesAdded">' + i18nForMoreInformation + '</a></p>').insertBefore('#aspect_statisticsElasticSearch_ElasticSearchStatsViewer_table_filesInContainer-grid');
+            $('<h3>' + i18nNumberOfDownloads + ' ' + name + '</h3>'+timeRangeString+' <a href="'+ baseURLStats + '/fileDownloads">' + i18nForMoreInformation + '</a>').insertBefore('#dspaceChart_downloadsMonthly');
+            $('<h3>' + i18nCountriesWithDownloads + ' ' + name + '</h3>'+timeRangeString+' <a href="'+ baseURLStats + '/topCountries">' + i18nForMoreInformation + '</a>').insertBefore('#dspaceChart_topCountries');
+            $('<p>'+timeRangeString+' <a href="'+ baseURLStats + '/topUSCities">' + i18nForMoreInformation + '</a></p>').insertBefore('#dspaceChart_topUSCities');
+            $('<p>'+timeRangeString+' <a href="'+ baseURLStats + '/topDownloads">' + i18nForMoreInformation + '</a></p>').insertBefore('#aspect_statisticsElasticSearch_ElasticSearchStatsViewer_table_facet-Bitstream');
         }
 
         var reportName = $('input[name=reportName]').val();
