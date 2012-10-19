@@ -88,16 +88,33 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
     /** Language strings */
     private static final Message T_dspace_home = message("xmlui.general.dspace_home");
 
-    private static final Message T_trail = message("xmlui.ArtifactBrowser.ItemViewer.trail");
+    private static final Message T_reportTitle = message("xmlui.statistics.ElasticSearchStatsViewer.reportTitle");
+    private static final Message T_statistics_view = message("xmlui.statistics.Navigation.elasticsearch.view");
+    public static final Message T_showDataRange = message("xmlui.statistics.ElasticSearchStatsViewer.showDateRange");
+    public static final Message T_lastFiveYears = message("xmlui.statistics.ElasticSearchStatsViewer.dateRangeLastFiveYears");
+    public static final Message T_fromDateToDate = message("xmlui.statistics.ElasticSearchStatsViewer.fromDateToDate");
+    public static final Message T_startingFrom = message("xmlui.statistics.ElasticSearchStatsViewer.startingFrom");
+    public static final Message T_endingWith = message("xmlui.statistics.ElasticSearchStatsViewer.endingWith");
+    public static final Message T_allData = message("xmlui.statistics.ElasticSearchStatsViewer.allData");
+    public static final Message T_topDownloads = message("xmlui.statistics.ElasticSearchStatsViewer.topDownloads");
+    public static final Message T_topDownloadsAllTime = message("xmlui.statistics.ElasticSearchStatsViewer.topDownloadsAllTime");
+    public static final Message T_noDataAvailable = message("xmlui.statistics.ElasticSearchStatsViewer.noDataAvailable");
+    public static final Message T_count = message("xmlui.statistics.ElasticSearchStatsViewer.count");
+    public static final Message T_dateHeader = message("xmlui.statistics.ElasticSearchStatsViewer.dateHeader");
+
+    public static final Message T_metadataTitle = message("xmlui.statistics.ElasticSearchStatsViewer.metadata.title");
+    public static final Message T_metadataCreator = message("xmlui.statistics.ElasticSearchStatsViewer.metadata.creator");
+    public static final Message T_metadataPublisher = message("xmlui.statistics.ElasticSearchStatsViewer.metadata.publisher");
+    public static final Message T_metadataDate = message("xmlui.statistics.ElasticSearchStatsViewer.metadata.date");
 
     public void addPageMeta(PageMeta pageMeta) throws WingException, SQLException {
         DSpaceObject dso = HandleUtil.obtainHandle(objectModel);
 
-        pageMeta.addMetadata("title").addContent("Statistics Report for : " + dso.getName());
+        pageMeta.addMetadata("title").addContent(T_reportTitle.parameterize(dso.getName()));
 
         pageMeta.addTrailLink(contextPath + "/",T_dspace_home);
         HandleUtil.buildHandleTrail(dso,pageMeta,contextPath, true);
-        pageMeta.addTrail().addContent("View Statistics");
+        pageMeta.addTrail().addContent(T_statistics_view);
     }
 
     public ElasticSearchStatsViewer() {
@@ -118,7 +135,7 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
             client = ElasticSearchLogger.getInstance().getClient();
 
             division = body.addDivision("elastic-stats");
-            division.setHead("Statistical Report for " + dso.getName());
+            division.setHead(T_reportTitle.parameterize(dso.getName()));
             division.addHidden("containerName").setValue(dso.getName());
 
             division.addHidden("baseURLStats").setValue(contextPath + "/handle/" + dso.getHandle() + "/" + elasticStatisticsPath);
@@ -143,9 +160,14 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
                 dateStart = cal.getTime();
 
                 division.addHidden("reportDepth").setValue("summary");
+
+                Para divisionPara = division.addPara();
+                divisionPara.addContent(T_showDataRange);
+                divisionPara.addContent(T_lastFiveYears);
+
                 String dateRange = "Last Five Years";
-                division.addPara("Showing Data ( " + dateRange + " )");
                 division.addHidden("timeRangeString").setValue("Data Range: " + dateRange);
+                
                 if(dateStart != null) {
                     division.addHidden("dateStart").setValue(dateFormat.format(dateStart));
                 }
@@ -167,17 +189,21 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
                 log.info("Requested report is: "+ requestedReport);
                 division.addHidden("reportDepth").setValue("detail");
                 
-                String dateRange = "";
+                Message dateRange = null;
                 if(dateStart != null && dateEnd != null) {
-                    dateRange = "from: "+dateFormat.format(dateStart) + " to: "+dateFormat.format(dateEnd);
+                    dateRange = T_fromDateToDate.parameterize(dateFormat.format(dateStart), dateFormat.format(dateEnd));
                 } else if (dateStart != null && dateEnd == null) {
-                    dateRange = "starting from: "+dateFormat.format(dateStart);
+                    dateRange = T_startingFrom.parameterize(dateFormat.format(dateStart));
                 } else if(dateStart == null && dateEnd != null) {
-                    dateRange = "ending with: "+dateFormat.format(dateEnd);
+                    dateRange = T_endingWith.parameterize(dateFormat.format(dateEnd));
                 } else if(dateStart == null && dateEnd == null) {
-                    dateRange = "All Data Available";
+                    dateRange = T_allData;
                 }
-                division.addPara("Showing Data ( " + dateRange + " )");
+
+                Para dataRangePara = division.addPara();
+                dataRangePara.addContent(T_showDataRange);
+                dataRangePara.addContent(dateRange);
+
                 division.addHidden("timeRangeString").setValue(dateRange);
                 if(dateStart != null) {
                     division.addHidden("dateStart").setValue(dateFormat.format(dateStart));
@@ -205,10 +231,10 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
                     SearchResponse resp = searchResponseToDRI(requestBuilder);
 
                     TermsFacet bitstreamsAllTimeFacet = resp.getFacets().facet(TermsFacet.class, "top_bitstreams_alltime");
-                    addTermFacetToTable(bitstreamsAllTimeFacet, division, "Bitstream", "Top Downloads (all time)");
+                    addTermFacetToTable(bitstreamsAllTimeFacet, division, "Bitstream", T_topDownloadsAllTime);
 
                     TermsFacet bitstreamsFacet = resp.getFacets().facet(TermsFacet.class, "top_bitstreams_lastmonth");
-                    addTermFacetToTable(bitstreamsFacet, division, "Bitstream", "Top Downloads for " + getLastMonthString());
+                    addTermFacetToTable(bitstreamsFacet, division, "Bitstream", T_topDownloads.parameterize(getLastMonthString()));
                 }
             }
 
@@ -232,7 +258,7 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
 
                 // Top Downloads to Owning Object
         TermsFacet bitstreamsFacet = resp.getFacets().facet(TermsFacet.class, "top_bitstreams_lastmonth");
-        addTermFacetToTable(bitstreamsFacet, division, "Bitstream", "Top Downloads for " + getLastMonthString());
+        addTermFacetToTable(bitstreamsFacet, division, "Bitstream", T_topDownloads.parameterize(getLastMonthString()));
 
         // Convert Elastic Search data to a common DataTermsFacet object, and stuff in DRI/HTML of page.
         TermsFacet topBitstreamsFacet = resp.getFacets().facet(TermsFacet.class, "top_bitstreams_lastmonth");
@@ -325,7 +351,7 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
         return resp;
     }
 
-    private void addTermFacetToTable(TermsFacet termsFacet, Division division, String termName, String tableHeader) throws WingException, SQLException {
+    private void addTermFacetToTable(TermsFacet termsFacet, Division division, String termName, Message tableHeader) throws WingException, SQLException {
         List<? extends TermsFacet.Entry> termsFacetEntries = termsFacet.getEntries();
 
         if(termName.equalsIgnoreCase("country")) {
@@ -337,18 +363,18 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
 
         Row facetTableHeaderRow = facetTable.addRow(Row.ROLE_HEADER);
         if(termName.equalsIgnoreCase("bitstream")) {
-            facetTableHeaderRow.addCellContent("Title");
-            facetTableHeaderRow.addCellContent("Creator");
-            facetTableHeaderRow.addCellContent("Publisher");
-            facetTableHeaderRow.addCellContent("Date");
+            facetTableHeaderRow.addCellContent(T_metadataTitle);
+            facetTableHeaderRow.addCellContent(T_metadataCreator);
+            facetTableHeaderRow.addCellContent(T_metadataPublisher);
+            facetTableHeaderRow.addCellContent(T_metadataDate);
         } else {
             facetTableHeaderRow.addCell().addContent(termName);
         }
 
-        facetTableHeaderRow.addCell().addContent("Count");
+        facetTableHeaderRow.addCell().addContent(T_count);
 
         if(termsFacetEntries.size() == 0) {
-            facetTable.addRow().addCell().addContent("No Data Available");
+            facetTable.addRow().addCell().addContent(T_noDataAvailable);
             return;
         }
 
@@ -363,6 +389,7 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
                 row.addCellContent(getFirstMetadataValue(item, "dc.publisher"));
                 row.addCellContent(getFirstMetadataValue(item, "dc.date.issued"));
             } else if(termName.equalsIgnoreCase("country")) {
+                //TODO use users/OS locale to get country name
                 row.addCell("country", Cell.ROLE_DATA,"country").addContent(new Locale("en", facetEntry.getTerm()).getDisplayCountry());
             } else {
                 row.addCell().addContent(facetEntry.getTerm());
@@ -382,8 +409,8 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
         Table monthlyTable = division.addTable(termName, monthlyFacetEntries.size(), 10);
         monthlyTable.setHead(termDescription);
         Row tableHeaderRow = monthlyTable.addRow(Row.ROLE_HEADER);
-        tableHeaderRow.addCell("date", Cell.ROLE_HEADER,null).addContent("Month/Date");
-        tableHeaderRow.addCell("count", Cell.ROLE_HEADER,null).addContent("Count");
+        tableHeaderRow.addCell("date", Cell.ROLE_HEADER,null).addContent(T_dateHeader);
+        tableHeaderRow.addCell("count", Cell.ROLE_HEADER,null).addContent(T_count);
 
         for(DateHistogramFacet.Entry histogramEntry : monthlyFacetEntries) {
             Row dataRow = monthlyTable.addRow();

@@ -1914,6 +1914,7 @@
     <message key="xmlui.statistics.Navigation.usage.view">View Usage Statistics</message>
     <message key="xmlui.statistics.Navigation.search.view">View Search Statistics</message>
     <message key="xmlui.statistics.Navigation.workflow.view">View Workflow Statistics</message>
+    <message key="xmlui.statistics.Navigation.elasticsearch.view">View Statistics</message>
     <message key="xmlui.statistics.trail">Statistics</message>
     <message key="xmlui.statistics.trail-search">Search Statistics</message>
     <message key="xmlui.statistics.trail-workflow">Workflow Statistics</message>
@@ -1921,6 +1922,25 @@
     <message key="xmlui.statistics.workflow.error">There was an error while generating the workflow statistics, please try again later.</message>
     <message key="xmlui.statistics.workflow.head">Workflow Statistics</message>
     <message key="xmlui.statistics.workflow.head-dso">Workflow Statistics for {0}</message>
+
+
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.reportTitle">Statistics Report for : {0}</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.dateRangeLastFiveYears">Last Five Years</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.showDateRange">Showing Data: </message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.fromDateToDate">from: {0} to: {1}</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.startingFrom">starting from: {0}</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.endingWith">ending with: {0}</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.allData">All Data Available</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.topDownloads">Top Downloads ( {0} )</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.topDownloadsAllTime">Top Downloads ( All Time )</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.noDataAvailable">No Data Available</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.count">Count</message>
+
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.metadata.title">Title</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.metadata.creator">Creator</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.metadata.publisher">Publisher</message>
+    <message key="xmlui.statistics.ElasticSearchStatsViewer.metadata.date">Date</message>
+
 
 
     <message key="xmlui.statistics.StatisticsSearchTransformer.search-terms.head">Top Search Terms</message>
