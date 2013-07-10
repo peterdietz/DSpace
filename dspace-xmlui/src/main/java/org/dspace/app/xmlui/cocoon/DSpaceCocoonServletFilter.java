@@ -275,7 +275,11 @@ public class DSpaceCocoonServletFilter implements Filter
             throw e;
 	} catch (Exception e) {
 	    ContextUtil.abortContext(realRequest);
+        if(e.getMessage().contains("ClientAbort")) {
+            LOG.error("Client has aborted the connection." + e.getMessage());
+        } else {
             LOG.error("Serious Error Occurred Processing Request!", e);
+        }
 	} finally {
 	    // Close out the DSpace context no matter what.
 	    ContextUtil.completeContext(realRequest);
