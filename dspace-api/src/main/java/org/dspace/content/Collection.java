@@ -338,6 +338,56 @@ public class Collection extends DSpaceObject
     }
 
     /**
+     * Get all collections in the system. Adds support for limit and offset.
+     * @param context
+     * @param limit
+     * @param offset
+     * @return
+     * @throws SQLException
+     */
+    public static Collection[] findAll(Context context, Integer limit, Integer offset) throws SQLException
+    {
+        TableRowIterator tri = DatabaseManager.queryTable(context, "collection",
+                "SELECT * FROM collection ORDER BY name limit ? offset ?", limit, offset);
+
+        List<Collection> collections = new ArrayList<Collection>();
+
+        try
+        {
+            while (tri.hasNext())
+            {
+                TableRow row = tri.next();
+
+                // First check the cache
+                Collection fromCache = (Collection) context.fromCache(
+                        Collection.class, row.getIntColumn("collection_id"));
+
+                if (fromCache != null)
+                {
+                    collections.add(fromCache);
+                }
+                else
+                {
+                    collections.add(new Collection(context, row));
+                }
+            }
+        }
+        finally
+        {
+            // close the TableRowIterator to free up resources
+            if (tri != null)
+            {
+                tri.close();
+            }
+        }
+
+        Collection[] collectionArray = new Collection[collections.size()];
+        collectionArray = (Collection[]) collections.toArray(collectionArray);
+
+        return collectionArray;
+    }
+
+    /**
      * Get the in_archive items in this collection. The order is indeterminate.
      * 
      * @return an iterator over the items in the collection.
@@ -357,6 +407,7 @@ public class Collection extends DSpaceObject
     }
 
     /**
+
      * Get all the items in this collection. The order is indeterminate.
      * 
      * @return an iterator over the items in the collection.
