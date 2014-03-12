@@ -935,6 +935,16 @@ public class Item extends DSpaceObject
     private boolean match(String schema, String element, String qualifier,
             String language, DCValue dcv)
     {
+        if (element == null) {
+            log.warn("Longsight element is null");
+            return false;
+        }
+
+        if (dcv == null || dcv.element == null) {
+            log.warn("Longsight dcv or dcv.element is null");
+            return false;
+        }
+
         // We will attempt to disprove a match - if we can't we have a match
         if (!element.equals(Item.ANY) && !element.equals(dcv.element))
         {
