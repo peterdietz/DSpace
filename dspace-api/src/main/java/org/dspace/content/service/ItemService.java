@@ -60,4 +60,21 @@ public class ItemService
             return "";
         }
     }
+
+    /**
+     * Helper to get a just the contributor.author's firstname. Requires some tricks, so better to make a shared method
+     * @param item
+     * @return
+     */
+    public static String getAuthorFirstName(Item item) {
+        String authorName = getFirstMetadataValue(item, "dc.contributor.author");
+        //This metadata field is usually "Lastname, FirstName MiddleName, so just split on comma
+        String[] authorNameTokens = authorName.split(",");
+        if(authorNameTokens.length > 1) {
+            return authorNameTokens[1].trim();
+        } else {
+            //Fallback to original metadata value
+            return authorName;
+        }
+    }
 }
