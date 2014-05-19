@@ -123,7 +123,7 @@ public class ItemRequestContactAuthor extends AbstractDSpaceTransformer implemen
                 .getRequestItemAuthor(context, item);
 
         Object[] args = new String[]{
-                ItemService.getFirstMetadataValue(item, "dc.contributor.author"),
+                ItemService.getAuthorFirstName(item),
                 ItemService.getFirstMetadataValue(item, "dc.title"),
                 HandleManager.getCanonicalForm(item.getHandle()),
                 requestItemAuthor.getFullName(),
