@@ -137,7 +137,6 @@ public class ItemRequestContactRequester extends AbstractDSpaceTransformer imple
         Text toEmail = form.addItem().addText("to");
         toEmail.setLabel(T_toEmail);
         toEmail.setValue(requestItem.getReqEmail());
-        toEmail.setDisabled(true);
 
         Text subj = form.addItem().addText("subject");
         subj.setLabel(T_subject);
