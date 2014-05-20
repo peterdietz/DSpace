@@ -181,7 +181,7 @@ public class ItemRequestResponseAction extends AbstractAction
     	Email email = new Email();
         email.setSubject(subject);
         email.setContent("{0}");
-		email.addRecipient(requestItem.getReqEmail());
+        email.addRecipient(request.getParameter("toEmail"));
         email.addArgument(message);
        
         if (requestItem.isAllfiles()){
@@ -213,7 +213,7 @@ public class ItemRequestResponseAction extends AbstractAction
     	Email email = new Email();
         email.setSubject(subject);
         email.setContent("{0}");
-		email.addRecipient(requestItem.getReqEmail());
+        email.addRecipient(request.getParameter("toEmail"));
         email.addArgument(message);
         email.send();
         
@@ -237,7 +237,7 @@ public class ItemRequestResponseAction extends AbstractAction
         Email email = new Email();
         email.setSubject(subject);
         email.setContent("{0}");
-        email.addRecipient(requestItem.getReqEmail());
+        email.addRecipient(request.getParameter("toEmail"));
         email.addArgument(message);
 
         email.send();

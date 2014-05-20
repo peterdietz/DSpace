@@ -82,6 +82,10 @@ public class ItemRequestResponseFalseForm extends AbstractDSpaceTransformer impl
     
     private static final Message T_subject = 
             message("xmlui.ArtifactBrowser.ItemRequestResponseFalseForm.subject");
+
+    private static final Message T_toEmail =
+            message("xmlui.ArtifactBrowser.ItemRequestResponseFalseForm.toEmail");
+
     /**
      * Generate the unique caching key.
      * This key must be unique inside the space of this component.
@@ -153,7 +157,12 @@ public class ItemRequestResponseFalseForm extends AbstractDSpaceTransformer impl
         itemRequest.addPara(T_para1);
                 
         List form = itemRequest.addList("form",List.TYPE_FORM);
-        
+
+        Text toEmail = form.addItem().addText("toEmail");
+        toEmail.setLabel(T_toEmail);
+        toEmail.setValue(requestItem.getReqEmail());
+
+
         Text subj = form.addItem().addText("subject");
         subj.setLabel(T_subject);
         subj.setValue(subject);

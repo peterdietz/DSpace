@@ -81,6 +81,9 @@ public class ItemRequestResponseTrueForm extends AbstractDSpaceTransformer imple
 
     private static final Message T_subject = 
             message("xmlui.ArtifactBrowser.ItemRequestResponseTrueForm.subject");
+
+    private static final Message T_toEmail =
+            message("xmlui.ArtifactBrowser.ItemRequestResponseTrueForm.toEmail");
     
     /**
      * Generate the unique caching key.
@@ -151,6 +154,11 @@ public class ItemRequestResponseTrueForm extends AbstractDSpaceTransformer imple
         itemRequest.addPara(T_para1);
                 
         List form = itemRequest.addList("form",List.TYPE_FORM);
+
+        Text toEmail = form.addItem().addText("toEmail");
+        toEmail.setLabel(T_toEmail);
+        toEmail.setValue(requestItem.getReqEmail());
+
         Text subj = form.addItem().addText("subject");
         subj.setLabel(T_subject);
         subj.setValue(subject);
