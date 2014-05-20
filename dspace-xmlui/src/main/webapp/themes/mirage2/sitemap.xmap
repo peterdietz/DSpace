@@ -42,8 +42,8 @@
         -->
         <map:component-configurations>
             <global-variables>
-                <theme-path>Mirage2_precompiled</theme-path>
-                <theme-name>Mirage 2 Precompiled</theme-name>
+                <theme-path>mirage2</theme-path>
+                <theme-name>Mirage 2</theme-name>
             </global-variables>
         </map:component-configurations>
 

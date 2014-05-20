@@ -1,4 +1,4 @@
-*.css
+#*.css
 #*.js
 .sass-cache/
 /vendor
