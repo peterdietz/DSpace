@@ -344,7 +344,7 @@
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseDecisionForm.para2">This repository will propose an appropriate model reply, which you may edit.</message>
     <message key="xmlui.ArtifactBrowser.ItemRequestResponseDecisionForm.contactRequester">Initial reply to requester</message>
     <message key="xmlui.ArtifactBrowser.ItemRequestResponseDecisionForm.contactAuthor"> Author permission request</message>
-	<message key="xmlui.ArtifactBrowser.ItemRequestResponseDecisionForm.send">Send copy</message>
+    <message key="xmlui.ArtifactBrowser.ItemRequestResponseDecisionForm.send">Send copy</message>
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseDecisionForm.dontSend">Don't send copy</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.ItemRequestResponseTrueForm.java -->
@@ -354,6 +354,7 @@
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseFalseForm.para1">This is the text to be sent to the applicant.</message>
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseFalseForm.message">Message</message>
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseFalseForm.subject">Subject</message>
+    <message key="xmlui.ArtifactBrowser.ItemRequestResponseFalseForm.toEmail">To</message>
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseFalseForm.mail">Send</message>
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseFalseForm.back">Back</message>
 
@@ -364,6 +365,7 @@
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseTrueForm.para1">This is the text to be sent to the applicant (together with the document).</message>
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseTrueForm.message">Message</message>
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseTrueForm.subject">Subject</message>
+    <message key="xmlui.ArtifactBrowser.ItemRequestResponseTrueForm.toEmail">To</message>
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseTrueForm.mail">Send</message>
 	<message key="xmlui.ArtifactBrowser.ItemRequestResponseTrueForm.back">Back</message>
 	
@@ -384,7 +386,7 @@
 	<message key="xmlui.ArtifactBrowser.ItemRequestStatusChanged.head">Your request to change permissions has been sent</message>
 	<message key="xmlui.ArtifactBrowser.ItemRequestStatusChanged.para1">Your request has been sent to the administrator</message>
 	<message key="xmlui.ArtifactBrowser.ItemRequestStatusChanged.para2">Thanks</message>
-	
+
     <!-- org.dspace.app.xmlui.artifactbrowser.ItemRequestContactRequester.java -->
     <message key="xmlui.ArtifactBrowser.ItemRequestContactRequester.title">Document copy request</message>
     <message key="xmlui.ArtifactBrowser.ItemRequestContactRequester.trail">Document copy request</message>
