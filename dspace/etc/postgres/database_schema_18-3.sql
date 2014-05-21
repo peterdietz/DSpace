@@ -20,7 +20,7 @@
 -- DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST.
 -- DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST.
 --
-
+BEGIN;
 -------------------------------------------
 -- DS-895 Advanced Embargo Project
 -------------------------------------------
@@ -65,3 +65,5 @@ CREATE SEQUENCE versionhistory_seq;
 ALTER TABLE EPerson ALTER COLUMN password TYPE VARCHAR(128);
 ALTER TABLE EPerson ADD salt VARCHAR(32);
 ALTER TABLE EPerson ADD digest_algorithm VARCHAR(16);
+
+COMMIT;
