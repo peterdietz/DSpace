@@ -430,10 +430,10 @@ it, please enter the types and the actual numbers or codes below.</hint>
                  <dc-schema>ah</dc-schema>
                  <dc-element>associatedcontent</dc-element>
                  <dc-qualifier></dc-qualifier>
-                 <repeatable>false</repeatable>
-                 <label>Associated Content</label>
+                 <repeatable>true</repeatable>
+                 <label>Associated Content (external website)</label>
                  <input-type>textarea</input-type>
-                 <hint>Enter the associated content. See also: multiple external link text entry</hint>
+                 <hint>Enter the website URL of the associated content. Will show up in a "See Also:" section.</hint>
                  <required></required>
              </field>
 
@@ -467,6 +467,17 @@ it, please enter the types and the actual numbers or codes below.</hint>
                  <label>Content Item Size or Duration</label>
                  <input-type>onebox</input-type>
                  <hint>Enter the item size or duration of the document.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>instructorrating</dc-element>
+                 <dc-qualifier></dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>Instructor Rating</label>
+                 <input-type value-pairs-name="ah_instructorrating">dropdown</input-type>
+                 <hint>Rating of the Instructor.</hint>
                  <required></required>
              </field>
 
@@ -715,7 +726,174 @@ it, please enter the types and the actual numbers or codes below.</hint>
              <displayed-value>Assignment-case study</displayed-value>
              <stored-value>Assignment-case study</stored-value>
          </pair>
-
+         <pair>
+             <displayed-value>Assignment-equations</displayed-value>
+             <stored-value>Assignment-equations</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Assignment-lab</displayed-value>
+             <stored-value>Assignment-lab</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Assignment-project</displayed-value>
+             <stored-value>Assignment-project</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Assignment-programming</displayed-value>
+             <stored-value>Assignment-programming</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Assignment-presentation</displayed-value>
+             <stored-value>Assignment-presentation</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Assignment-problem set</displayed-value>
+             <stored-value>Assignment-problem set</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Assignment-research paper</displayed-value>
+             <stored-value>Assignment-research paper</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Assignment-writing</displayed-value>
+             <stored-value>Assignment-writing</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Blog</displayed-value>
+             <stored-value>Blog</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Course Guide</displayed-value>
+             <stored-value>Course Guide</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Check for Understanding</displayed-value>
+             <stored-value>Check for Understanding</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Dataset</displayed-value>
+             <stored-value>Dataset</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Demonstration-audio</displayed-value>
+             <stored-value>Demonstration-audio</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Demonstration-interactive</displayed-value>
+             <stored-value>Demonstration-interactive</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Demonstration-text</displayed-value>
+             <stored-value>Demonstration-text</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Demonstration-video</displayed-value>
+             <stored-value>Demonstration-video</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Discussion Prompt(s)</displayed-value>
+             <stored-value>Discussion Prompt(s)</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>E-portfolio</displayed-value>
+             <stored-value>E-portfolio</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Group Project</displayed-value>
+             <stored-value>Group Project</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Learning Guide</displayed-value>
+             <stored-value>Learning Guide</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Learning Object</displayed-value>
+             <stored-value>Learning Object</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Image</displayed-value>
+             <stored-value>Image</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Map</displayed-value>
+             <stored-value>Map</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>OAE Resource</displayed-value>
+             <stored-value>OAE Resource</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Presentation-audio</displayed-value>
+             <stored-value>Presentation-audio</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Presentation-interactive</displayed-value>
+             <stored-value>Presentation-interactive</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Presentation-text</displayed-value>
+             <stored-value>Presentation-text</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Presentation-video</displayed-value>
+             <stored-value>Presentation-video</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Reading List</displayed-value>
+             <stored-value>Reading List</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Resource List</displayed-value>
+             <stored-value>Resource List</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Schedule</displayed-value>
+             <stored-value>Schedule</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Student Sample</displayed-value>
+             <stored-value>Student Sample</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Screencast Guide</displayed-value>
+             <stored-value>Screencast Guide</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Seminar Guide</displayed-value>
+             <stored-value>Seminar Guide</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Service Learning Project</displayed-value>
+             <stored-value>Service Learning Project</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Syllabus</displayed-value>
+             <stored-value>Syllabus</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Technical Report</displayed-value>
+             <stored-value>Technical Report</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Textbook Review</displayed-value>
+             <stored-value>Textbook Review</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Presentation</displayed-value>
+             <stored-value>Presentation</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Video</displayed-value>
+             <stored-value>Video</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Wiki</displayed-value>
+             <stored-value>Wiki</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Other</displayed-value>
+             <stored-value>Other</stored-value>
+         </pair>
      </value-pairs>
 
      <value-pairs value-pairs-name="ah_educationlevel" dc-term="type">
@@ -807,6 +985,29 @@ it, please enter the types and the actual numbers or codes below.</hint>
         <pair>
             <displayed-value>Asynchronous Online</displayed-value>
             <stored-value>Asynchronous Online</stored-value>
+        </pair>
+    </value-pairs>
+
+    <value-pairs value-pairs-name="ah_instructorrating" dc-term="type">
+        <pair>
+            <displayed-value>***** - Excellent</displayed-value>
+            <stored-value>Excellent</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>**** - Good</displayed-value>
+            <stored-value>Good</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>*** - Neutral</displayed-value>
+            <stored-value>Neutral</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>** - Not Good</displayed-value>
+            <stored-value>Not Good</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>* - Bad</displayed-value>
+            <stored-value>Bad</stored-value>
         </pair>
     </value-pairs>
 
