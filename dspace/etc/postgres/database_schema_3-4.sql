@@ -20,7 +20,7 @@
 -- DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST.
 -- DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST.
 --
-
+BEGIN;
 -------------------------------------------
 -- Add support for DOIs (table and seq.) --
 -------------------------------------------
@@ -91,3 +91,5 @@ update workflowitem set multiple_titles=true, published_before=true, multiple_fi
 -------------------------------------------------------
 delete from collection_item_count;
 delete from community_item_count;
+
+COMMIT;
