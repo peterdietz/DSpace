@@ -189,13 +189,21 @@ footer a {
   padding-bottom: 20px;
 }
 
+body {
+    background-image: url(../images/main-background-full.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-color: #005A81;
+}
+
 header .navbar {
   color: #999999;
   margin-bottom: 0px;
   border: none;
 }
 header .navbar-default {
-  background-color: #1f3f5e;
+  background-color: #ffffff;
+  color: #000000;
 }
 header .navbar-default .navbar-brand {
   color: #eeeeee;
@@ -215,32 +223,33 @@ header .navbar-default .navbar-toggle .icon-bar, header .navbar-default .navbar-
   background-color: #eeeeee;
 }
 header .navbar-default .navbar-toggle:hover, header .navbar-default .navbar-toggle:focus, header .navbar-default .navbar-nav:hover, header .navbar-default .navbar-nav:focus {
-  color: white;
-  background-color: #122538;
+  color: #000;
+  background-color: #fff;
 }
 header .navbar-default .navbar-toggle > li > a, header .navbar-default .navbar-nav > li > a {
-  color: #eeeeee;
+  color: #000;
 }
 header .navbar-default .navbar-toggle > li > a:hover, header .navbar-default .navbar-toggle > li > a:focus, header .navbar-default .navbar-nav > li > a:hover, header .navbar-default .navbar-nav > li > a:focus {
-  color: white;
-  background-color: #122538;
+  color: #000;
+  background-color: #fff;
 }
 header .navbar-default .navbar-toggle > .active > a, header .navbar-default .navbar-toggle > .active > a:hover, header .navbar-default .navbar-toggle > .active > a:focus, header .navbar-default .navbar-nav > .active > a, header .navbar-default .navbar-nav > .active > a:hover, header .navbar-default .navbar-nav > .active > a:focus {
-  color: white;
-  background-color: #122538;
+  color: #000;
+  background-color: #fff;
 }
 header .navbar-default .navbar-toggle > .disabled > a, header .navbar-default .navbar-toggle > .disabled > a:hover, header .navbar-default .navbar-toggle > .disabled > a:focus, header .navbar-default .navbar-nav > .disabled > a, header .navbar-default .navbar-nav > .disabled > a:hover, header .navbar-default .navbar-nav > .disabled > a:focus {
-  color: #444444;
+  color: #000;
   background-color: transparent;
 }
 header .navbar-default .navbar-toggle > .open > a, header .navbar-default .navbar-toggle > .open > a:hover, header .navbar-default .navbar-toggle > .open > a:focus, header .navbar-default .navbar-nav > .open > a, header .navbar-default .navbar-nav > .open > a:hover, header .navbar-default .navbar-nav > .open > a:focus {
-  background-color: #122538;
-  color: white;
+  background-color: #fff;
+  color: #000;
 }
 
 .trail-wrapper {
-  background-color: #aab8c6;
-  border-bottom: 1px solid #8b9eb2;
+  background-color: #cccc66;
+  border-top: 1px solid #cccc77;
+  border-bottom: 1px solid #cccc66;
 }
 .trail-wrapper .breadcrumb {
   background-color: transparent;
@@ -761,3 +770,38 @@ input[type='text'].ui-autocomplete-loading {
   background-position: 99% 50%;
   background-size: 25px 25px;
 }
+
+
+/* Smith Got Questions */
+header .block {
+    display: none;
+    color: #000000;
+}
+
+header .block a {
+    color: #000000;
+}
+
+header .block .content-links {
+    position: absolute;
+    right: 32px;
+}
+
+header .block.region-count-1 {
+    display: block;
+    float: right;
+    margin-top: 25px;
+    margin-bottom: 0px;
+}
+header .block ul {
+    margin: 0em 0;
+    padding: 0 0 0 0em;
+}
+header ul li {
+    display: inline;
+    float: left;
+    border-left: 1px #fff solid;
+    font-size: 1.077em;
+    padding: 0 10px;
+}
+
