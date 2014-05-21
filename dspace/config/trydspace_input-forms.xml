@@ -256,27 +256,51 @@ it, please enter the types and the actual numbers or codes below.</hint>
              <field>
                  <dc-schema>dc</dc-schema>
                  <dc-element>date</dc-element>
-                 <dc-qualifier>issued</dc-qualifier>
+                 <dc-qualifier>created</dc-qualifier>
                  <repeatable>false</repeatable>
-                 <label>Date of Issue</label>
+                 <label>Date Created</label>
                  <input-type>date</input-type>
-                 <hint>Please give the date of previous publication or public distribution
-                     below.  You can leave out the day and/or month if they aren't
+                 <hint>Date the work was created. You can leave out the day and/or month if they aren't
                      applicable.</hint>
                  <required>You must enter at least the year.</required>
              </field>
 
              <field>
                  <dc-schema>dc</dc-schema>
-                 <dc-element>publisher</dc-element>
-                 <dc-qualifier></dc-qualifier>
+                 <dc-element>date</dc-element>
+                 <dc-qualifier>updated</dc-qualifier>
                  <repeatable>false</repeatable>
-                 <label>Publisher</label>
-                 <input-type>onebox</input-type>
-                 <hint>Enter the name of the publisher of the previously issued instance of this item.</hint>
+                 <label>Date Updated</label>
+                 <input-type>date</input-type>
+                 <hint>Date the work was update. You can leave out the day and/or month if they aren't
+                     applicable.</hint>
                  <required></required>
              </field>
 
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>college</dc-element>
+                 <dc-qualifier></dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>College</label>
+                 <input-type>onebox</input-type>
+                 <hint>College</hint>
+                 <required></required>
+             </field>
+
+
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>citation</dc-element>
+                 <dc-qualifier>required</dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>Citation Required</label>
+                 <input-type value-pairs-name="ah_citation">dropdown</input-type>
+                 <hint>What kind of citation or attribution is required?</hint>
+                 <required></required>
+             </field>
+
+             <!-- Regular citation field -->
              <field>
                  <dc-schema>dc</dc-schema>
                  <dc-element>identifier</dc-element>
@@ -289,36 +313,34 @@ it, please enter the types and the actual numbers or codes below.</hint>
              </field>
 
              <field>
-                 <dc-schema>dc</dc-schema>
-                 <dc-element>relation</dc-element>
-                 <dc-qualifier>ispartofseries</dc-qualifier>
-                 <repeatable>true</repeatable>
-                 <label>Series/Report No.</label>
-                 <input-type>series</input-type>
-                 <hint>Enter the series and number assigned to this item by your community.</hint>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>citation</dc-element>
+                 <dc-qualifier>required</dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>Citation URL</label>
+                 <input-type>onebox</input-type>
+                 <hint>Enter a URL to the citation required for this item.</hint>
                  <required></required>
              </field>
 
              <field>
-                 <dc-schema>dc</dc-schema>
-                 <dc-element>identifier</dc-element>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>course</dc-element>
                  <dc-qualifier></dc-qualifier>
-                 <!-- An input-type of qualdrop_value MUST be marked as repeatable -->
                  <repeatable>true</repeatable>
-                 <label>Identifiers</label>
-                 <input-type value-pairs-name="common_identifiers">qualdrop_value</input-type>
-                 <hint>If the item has any identification numbers or codes associated with
-                     it, please enter the types and the actual numbers or codes below.</hint>
+                 <label>Course Name - Course Number</label>
+                 <input-type>twobox</input-type>
+                 <hint></hint>
                  <required></required>
              </field>
 
              <field>
-                 <dc-schema>dc</dc-schema>
+                 <dc-schema>ah</dc-schema>
                  <dc-element>type</dc-element>
                  <dc-qualifier></dc-qualifier>
                  <repeatable>true</repeatable>
                  <label>Type</label>
-                 <input-type value-pairs-name="common_types">dropdown</input-type>
+                 <input-type value-pairs-name="ah_types">dropdown</input-type>
                  <hint>Select the type(s) of content of the item. To select more than one value in the list, you may have to hold down the "CTRL" or "Shift" key.</hint>
                  <required></required>
              </field>
@@ -363,17 +385,6 @@ it, please enter the types and the actual numbers or codes below.</hint>
              <field>
                  <dc-schema>dc</dc-schema>
                  <dc-element>description</dc-element>
-                 <dc-qualifier>sponsorship</dc-qualifier>
-                 <repeatable>false</repeatable>
-                 <label>Sponsors</label>
-                 <input-type>textarea</input-type>
-                 <hint>Enter the names of any sponsors and/or funding codes in the box below. </hint>
-                 <required></required>
-             </field>
-
-             <field>
-                 <dc-schema>dc</dc-schema>
-                 <dc-element>description</dc-element>
                  <dc-qualifier></dc-qualifier>
                  <repeatable>false</repeatable>
                  <label>Description</label>
@@ -381,6 +392,85 @@ it, please enter the types and the actual numbers or codes below.</hint>
                  <hint>Enter any other description or comments in this box. </hint>
                  <required></required>
              </field>
+
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>educationlevel</dc-element>
+                 <dc-qualifier></dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>Education Level</label>
+                 <input-type value-pairs-name="ah_educationlevel">dropdown</input-type>
+                 <hint>Select the education level for the document.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>learningoutcome</dc-element>
+                 <dc-qualifier>key</dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>Learning Outcome</label>
+                 <input-type value-pairs-name="ah_learningoutcome">dropdown</input-type>
+                 <hint>Select the learning outcome key for the document.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>learningoutcome</dc-element>
+                 <dc-qualifier>value</dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>Learning Outcome</label>
+                 <input-type>textarea</input-type>
+                 <hint>Select the learning outcome value for the document.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>associatedcontent</dc-element>
+                 <dc-qualifier></dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>Associated Content</label>
+                 <input-type>textarea</input-type>
+                 <hint>Enter the associated content. See also: multiple external link text entry</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>taxonomy</dc-element>
+                 <dc-qualifier></dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>Taxonomy</label>
+                 <input-type value-pairs-name="ah_taxonomy">dropdown</input-type>
+                 <hint>Select the taxonomy for the document.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>methodofinstruction</dc-element>
+                 <dc-qualifier></dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>Method of Instruction</label>
+                 <input-type value-pairs-name="ah_methodofinstruction">dropdown</input-type>
+                 <hint>Select the method of instruction for the document.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>dc</dc-schema>
+                 <dc-element>format</dc-element>
+                 <dc-qualifier>extent</dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>Content Item Size or Duration</label>
+                 <input-type>onebox</input-type>
+                 <hint>Enter the item size or duration of the document.</hint>
+                 <required></required>
+             </field>
+
+
          </page>
      </form>
  </form-definitions>
@@ -564,6 +654,162 @@ it, please enter the types and the actual numbers or codes below.</hint>
      </pair>
    </value-pairs>
 
-    </form-value-pairs>
+
+     <value-pairs value-pairs-name="ah_citation" dc-term="types">
+         <pair>
+             <displayed-value>Creative Commons – Attribution</displayed-value>
+             <stored-value>Creative Commons – Attribution</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Public Domain</displayed-value>
+             <stored-value>Public Domain</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>American Honors</displayed-value>
+             <stored-value>American Honors</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Other Attribution Required</displayed-value>
+             <stored-value>Other Attribution Required</stored-value>
+         </pair>
+     </value-pairs>
+
+     <value-pairs value-pairs-name="ah_types" dc-term="type">
+         <pair>
+             <displayed-value>Activity-practice</displayed-value>
+             <stored-value>Activity-practice</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Activity-reading</displayed-value>
+             <stored-value>Activity-reading</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Activity-simulation</displayed-value>
+             <stored-value>Activity-simulation</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Application</displayed-value>
+             <stored-value>Application</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Animation</displayed-value>
+             <stored-value>Animation</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Article</displayed-value>
+             <stored-value>Article</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Assessment-exam</displayed-value>
+             <stored-value>Assessment-exam</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Assessment-quiz</displayed-value>
+             <stored-value>Assessment-quiz</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Assessment-rubric</displayed-value>
+             <stored-value>Assessment-rubric</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Assignment-case study</displayed-value>
+             <stored-value>Assignment-case study</stored-value>
+         </pair>
+
+     </value-pairs>
+
+     <value-pairs value-pairs-name="ah_educationlevel" dc-term="type">
+         <pair>
+             <displayed-value>First Year</displayed-value>
+             <stored-value>First Year</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Second Year</displayed-value>
+             <stored-value>Second Year</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Other</displayed-value>
+             <stored-value>Other</stored-value>
+         </pair>
+     </value-pairs>
+
+     <value-pairs value-pairs-name="ah_learningoutcome" dc-term="type">
+         <pair>
+             <displayed-value>Honors</displayed-value>
+             <stored-value>Honors</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>College</displayed-value>
+             <stored-value>College</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Department</displayed-value>
+             <stored-value>Department</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Course</displayed-value>
+             <stored-value>Course</stored-value>
+         </pair>
+     </value-pairs>
+
+    <value-pairs value-pairs-name="ah_taxonomy" dc-term="type">
+        <pair>
+            <displayed-value>Analyze</displayed-value>
+            <stored-value>Analyze</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>Apply</displayed-value>
+            <stored-value>Apply</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>Create</displayed-value>
+            <stored-value>Create</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>Demonstrate</displayed-value>
+            <stored-value>Demonstrate</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>Describe</displayed-value>
+            <stored-value>Describe</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>Evaluate</displayed-value>
+            <stored-value>Evaluate</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>Remember</displayed-value>
+            <stored-value>Remember</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>Synthesize</displayed-value>
+            <stored-value>Synthesize</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>Understand</displayed-value>
+            <stored-value>Understand</stored-value>
+        </pair>
+    </value-pairs>
+     
+    <value-pairs value-pairs-name="ah_methodofinstruction" dc-term="type">
+        <pair>
+            <displayed-value>Face-to-Face</displayed-value>
+            <stored-value>Face-to-Face</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>Hybrid</displayed-value>
+            <stored-value>Hybrid</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>Synchronous Meeting</displayed-value>
+            <stored-value>Synchronous Meeting</stored-value>
+        </pair>
+        <pair>
+            <displayed-value>Asynchronous Online</displayed-value>
+            <stored-value>Asynchronous Online</stored-value>
+        </pair>
+    </value-pairs>
+
+</form-value-pairs>
 
 </input-forms>
