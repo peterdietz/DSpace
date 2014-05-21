@@ -46,7 +46,8 @@
             </xsl:choose>
         </xsl:variable>
 
-        <xsl:variable name="emphasis" select="confman:getProperty('xmlui.theme.mirage.item-list.emphasis')"/>
+        <!-- confman:getProperty('xmlui.theme.mirage.item-list.emphasis') -->
+        <xsl:variable name="emphasis" select="'file'"/>
         <xsl:choose>
             <xsl:when test="'file' = $emphasis">
 

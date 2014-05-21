@@ -389,6 +389,7 @@
                     </div>
 
                     <div class="navbar-header pull-right hidden-xs">
+                        <!--
                         <ul class="nav navbar-nav pull-left">
                               <xsl:call-template name="languageSelection"/>
                         </ul>
@@ -436,7 +437,23 @@
                                     </li>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </ul>
+                        </ul>-->
+                        <!-- Custom Smith block -->
+                        <div id="block-block-57" class="block block-block region-odd even region-count-1 count-4">
+                            <div class="content">
+                                <h2 class="title"><a href="http://www.smith.edu/libraries/help">got ?'s</a></h2>
+                                <div class="content-links">
+                                    <ul class="menu">
+                                        <li class="leaf first"><a href="http://www.smith.edu/libraries/help/chat">chat</a>   |</li>
+                                        <li class="leaf second"><a href="http://www.smith.edu/libraries/help/text">text</a>   |</li>
+                                        <li class="leaf third"><a href="http://www.smith.edu/libraries/forms/refform">email</a>   |</li>
+                                        <li class="leaf last"><a href="http://www.smith.edu/libraries/help/contacts">phone</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
 
                         <button data-toggle="offcanvas" class="navbar-toggle visible-sm" type="button">
                             <span class="sr-only">Toggle navigation</span>
