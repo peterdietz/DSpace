@@ -782,9 +782,9 @@ header .block a {
     color: #000000;
 }
 
-header .block .content-links {
-    position: absolute;
-    right: 32px;
+header .block h2.title {
+    position:relative;
+    right: -62px;
 }
 
 header .block.region-count-1 {
