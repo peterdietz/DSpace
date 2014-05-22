@@ -52,11 +52,29 @@
                 <xsl:if test="(position() mod 2 = 1)">odd </xsl:if>
             </xsl:attribute>
             <td>
-              <xsl:call-template name="getFileFormatIcon">
-                <xsl:with-param name="mimetype">
-                  <xsl:value-of select="@MIMETYPE"/>
-                </xsl:with-param>
-              </xsl:call-template>
+              <!-- Thumbnail or Mime-Icon -->
+              <xsl:choose>
+                <xsl:when test="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/mets:file[@GROUPID=current()/@GROUPID]">
+                    <a class="image-link">
+                        <xsl:attribute name="href">
+                            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                        </xsl:attribute>
+                        <img alt="Thumbnail">
+                            <xsl:attribute name="src">
+                                <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
+                                    mets:file[@GROUPID=current()/@GROUPID]/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                            </xsl:attribute>
+                        </img>
+                    </a>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:call-template name="getFileFormatIcon">
+                        <xsl:with-param name="mimetype">
+                            <xsl:value-of select="@MIMETYPE"/>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </xsl:otherwise>
+              </xsl:choose>
             </td>
             <td>
                 <a>
@@ -105,30 +123,12 @@
                 the Bitstream Registry, but we are constrained by the capabilities of METS
                 and can't really pass that info through. -->
             <td>
-                <xsl:choose>
-                    <xsl:when test="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
-                        mets:file[@GROUPID=current()/@GROUPID]">
-                        <a class="image-link">
-                            <xsl:attribute name="href">
-                            </xsl:attribute>
-                                <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
-                            <img alt="Thumbnail">
-                                <xsl:attribute name="src">
-                                    <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
-                                        mets:file[@GROUPID=current()/@GROUPID]/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
-                                </xsl:attribute>
-                            </img>
-                        </a>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
-                            </xsl:attribute>
-                            <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
-                        </a>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <a>
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                    </xsl:attribute>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
+                </a>
             </td>
       <!-- Display the contents of 'Description' as long as at least one bitstream contains a description -->
       <xsl:if test="$context/mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file/mets:FLocat/@xlink:label != ''">
@@ -168,15 +168,15 @@
             <xsl:value-of select="$theme-path"/>
             <xsl:text>/images/icons/html.png</xsl:text>
         </xsl:when>
-        <xsl:when test="$mimetype='application/msword'">
+        <xsl:when test="$mimetype='application/msword' or $mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document'">
             <xsl:value-of select="$theme-path"/>
             <xsl:text>/images/icons/msword.png</xsl:text>
         </xsl:when>
-        <xsl:when test="$mimetype='application/vnd.ms-powerpoint'">
+        <xsl:when test="$mimetype='application/vnd.ms-powerpoint' or $mimetype='application/vnd.openxmlformats-officedocument.presentationml.presentation'">
             <xsl:value-of select="$theme-path"/>
             <xsl:text>/images/icons/vnd.ms-powerpoint.png</xsl:text>
         </xsl:when>
-        <xsl:when test="$mimetype='application/vnd.ms-excel'">
+        <xsl:when test="$mimetype='application/vnd.ms-excel' or $mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'">
             <xsl:value-of select="$theme-path"/>
             <xsl:text>/images/icons/vnd.ms-excel.png</xsl:text>
         </xsl:when>
