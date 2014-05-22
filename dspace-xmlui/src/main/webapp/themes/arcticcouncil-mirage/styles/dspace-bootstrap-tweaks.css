@@ -115,11 +115,12 @@ table#aspect_administrative_ControlPanel_table_users a {
   }
 }
 
-/* User Registration */
-#aspect_eperson_StartRegistration_list_registration-progress li {
+/* User Registration arrows */
+#aspect_eperson_StartRegistration_list_registration-progress li, #aspect_eperson_StartForgotPassword_list_forgot-password-progress li {
     padding-left: 18px;
 }
 
-#aspect_eperson_StartRegistration_list_registration-progress .arrow {
+#aspect_eperson_StartRegistration_list_registration-progress .arrow, #aspect_eperson_StartForgotPassword_list_forgot-password-progress .arrow {
     padding-left: 0px;
 }
+

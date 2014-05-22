@@ -762,3 +762,47 @@ input[type='text'].ui-autocomplete-loading {
   background-position: 99% 50%;
   background-size: 25px 25px;
 }
+
+/* Submission form progress buttons */
+.btn-success {
+    background-color: #006699;
+    border: 1px solid #8b9eb2;
+}
+.btn-success[disabled], .btn-success.disabled {
+    background-color: #99ccff;
+    border: 1px solid #8b9eb2;
+}
+.btn-success:hover {
+    background-color: #3a658e;
+}
+
+/* Header Person dropdown */
+header .navbar-default .navbar-toggle > .open > a, header .navbar-default .navbar-toggle > .open > a:hover, header .navbar-default .navbar-toggle > .open > a:focus, header .navbar-default .navbar-nav > .open > a, header .navbar-default .navbar-nav > .open > a:hover, header .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #006699;
+    color: #eaf1f7;
+}
+header .navbar-default .navbar-toggle > li > a:hover, header .navbar-default .navbar-toggle > li > a:focus, header .navbar-default .navbar-nav > li > a:hover, header .navbar-default .navbar-nav > li > a:focus {
+    background-color: #006699;
+    color: #eaf1f7;
+}
+header .navbar-default .navbar-toggle > .active > a, header .navbar-default .navbar-toggle > .active > a:hover, header .navbar-default .navbar-toggle > .active > a:focus, header .navbar-default .navbar-nav > .active > a, header .navbar-default .navbar-nav > .active > a:hover, header .navbar-default .navbar-nav > .active > a:focus {
+    background-color: #006699;
+    color: #eaf1f7;
+}
+header .navbar-default .navbar-toggle > .open > a, header .navbar-default .navbar-toggle > .open > a:hover, header .navbar-default .navbar-toggle > .open > a:focus, header .navbar-default .navbar-nav > .open > a, header .navbar-default .navbar-nav > .open > a:hover, header .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #006699;
+    color: #eaf1f7;
+}
+
+/* Registration Buttons */
+.label-success {
+    background-color: #006699;
+    color: #eaf1f7;
+}
+
+/* Search Icon */
+.btn-primary {
+    color: #fff;
+    background-color: #d98b00;
+    border-color: #d98b00;
+}

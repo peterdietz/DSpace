@@ -2,8 +2,10 @@
 <document xmlns="http://di.tamu.edu/DRI/1.0/" xmlns:i18n="http://apache.org/cocoon/i18n/2.1" version="1.1">
 <body>
 <div id="file.news.div.news" n="news" rend="primary">
-<head>DSpace Repository</head>
-<p>DSpace is a digital service that collects, preserves, and distributes digital material. Repositories are important tools for preserving an organization&apos;s legacy; they facilitate digital preservation and scholarly communication.</p>
+<head>Arctic Council Repository</head>
+<p>The Ottawa Declaration of 1996 formally established the Arctic Council as a high level intergovernmental forum to provide a means for promoting cooperation, coordination and interaction among the Arctic States, with the involvement of the Arctic Indigenous communities and other Arctic inhabitants on common Arctic issues, in particular issues of sustainable development and environmental protection in the Arctic.</p>
+<br/>
+<p>This repository holds reports and assessments produced by the Arctic Council.</p>
 </div>
 </body>
 <options/>
