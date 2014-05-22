@@ -254,7 +254,11 @@
                             </img>
                         </xsl:when>
                         <xsl:otherwise>
-                            <img alt="Icon" src="{concat($theme-path, '/images/mime.png')}" style="height: {$thumbnail.maxheight}px;"/>
+                            <xsl:call-template name="getFileFormatIcon">
+                                <xsl:with-param name="mimetype">
+                                    <xsl:value-of select="mets:fileGrp[@USE='CONTENT']/mets:file/@MIMETYPE"/>
+                                </xsl:with-param>
+                            </xsl:call-template>
                         </xsl:otherwise>
                     </xsl:choose>
                 </a>
