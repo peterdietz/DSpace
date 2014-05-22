@@ -315,7 +315,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
              <field>
                  <dc-schema>ah</dc-schema>
                  <dc-element>citation</dc-element>
-                 <dc-qualifier>required</dc-qualifier>
+                 <dc-qualifier>reference</dc-qualifier>
                  <repeatable>false</repeatable>
                  <label>Citation URL</label>
                  <input-type>onebox</input-type>
@@ -328,9 +328,9 @@ it, please enter the types and the actual numbers or codes below.</hint>
                  <dc-element>course</dc-element>
                  <dc-qualifier></dc-qualifier>
                  <repeatable>false</repeatable>
-                 <label>Course Name - Course Number</label>
+                 <label>Course Identifier - Title</label>
                  <input-type>onebox</input-type>
-                 <hint></hint>
+                 <hint>ex: ENGL-101 - World Literature</hint>
                  <required></required>
              </field>
 
@@ -407,22 +407,44 @@ it, please enter the types and the actual numbers or codes below.</hint>
              <field>
                  <dc-schema>ah</dc-schema>
                  <dc-element>learningoutcome</dc-element>
-                 <dc-qualifier>key</dc-qualifier>
-                 <repeatable>false</repeatable>
-                 <label>Learning Outcome</label>
-                 <input-type value-pairs-name="ah_learningoutcome">dropdown</input-type>
-                 <hint>Select the learning outcome key for the document.</hint>
+                 <dc-qualifier>course</dc-qualifier>
+                 <repeatable>true</repeatable>
+                 <label>Learning Outcome - Course</label>
+                 <input-type>textarea</input-type>
+                 <hint>Select the learning outcome value for the Course.</hint>
                  <required></required>
              </field>
 
              <field>
                  <dc-schema>ah</dc-schema>
                  <dc-element>learningoutcome</dc-element>
-                 <dc-qualifier>value</dc-qualifier>
-                 <repeatable>false</repeatable>
-                 <label>Learning Outcome</label>
+                 <dc-qualifier>honors</dc-qualifier>
+                 <repeatable>true</repeatable>
+                 <label>Learning Outcome - Honors</label>
                  <input-type>textarea</input-type>
-                 <hint>Select the learning outcome value for the document.</hint>
+                 <hint>Select the learning outcome value for the Honors.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>learningoutcome</dc-element>
+                 <dc-qualifier>department</dc-qualifier>
+                 <repeatable>true</repeatable>
+                 <label>Learning Outcome - Department</label>
+                 <input-type>textarea</input-type>
+                 <hint>Select the learning outcome value for the Department.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>learningoutcome</dc-element>
+                 <dc-qualifier>college</dc-qualifier>
+                 <repeatable>true</repeatable>
+                 <label>Learning Outcome - College</label>
+                 <input-type>textarea</input-type>
+                 <hint>Select the learning outcome value for the College.</hint>
                  <required></required>
              </field>
 
@@ -430,7 +452,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
                  <dc-schema>ah</dc-schema>
                  <dc-element>taxonomy</dc-element>
                  <dc-qualifier></dc-qualifier>
-                 <repeatable>false</repeatable>
+                 <repeatable>true</repeatable>
                  <label>Taxonomy</label>
                  <input-type value-pairs-name="ah_taxonomy">dropdown</input-type>
                  <hint>Select the taxonomy for the document.</hint>
@@ -456,17 +478,6 @@ it, please enter the types and the actual numbers or codes below.</hint>
                  <label>Video/Audio Duration</label>
                  <input-type>onebox</input-type>
                  <hint>Length of video/audio object in hh:mm:ss or mm:ss.</hint>
-                 <required></required>
-             </field>
-
-             <field>
-                 <dc-schema>ah</dc-schema>
-                 <dc-element>instructorrating</dc-element>
-                 <dc-qualifier></dc-qualifier>
-                 <repeatable>false</repeatable>
-                 <label>Instructor Rating</label>
-                 <input-type value-pairs-name="ah_instructorrating">dropdown</input-type>
-                 <hint>Rating of the Instructor.</hint>
                  <required></required>
              </field>
 
@@ -668,6 +679,10 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
      <value-pairs value-pairs-name="ah_citation" dc-term="types">
          <pair>
+             <displayed-value>N/A</displayed-value>
+             <stored-value></stored-value>
+         </pair>
+         <pair>
              <displayed-value>Creative Commons – Attribution</displayed-value>
              <stored-value>Creative Commons – Attribution</stored-value>
          </pair>
@@ -682,6 +697,10 @@ it, please enter the types and the actual numbers or codes below.</hint>
      </value-pairs>
 
      <value-pairs value-pairs-name="ah_types" dc-term="type">
+         <pair>
+             <displayed-value>N/A</displayed-value>
+             <stored-value></stored-value>
+         </pair>
          <pair>
              <displayed-value>Activity-practice</displayed-value>
              <stored-value>Activity-practice</stored-value>
@@ -894,6 +913,10 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
      <value-pairs value-pairs-name="ah_educationlevel" dc-term="type">
          <pair>
+             <displayed-value>N/A</displayed-value>
+             <stored-value></stored-value>
+         </pair>
+         <pair>
              <displayed-value>First Year</displayed-value>
              <stored-value>First Year</stored-value>
          </pair>
@@ -908,6 +931,10 @@ it, please enter the types and the actual numbers or codes below.</hint>
      </value-pairs>
 
      <value-pairs value-pairs-name="ah_learningoutcome" dc-term="type">
+         <pair>
+             <displayed-value>N/A</displayed-value>
+             <stored-value></stored-value>
+         </pair>
          <pair>
              <displayed-value>Honors</displayed-value>
              <stored-value>Honors</stored-value>
@@ -927,6 +954,10 @@ it, please enter the types and the actual numbers or codes below.</hint>
      </value-pairs>
 
     <value-pairs value-pairs-name="ah_taxonomy" dc-term="type">
+        <pair>
+            <displayed-value>None</displayed-value>
+            <stored-value>None</stored-value>
+        </pair>
         <pair>
             <displayed-value>Analyze</displayed-value>
             <stored-value>Analyze</stored-value>
@@ -967,6 +998,10 @@ it, please enter the types and the actual numbers or codes below.</hint>
      
     <value-pairs value-pairs-name="ah_methodofinstruction" dc-term="type">
         <pair>
+            <displayed-value>N/A</displayed-value>
+            <stored-value></stored-value>
+        </pair>
+        <pair>
             <displayed-value>Face-to-Face</displayed-value>
             <stored-value>Face-to-Face</stored-value>
         </pair>
@@ -985,6 +1020,10 @@ it, please enter the types and the actual numbers or codes below.</hint>
     </value-pairs>
 
     <value-pairs value-pairs-name="ah_instructorrating" dc-term="type">
+        <pair>
+            <displayed-value>N/A</displayed-value>
+            <stored-value></stored-value>
+        </pair>
         <pair>
             <displayed-value>***** - Excellent</displayed-value>
             <stored-value>Excellent</stored-value>
