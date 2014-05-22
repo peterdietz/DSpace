@@ -284,7 +284,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
                  <repeatable>false</repeatable>
                  <label>College</label>
                  <input-type>onebox</input-type>
-                 <hint>College</hint>
+                 <hint></hint>
                  <required></required>
              </field>
 
@@ -327,9 +327,9 @@ it, please enter the types and the actual numbers or codes below.</hint>
                  <dc-schema>ah</dc-schema>
                  <dc-element>course</dc-element>
                  <dc-qualifier></dc-qualifier>
-                 <repeatable>true</repeatable>
+                 <repeatable>false</repeatable>
                  <label>Course Name - Course Number</label>
-                 <input-type>twobox</input-type>
+                 <input-type>onebox</input-type>
                  <hint></hint>
                  <required></required>
              </field>
@@ -428,17 +428,6 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
              <field>
                  <dc-schema>ah</dc-schema>
-                 <dc-element>associatedcontent</dc-element>
-                 <dc-qualifier></dc-qualifier>
-                 <repeatable>true</repeatable>
-                 <label>Associated Content (external website)</label>
-                 <input-type>textarea</input-type>
-                 <hint>Enter the website URL of the associated content. Will show up in a "See Also:" section.</hint>
-                 <required></required>
-             </field>
-
-             <field>
-                 <dc-schema>ah</dc-schema>
                  <dc-element>taxonomy</dc-element>
                  <dc-qualifier></dc-qualifier>
                  <repeatable>false</repeatable>
@@ -464,9 +453,9 @@ it, please enter the types and the actual numbers or codes below.</hint>
                  <dc-element>format</dc-element>
                  <dc-qualifier>extent</dc-qualifier>
                  <repeatable>false</repeatable>
-                 <label>Content Item Size or Duration</label>
+                 <label>Video/Audio Duration</label>
                  <input-type>onebox</input-type>
-                 <hint>Enter the item size or duration of the document.</hint>
+                 <hint>Length of video/audio object in hh:mm:ss or mm:ss.</hint>
                  <required></required>
              </field>
 
@@ -478,6 +467,17 @@ it, please enter the types and the actual numbers or codes below.</hint>
                  <label>Instructor Rating</label>
                  <input-type value-pairs-name="ah_instructorrating">dropdown</input-type>
                  <hint>Rating of the Instructor.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>ah</dc-schema>
+                 <dc-element>associatedcontent</dc-element>
+                 <dc-qualifier></dc-qualifier>
+                 <repeatable>true</repeatable>
+                 <label>Associated Content (external website)</label>
+                 <input-type>onebox</input-type>
+                 <hint>Enter the website URL of the associated content.</hint>
                  <required></required>
              </field>
 
@@ -674,10 +674,6 @@ it, please enter the types and the actual numbers or codes below.</hint>
          <pair>
              <displayed-value>Public Domain</displayed-value>
              <stored-value>Public Domain</stored-value>
-         </pair>
-         <pair>
-             <displayed-value>American Honors</displayed-value>
-             <stored-value>American Honors</stored-value>
          </pair>
          <pair>
              <displayed-value>Other Attribution Required</displayed-value>
