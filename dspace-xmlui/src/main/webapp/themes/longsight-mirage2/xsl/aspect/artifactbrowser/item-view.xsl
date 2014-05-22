@@ -181,13 +181,13 @@
                 <xsl:otherwise>
                     <!--<i class="glyphicon glyphicon-file" aria-hidden="true"/>-->
 
-                    <img alt="Thumbnail">
-                        <xsl:attribute name="data-src">
-                            <xsl:text>holder.js/100%x</xsl:text>
-                            <xsl:value-of select="$thumbnail.maxheight"/>
-                            <xsl:text>/text:No Thumbnail</xsl:text>
-                        </xsl:attribute>
-                    </img>
+
+                    <xsl:call-template name="getFileFormatIcon">
+                        <xsl:with-param name="mimetype">
+                            <xsl:value-of select="//mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file/@MIMETYPE"/>
+                        </xsl:with-param>
+                    </xsl:call-template>
+
                 </xsl:otherwise>
             </xsl:choose>
         </div>
