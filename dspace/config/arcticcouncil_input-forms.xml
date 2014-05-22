@@ -262,10 +262,6 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
    <value-pairs value-pairs-name="common_types" dc-term="type">
      <pair>
-       <displayed-value>Animation</displayed-value>
-       <stored-value>Animation</stored-value>
-     </pair>
-     <pair>
        <displayed-value>Article</displayed-value>
        <stored-value>Article</stored-value>
      </pair>
@@ -280,6 +276,14 @@ it, please enter the types and the actual numbers or codes below.</hint>
      <pair>
        <displayed-value>Dataset</displayed-value>
        <stored-value>Dataset</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Declaration</displayed-value>
+       <stored-value>Declaration</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Fact sheet</displayed-value>
+       <stored-value>Fact sheet</stored-value>
      </pair>
      <pair>
        <displayed-value>Learning Object</displayed-value>
@@ -298,14 +302,6 @@ it, please enter the types and the actual numbers or codes below.</hint>
        <stored-value>Map</stored-value>
      </pair>
      <pair>
-       <displayed-value>Musical Score</displayed-value>
-       <stored-value>Musical Score</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Plan or blueprint</displayed-value>
-       <stored-value>Plan or blueprint</stored-value>
-     </pair>
-     <pair>
        <displayed-value>Preprint</displayed-value>
        <stored-value>Preprint</stored-value>
      </pair>
@@ -314,28 +310,12 @@ it, please enter the types and the actual numbers or codes below.</hint>
        <stored-value>Presentation</stored-value>
      </pair>
      <pair>
-       <displayed-value>Recording, acoustical</displayed-value>
-       <stored-value>Recording, acoustical</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Recording, musical</displayed-value>
-       <stored-value>Recording, musical</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Recording, oral</displayed-value>
-       <stored-value>Recording, oral</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Software</displayed-value>
-       <stored-value>Software</stored-value>
+       <displayed-value>Summary Report</displayed-value>
+       <stored-value>Summary Report</stored-value>
      </pair>
      <pair>
        <displayed-value>Technical Report</displayed-value>
        <stored-value>Technical Report</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Thesis</displayed-value>
-       <stored-value>Thesis</stored-value>
      </pair>
      <pair>
        <displayed-value>Video</displayed-value>
@@ -360,36 +340,32 @@ it, please enter the types and the actual numbers or codes below.</hint>
        <stored-value></stored-value>
      </pair>
      <pair>
-       <displayed-value>English (United States)</displayed-value>
-       <stored-value>en_US</stored-value>
-      </pair>
-     <pair>
        <displayed-value>English</displayed-value>
        <stored-value>en</stored-value>
      </pair>
      <pair>
-       <displayed-value>Spanish</displayed-value>
-       <stored-value>es</stored-value>
+       <displayed-value>Danish</displayed-value>
+       <stored-value>da</stored-value>
      </pair>
      <pair>
-       <displayed-value>German</displayed-value>
-       <stored-value>de</stored-value>
+       <displayed-value>Finnish</displayed-value>
+       <stored-value>fi</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Norwegian</displayed-value>
+       <stored-value>nn</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Russian</displayed-value>
+       <stored-value>ru</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Swedish</displayed-value>
+       <stored-value>sv</stored-value>
      </pair>
      <pair>
        <displayed-value>French</displayed-value>
        <stored-value>fr</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Italian</displayed-value>
-       <stored-value>it</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Japanese</displayed-value>
-       <stored-value>ja</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Chinese</displayed-value>
-       <stored-value>zh</stored-value>
      </pair>
      <pair>
        <displayed-value>(Other)</displayed-value>
