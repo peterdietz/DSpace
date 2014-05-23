@@ -300,7 +300,7 @@
 
 
         <header>
-            <div class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container navbar navbar-default navbar-static-top" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
 
@@ -473,7 +473,7 @@
     <!-- The header (distinct from the HTML head element) contains the title, subtitle, login box and various
         placeholders for header images -->
     <xsl:template name="buildTrail">
-        <div class="trail-wrapper">
+        <div class="container trail-wrapper">
             <div class="container">
                 <div class="row">
                     <!--TODO-->
