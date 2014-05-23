@@ -303,7 +303,14 @@
 
     <!-- Authentication messages used for bitstream authentication -->
 	<message key="xmlui.BitstreamReader.auth_header">The file is restricted</message>
-	<message key="xmlui.BitstreamReader.auth_message">The file you are attempting to access is a restricted file and requires credentials to view. Please login below to access the file.</message>
+	<message key="xmlui.BitstreamReader.auth_message">This item is restricted to Smith College users; please log on with your Smith network username and password below to access the file.<br/><br/>
+    Online access to most of the undergraduate honors theses is restricted to
+    Smith login only. Unfortunately, the Smith College libraries cannot supply
+    materials directly to unaffiliated scholars. However, you may be able to
+    gain access to this item (as a pdf file) via Interlibrary Loan services at
+    your own library. More information regarding our policy may be found here:
+    <a href="http://www.smith.edu/libraries/services/ill/scholars">http://www.smith.edu/libraries/services/ill/scholars</a>
+    </message>
 
 	<!-- Export Archive download messages -->
 	<message key="xmlui.ItemExportDownloadReader.auth_header">This export archive is restricted.</message>
