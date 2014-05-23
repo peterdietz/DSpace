@@ -929,7 +929,7 @@ div.spacer{
     margin-right: 15px;
 }
 .thumbnail-wrapper .image-link img {
-    border: 1px solid #FFBE43;
+    /*border: 1px solid #FFBE43;*/
 }
 
 .item-metadata {
