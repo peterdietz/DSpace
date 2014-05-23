@@ -268,6 +268,10 @@
 	<message key="xmlui.ArtifactBrowser.SimpleSearch.search_scope">Search Scope</message>
 	<message key="xmlui.ArtifactBrowser.SimpleSearch.full_text_search">Full Text Search</message>
 
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.ah_taxonomy">Taxonomy</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.ah_type">Content Type</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.ah_methodofinstruction">Method of Instruction</message>
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.RestrictedItem.java -->
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.title">This resource is restricted</message>
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.trail">Restricted</message>
