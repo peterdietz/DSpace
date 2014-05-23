@@ -1,0 +1,1218 @@
+<?xml version="1.0"?>
+<!DOCTYPE input-forms SYSTEM "input-forms.dtd">
+
+
+<input-forms>
+
+ <!-- The form-map maps collection handles to forms. DSpace does not       -->
+ <!-- require that a collection's name be unique, even within a community .-->
+ <!-- DSpace does however insure that each collection's handle is unique.  -->
+ <!-- Form-map provides the means to associate a unique collection name    -->
+ <!-- with a form. The form-map also provides the special handle "default" -->
+ <!-- (which is never a collection), here mapped to "traditional". Any     -->
+ <!-- collection which does not appear in this map will be associated with -->
+ <!-- the mapping for handle "default".                                    -->
+
+ <form-map>
+   <name-map collection-handle="default" form-name="traditional" />
+   <name-map collection-handle="10827/31" form-name="scsd" />
+   <name-map collection-handle="10827/20" form-name="scsd" />
+   <name-map collection-handle="10827/22" form-name="scsd" />
+   <name-map collection-handle="10827/32" form-name="scsd" />
+   <name-map collection-handle="10827/33" form-name="scsd" />
+   <name-map collection-handle="10827/30" form-name="scsd" />
+   <name-map collection-handle="10827/78" form-name="scsd" />
+   <name-map collection-handle="10827/80" form-name="scsd" />
+   <name-map collection-handle="10827/121" form-name="scsd" />
+   <name-map collection-handle="10827/122" form-name="scsd" />
+   <name-map collection-handle="10827/123" form-name="scsd" />
+   <name-map collection-handle="10827/124" form-name="scsd" />
+   <name-map collection-handle="10827/125" form-name="scsd" />
+   <name-map collection-handle="10827/126" form-name="scsd" />
+   <name-map collection-handle="10827/232" form-name="scsd" />
+   <name-map collection-handle="10827/245" form-name="scsd" />
+   <name-map collection-handle="10827/247" form-name="scsd" />
+   <name-map collection-handle="10827/249" form-name="scsd" />
+   <name-map collection-handle="10827/497" form-name="scsd" />
+   <name-map collection-handle="10827/558" form-name="scsd" />
+   <name-map collection-handle="10827/560" form-name="scsd" />
+   <name-map collection-handle="10827/561" form-name="scsd" /> 
+   <name-map collection-handle="10827/247" form-name="scsd" /> 
+   <name-map collection-handle="10827/478" form-name="scsd" /> 
+   <name-map collection-handle="10827/1628" form-name="scsd" /> 
+   <name-map collection-handle="10827/1960" form-name="scsd" /> 
+   <name-map collection-handle="10827/1947" form-name="scsd" /> 
+   <name-map collection-handle="10827/1949" form-name="scsd" /> 
+   <name-map collection-handle="10827/1951" form-name="scsd" /> 
+   <name-map collection-handle="10827/1952" form-name="scsd" /> 
+   <name-map collection-handle="10827/1953" form-name="scsd" /> 
+   <name-map collection-handle="10827/1950" form-name="scsd" /> 
+   <name-map collection-handle="10827/2210" form-name="scsd" /> 
+   <name-map collection-handle="10827/2318" form-name="scsd" /> 
+   <name-map collection-handle="10827/2320" form-name="scsd" /> 
+   <name-map collection-handle="10827/2323" form-name="scsd" /> 
+   <name-map collection-handle="10827/2327" form-name="scsd" /> 
+   <name-map collection-handle="10827/2331" form-name="scsd" /> 
+   <name-map collection-handle="10827/2532" form-name="scsd" /> 
+   <name-map collection-handle="10827/2534" form-name="scsd" /> 
+   <name-map collection-handle="10827/2538" form-name="scsd" /> 
+   <name-map collection-handle="10827/4794" form-name="scsd" /> 
+   <name-map collection-handle="10827/4790" form-name="scsd" /> 
+   <name-map collection-handle="10827/4792" form-name="scsd" /> 
+   <name-map collection-handle="10827/4791" form-name="scsd" /> 
+   <name-map collection-handle="10827/5283" form-name="scsd" /> 
+   <name-map form-name="scsd" collection-handle="10827/5393" />
+   <name-map form-name="scsd" collection-handle="10827/5395" />
+   <name-map form-name="scsd" collection-handle="10827/5393" />
+   <name-map form-name="scsd" collection-handle="10827/5397" />
+   <name-map form-name="scsd" collection-handle="10827/5398" />
+   <name-map form-name="scsd" collection-handle="10827/5401" />
+   <name-map form-name="scsd" collection-handle="10827/5405" />
+   <name-map collection-handle="10827/5287" form-name="scsd" /> 
+   <name-map collection-handle="10827/296" form-name="uctp" /> 
+   <name-map collection-handle="10827/295" form-name="uctp" /> 
+   <name-map collection-handle="10827/294" form-name="uctp" />
+   <name-map form-name="scsd" collection-handle="10827/5455" />
+   <name-map form-name="scsd" collection-handle="10827/5457" />
+   <name-map form-name="scsd" collection-handle="10827/5465" />
+   <name-map form-name="scsd" collection-handle="10827/5396" />
+   <name-map form-name="scsd" collection-handle="10827/5746" /> 
+   <name-map form-name="scsd" collection-handle="10827/5748" /> 
+   <name-map form-name="scsd" collection-handle="10827/5750" /> 
+   <name-map form-name="scsd" collection-handle="10827/5751" /> 
+   <name-map form-name="scsd" collection-handle="10827/5752" /> 
+   <name-map form-name="scsd" collection-handle="10827/5755" /> 
+   <name-map form-name="scsd" collection-handle="10827/5756" /> 
+   <name-map form-name="scsd" collection-handle="10827/5758" /> 
+   <name-map form-name="scsd" collection-handle="10827/5759" /> 
+   <name-map form-name="scsd" collection-handle="10827/5760" /> 
+   <name-map form-name="scsd" collection-handle="10827/5763" /> 
+   <name-map form-name="scsd" collection-handle="10827/5764" />
+   <name-map form-name="scsd" collection-handle="10827/6058" /> 
+   <name-map form-name="scsd" collection-handle="10827/6056" /> 
+   <name-map form-name="scsd" collection-handle="10827/6060" />
+   <name-map form-name="scsd" collection-handle="10827/6061" />
+   <name-map form-name="scsd" collection-handle="10827/6633" /> 
+   <name-map form-name="scsd" collection-handle="10827/6638" /> 
+   <name-map form-name="scsd" collection-handle="10827/6639" /> 
+   <name-map form-name="scsd" collection-handle="10827/6647" /> 
+   <name-map form-name="scsd" collection-handle="10827/6650" /> 
+   <name-map form-name="scsd" collection-handle="10827/6653" /> 
+   <name-map form-name="scsd" collection-handle="10827/6655" />
+   <name-map form-name="scsd" collection-handle="10827/6641" />
+   <name-map form-name="scsd" collection-handle="10827/6649" />
+   <name-map form-name="scsd" collection-handle="10827/7428" />
+   <name-map form-name="scsd" collection-handle="10827/7431" />
+   <name-map form-name="scsd" collection-handle="10827/7434" />
+   <name-map form-name="scsd" collection-handle="10827/7435" />
+<name-map collection-handle="10827/6824" form-name="scsd" />
+<name-map collection-handle="10827/6825" form-name="scsd" />
+<name-map collection-handle="10827/6829" form-name="scsd" />
+<name-map collection-handle="10827/6830" form-name="scsd" />
+<name-map collection-handle="10827/6835" form-name="scsd" />
+<name-map collection-handle="10827/6838" form-name="scsd" />
+<name-map collection-handle="10827/6841" form-name="scsd" />
+<name-map collection-handle="10827/6842" form-name="scsd" />
+<name-map collection-handle="10827/6845" form-name="scsd" />
+<name-map collection-handle="10827/6846" form-name="scsd" />
+<name-map collection-handle="10827/6850" form-name="scsd" />
+<name-map collection-handle="10827/6855" form-name="scsd" />
+<name-map collection-handle="10827/6860" form-name="scsd" />
+<name-map collection-handle="10827/6861" form-name="scsd" /> 
+<name-map collection-handle="10827/6864" form-name="scsd" />
+<name-map collection-handle="10827/6866" form-name="scsd" />
+<name-map collection-handle="10827/6870" form-name="scsd" />
+<name-map collection-handle="10827/6871" form-name="scsd" />
+<name-map collection-handle="10827/6872" form-name="scsd" />
+<name-map collection-handle="10827/6875" form-name="scsd" />
+<name-map collection-handle="10827/6876" form-name="scsd" />
+<name-map collection-handle="10827/6877" form-name="scsd" />
+<name-map collection-handle="10827/6879" form-name="scsd" />
+<name-map collection-handle="10827/6880" form-name="scsd" />
+<name-map collection-handle="10827/6921" form-name="scsd" />
+<name-map collection-handle="10827/6922" form-name="scsd" />
+<name-map collection-handle="10827/6924" form-name="scsd" />
+<name-map collection-handle="10827/6925" form-name="scsd" />
+<name-map collection-handle="10827/6927" form-name="scsd" />
+<name-map collection-handle="10827/6928" form-name="scsd" />
+<name-map collection-handle="10827/6930" form-name="scsd" />
+<name-map collection-handle="10827/6931" form-name="scsd" />
+<name-map collection-handle="10827/6933" form-name="scsd" />
+<name-map collection-handle="10827/6934" form-name="scsd" />
+<name-map collection-handle="10827/6935" form-name="scsd" />
+<name-map collection-handle="10827/6937" form-name="scsd" />
+<name-map collection-handle="10827/6938" form-name="scsd" />
+<name-map collection-handle="10827/6940" form-name="scsd" /> 
+<name-map collection-handle="10827/6941" form-name="scsd" />
+<name-map collection-handle="10827/6943" form-name="scsd" />
+<name-map collection-handle="10827/6944" form-name="scsd" />
+<name-map collection-handle="10827/6946" form-name="scsd" />
+<name-map collection-handle="10827/6947" form-name="scsd" />
+<name-map collection-handle="10827/6949" form-name="scsd" />
+<name-map collection-handle="10827/6950" form-name="scsd" />
+<name-map collection-handle="10827/6952" form-name="scsd" />
+<name-map collection-handle="10827/6953" form-name="scsd" />
+<name-map collection-handle="10827/6955" form-name="scsd" />
+<name-map collection-handle="10827/6956" form-name="scsd" />
+<name-map collection-handle="10827/6958" form-name="scsd" />
+<name-map collection-handle="10827/6959" form-name="scsd" />
+<name-map collection-handle="10827/6962" form-name="scsd" />
+<name-map collection-handle="10827/6963" form-name="scsd" />
+<name-map collection-handle="10827/6966" form-name="scsd" />
+<name-map collection-handle="10827/6967" form-name="scsd" />
+<name-map collection-handle="10827/6969" form-name="scsd" />
+<name-map collection-handle="10827/6970" form-name="scsd" />
+<name-map collection-handle="10827/6973" form-name="scsd" />
+<name-map collection-handle="10827/6974" form-name="scsd" />
+<name-map collection-handle="10827/7452" form-name="scsd" />
+<name-map collection-handle="10827/7453" form-name="scsd" />
+<name-map collection-handle="10827/7454" form-name="scsd" />
+<name-map collection-handle="10827/7455" form-name="scsd" />
+<name-map collection-handle="10827/7456" form-name="scsd" />
+<name-map collection-handle="10827/7457" form-name="scsd" />
+<name-map collection-handle="10827/7459" form-name="scsd" />
+<name-map collection-handle="10827/7460" form-name="scsd" />
+<name-map collection-handle="10827/7461" form-name="scsd" />
+<name-map collection-handle="10827/7462" form-name="scsd" />
+<name-map collection-handle="10827/7779" form-name="scsd" />
+<name-map collection-handle="10827/7801" form-name="scsd" />
+<name-map collection-handle="10827/7813" form-name="scsd" />
+<name-map collection-handle="10827/7814" form-name="scsd" />
+<name-map collection-handle="10827/7815" form-name="scsd" />
+<name-map collection-handle="10827/7816" form-name="scsd" />
+<name-map collection-handle="10827/7817" form-name="scsd" />
+<name-map collection-handle="10827/7818" form-name="scsd" />
+<name-map collection-handle="10827/7820" form-name="scsd" />
+<name-map collection-handle="10827/7822" form-name="scsd" />
+<name-map collection-handle="10827/8356" form-name="scsd" />
+<name-map collection-handle="10827/8357" form-name="scsd" />
+<name-map collection-handle="10827/8358" form-name="scsd" />
+<name-map collection-handle="10827/8359" form-name="scsd" />
+<name-map collection-handle="10827/8360" form-name="scsd" />
+<name-map collection-handle="10827/8361" form-name="scsd" />
+<name-map collection-handle="10827/8362" form-name="scsd" />
+<name-map collection-handle="10827/8363" form-name="scsd" />
+<name-map collection-handle="10827/8374" form-name="scsd" />
+<name-map collection-handle="10827/8375" form-name="scsd" />
+<name-map collection-handle="10827/8380" form-name="scsd" />
+<name-map collection-handle="10827/8381" form-name="scsd" />
+<name-map collection-handle="10827/8383" form-name="scsd" />
+<name-map collection-handle="10827/8384" form-name="scsd" />
+<name-map collection-handle="10827/8385" form-name="scsd" />
+<name-map collection-handle="10827/8386" form-name="scsd" />
+<name-map collection-handle="10827/8387" form-name="scsd" />
+<name-map collection-handle="10827/8388" form-name="scsd" />
+<name-map collection-handle="10827/8389" form-name="scsd" />
+<name-map collection-handle="10827/8390" form-name="scsd" />
+<name-map collection-handle="10827/8391" form-name="scsd" />
+<name-map collection-handle="10827/8392" form-name="scsd" />
+<name-map collection-handle="10827/8394" form-name="scsd" />
+<name-map collection-handle="10827/8444" form-name="scsd" />
+<name-map collection-handle="10827/8445" form-name="scsd" />
+<name-map collection-handle="10827/8446" form-name="scsd" />
+<name-map collection-handle="10827/8447" form-name="scsd" />
+<name-map collection-handle="10827/9425" form-name="scsd" />
+<name-map collection-handle="10827/9426" form-name="scsd" />
+<name-map collection-handle="10827/9427" form-name="scsd" />
+<name-map collection-handle="10827/9434" form-name="scsd" />
+<name-map collection-handle="10827/9435" form-name="scsd" />
+<name-map collection-handle="10827/9437" form-name="scsd" />
+<name-map collection-handle="10827/9441" form-name="scsd" />
+<name-map collection-handle="10827/9443" form-name="scsd" />
+<name-map collection-handle="10827/9444" form-name="scsd" />
+<name-map collection-handle="10827/9447" form-name="scsd" />
+<name-map collection-handle="10827/9449" form-name="scsd" />
+<name-map collection-handle="10827/9450" form-name="scsd" />
+<name-map collection-handle="10827/9451" form-name="scsd" />
+<name-map collection-handle="10827/9452" form-name="scsd" />
+<name-map collection-handle="10827/9453" form-name="scsd" />
+<name-map collection-handle="10827/9454" form-name="scsd" />
+<name-map collection-handle="10827/8376" form-name="scsd" />
+<name-map collection-handle="10827/9653" form-name="scsd" />
+<name-map collection-handle="10827/9655" form-name="scsd" />
+<name-map collection-handle="10827/9661" form-name="scsd" />
+<name-map collection-handle="10827/9663" form-name="scsd" />
+<name-map collection-handle="10827/9670" form-name="scsd" />
+<name-map collection-handle="10827/9671" form-name="scsd" />
+<name-map collection-handle="10827/10382" form-name="scsd" />
+<name-map collection-handle="10827/10465" form-name="scsd" />
+<name-map collection-handle="10827/10466" form-name="scsd" />
+<name-map collection-handle="10827/10467" form-name="scsd" />
+<name-map collection-handle="10827/10468" form-name="scsd" />
+<name-map collection-handle="10827/10469" form-name="scsd" />
+<name-map collection-handle="10827/10470" form-name="scsd" />
+<name-map collection-handle="10827/10471" form-name="scsd" />
+<name-map collection-handle="10827/10472" form-name="scsd" />
+<name-map collection-handle="10827/10473" form-name="scsd" />
+<name-map collection-handle="10827/10474" form-name="scsd" />
+<name-map collection-handle="10827/10476" form-name="scsd" />
+<name-map collection-handle="10827/10477" form-name="scsd" />
+<name-map collection-handle="10827/10478" form-name="scsd" />
+<name-map collection-handle="10827/10479" form-name="scsd" />
+<name-map collection-handle="10827/10480" form-name="scsd" />
+<name-map collection-handle="10827/10481" form-name="scsd" />
+<name-map collection-handle="10827/10482" form-name="scsd" />
+<name-map collection-handle="10827/10483" form-name="scsd" />
+<name-map collection-handle="10827/10484" form-name="scsd" />
+<name-map collection-handle="10827/10485" form-name="scsd" />
+<name-map collection-handle="10827/10486" form-name="scsd" />
+<name-map collection-handle="10827/10487" form-name="scsd" />
+<name-map collection-handle="10827/10488" form-name="scsd" />
+<name-map collection-handle="10827/10489" form-name="scsd" />
+<name-map collection-handle="10827/10490" form-name="scsd" />
+<name-map collection-handle="10827/10491" form-name="scsd" />
+<name-map collection-handle="10827/10492" form-name="scsd" />
+<name-map collection-handle="10827/10493" form-name="scsd" />
+<name-map collection-handle="10827/10494" form-name="scsd" />
+<name-map collection-handle="10827/10495" form-name="scsd" />
+<name-map collection-handle="10827/10496" form-name="scsd" />
+<name-map collection-handle="10827/10497" form-name="scsd" />
+<name-map collection-handle="10827/10498" form-name="scsd" />
+<name-map collection-handle="10827/10499" form-name="scsd" />
+<name-map collection-handle="10827/10500" form-name="scsd" />
+<name-map collection-handle="10827/10501" form-name="scsd" />
+<name-map collection-handle="10827/10503" form-name="scsd" />
+<name-map collection-handle="10827/11966" form-name="scsd" />
+<name-map collection-handle="10827/11967" form-name="scsd" />
+<name-map collection-handle="10827/11968" form-name="scsd" />
+<name-map collection-handle="10827/11969" form-name="scsd" />
+<name-map collection-handle="10827/11970" form-name="scsd" />
+<name-map collection-handle="10827/11971" form-name="scsd" />
+<name-map collection-handle="10827/11972" form-name="scsd" />
+<name-map collection-handle="10827/11973" form-name="scsd" />
+<name-map collection-handle="10827/11974" form-name="scsd" />
+<name-map collection-handle="10827/11975" form-name="scsd" />
+<name-map collection-handle="10827/11976" form-name="scsd" />
+<name-map collection-handle="10827/11977" form-name="scsd" />
+<name-map collection-handle="10827/11978" form-name="scsd" />
+<name-map collection-handle="10827/11979" form-name="scsd" />
+<name-map collection-handle="10827/11980" form-name="scsd" />
+<name-map collection-handle="10827/11981" form-name="scsd" />
+<name-map collection-handle="10827/11982" form-name="scsd" />
+<name-map collection-handle="10827/11983" form-name="scsd" />
+<name-map collection-handle="10827/11984" form-name="scsd" />
+<name-map collection-handle="10827/11985" form-name="scsd" />
+<name-map collection-handle="10827/11986" form-name="scsd" />
+<name-map collection-handle="10827/11987" form-name="scsd" />
+<name-map collection-handle="10827/11988" form-name="scsd" />
+<name-map collection-handle="10827/11989" form-name="scsd" />
+<name-map collection-handle="10827/11990" form-name="scsd" />
+
+<name-map collection-handle="10827/13021" form-name="scsd" />
+<name-map collection-handle="10827/13022" form-name="scsd" />
+<name-map collection-handle="10827/13145" form-name="scsd" />
+<name-map collection-handle="10827/13146" form-name="scsd" />
+<name-map collection-handle="10827/13147" form-name="scsd" />
+<name-map collection-handle="10827/13148" form-name="scsd" />
+<name-map collection-handle="10827/13149" form-name="scsd" />
+<name-map collection-handle="10827/13150" form-name="scsd" />
+<name-map collection-handle="10827/13151" form-name="scsd" />
+<name-map collection-handle="10827/13152" form-name="scsd" />
+<name-map collection-handle="10827/13153" form-name="scsd" />
+<name-map collection-handle="10827/13155" form-name="scsd" />
+<name-map collection-handle="10827/13156" form-name="scsd" />
+<name-map collection-handle="10827/13157" form-name="scsd" />
+<name-map collection-handle="10827/13158" form-name="scsd" />
+<name-map collection-handle="10827/13159" form-name="scsd" />
+
+<name-map collection-handle="10827/14702" form-name="scsd" />
+<name-map collection-handle="10827/14703" form-name="scsd" />
+<name-map collection-handle="10827/14705" form-name="scsd" />
+<name-map collection-handle="10827/14707" form-name="scsd" />
+<name-map collection-handle="10827/14708" form-name="scsd" />
+<name-map collection-handle="10827/14710" form-name="scsd" />
+<name-map collection-handle="10827/14711" form-name="scsd" />
+<name-map collection-handle="10827/14712" form-name="scsd" />
+<name-map collection-handle="10827/14713" form-name="scsd" />
+<name-map collection-handle="10827/14714" form-name="scsd" />
+<name-map collection-handle="10827/14715" form-name="scsd" />
+<name-map collection-handle="10827/14716" form-name="scsd" />
+<name-map collection-handle="10827/14717" form-name="scsd" />
+<name-map collection-handle="10827/14718" form-name="scsd" />
+<name-map collection-handle="10827/14720" form-name="scsd" />
+<name-map collection-handle="10827/14721" form-name="scsd" />
+<name-map collection-handle="10827/14722" form-name="scsd" />
+<name-map collection-handle="10827/14723" form-name="scsd" />
+<name-map collection-handle="10827/14724" form-name="scsd" />
+<name-map collection-handle="10827/14726" form-name="scsd" />
+<name-map collection-handle="10827/14728" form-name="scsd" />
+<name-map collection-handle="10827/14729" form-name="scsd" />
+<name-map collection-handle="10827/14730" form-name="scsd" />
+<name-map collection-handle="10827/14732" form-name="scsd" />
+<name-map collection-handle="10827/14733" form-name="scsd" />
+<name-map collection-handle="10827/14735" form-name="scsd" />
+<name-map collection-handle="10827/14736" form-name="scsd" />
+<name-map collection-handle="10827/14737" form-name="scsd" />
+<name-map collection-handle="10827/14738" form-name="scsd" />
+<name-map collection-handle="10827/14739" form-name="scsd" />
+<name-map collection-handle="10827/14741" form-name="scsd" />
+<name-map collection-handle="10827/14742" form-name="scsd" />
+<name-map collection-handle="10827/14743" form-name="scsd" />
+<name-map collection-handle="10827/14745" form-name="scsd" />
+<name-map collection-handle="10827/14746" form-name="scsd" />
+<name-map collection-handle="10827/14747" form-name="scsd" />
+<name-map collection-handle="10827/14748" form-name="scsd" />
+<name-map collection-handle="10827/14749" form-name="scsd" />
+<name-map collection-handle="10827/14751" form-name="scsd" />
+<name-map collection-handle="10827/14752" form-name="scsd" />
+<name-map collection-handle="10827/14753" form-name="scsd" />
+<name-map collection-handle="10827/14754" form-name="scsd" />
+<name-map collection-handle="10827/14756" form-name="scsd" />
+<name-map collection-handle="10827/14757" form-name="scsd" />
+<name-map collection-handle="10827/14758" form-name="scsd" />
+<name-map collection-handle="10827/14759" form-name="scsd" />
+<name-map collection-handle="10827/14760" form-name="scsd" />
+<name-map collection-handle="10827/14761" form-name="scsd" />
+<name-map collection-handle="10827/14763" form-name="scsd" />
+<name-map collection-handle="10827/14765" form-name="scsd" />
+<name-map collection-handle="10827/14766" form-name="scsd" />
+<name-map collection-handle="10827/14767" form-name="scsd" />
+<name-map collection-handle="10827/14769" form-name="scsd" />
+<name-map collection-handle="10827/14771" form-name="scsd" />
+
+
+ </form-map>
+
+
+ <!-- The form-definitions map lays out the detailed definition of all the -->
+ <!-- submission forms.Each separate form set has a unique name as an      -->
+ <!-- attribute. This name matches one of the names in the form-map. One   -->
+ <!-- named form set has the name "traditional"; as this name suggests,    -->
+ <!-- it is the old style and is also the default, which gets used when    -->
+ <!-- the specified collection has no correspondingly named form set.      -->
+ <!--                                                                      -->
+ <!-- Each form set contains an ordered set of pages; each page defines    -->
+ <!-- one submission metadata entry screen. Each page has an ordered list  -->
+ <!-- of field definitions, Each field definition corresponds to one       -->
+ <!-- metatdata entry (a so-called row), which has a DC element name, a    -->
+ <!-- displayed label, a text string prompt which is called a hint , and   -->
+ <!-- an input-type. Each field also may hold optional elements: DC        -->
+ <!-- qualifier name, a repeatable flag, and a text string whose presence  -->
+ <!-- serves as a 'this field is required' flag.                           -->
+
+ <form-definitions>
+
+   <form name="traditional">
+     <page number="1">
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Authors</label>
+         <input-type>name</input-type>
+         <hint>Enter the names of the authors of this item below.</hint>
+         <required></required>
+       </field>
+
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Title</label>
+         <input-type>onebox</input-type>
+         <hint>Enter the main title of the item.</hint>
+         <required>You must enter a main title for this item.</required>
+       </field>
+
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Other Titles</label>
+         <input-type>onebox</input-type>
+         <hint>If the item has any alternative titles, please enter them below.</hint>
+         <required></required>
+       </field>
+
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Date of Issue</label>
+         <input-type>date</input-type>
+         <hint>Please give the date of previous publication or public distribution
+                        below.  You can leave out the day and/or month if they aren't
+                        applicable.</hint>
+         <required>You must enter at least the year.</required>
+       </field>
+
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Publisher</label>
+         <input-type>onebox</input-type>
+         <hint>Enter the name of the publisher of the previously issued instance of this item.</hint>
+         <required></required>
+       </field>
+
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Citation</label>
+         <input-type>onebox</input-type>
+         <hint>Enter the standard citation for the previously issued instance of this item.</hint>
+         <required></required>
+       </field>
+
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Series/Report No.</label>
+         <input-type>series</input-type>
+         <hint>Enter the series and number assigned to this item by your community.</hint>
+         <required></required>
+       </field>
+
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of qualdrop_value MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Identifiers</label>
+         <input-type value-pairs-name="common_identifiers">qualdrop_value</input-type>
+         <hint>If the item has any identification numbers or codes associated with
+it, please enter the types and the actual numbers or codes below.</hint>
+         <required></required>
+       </field>
+
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Type</label>
+         <input-type value-pairs-name="common_types">dropdown</input-type>
+         <hint> Select the type(s) of content of the item. To select more than one value in the list, you may have to hold down the "CTRL" or "Shift" key.</hint>
+         <required></required>
+       </field>
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Language</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Select the language of the main content of the item.  If the language does not appear in the list below, please select 'Other'.  If the content does not really have a language (for example, if it is a dataset or an image) please select 'N/A'.</hint>
+         <required></required>
+       </field>
+     </page>
+
+     <page number="2">
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Subject Keywords</label>
+         <input-type>twobox</input-type>
+         <hint> Enter appropriate subject keywords or phrases below. </hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+       </field>
+
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Abstract</label>
+         <input-type>textarea</input-type>
+         <hint> Enter the abstract of the item below. </hint>
+         <required></required>
+       </field>
+
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>sponsorship</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Sponsors</label>
+         <input-type>textarea</input-type>
+         <hint> Enter the names of any sponsors and/or funding codes in the box below. </hint>
+         <required></required>
+       </field>
+
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Description</label>
+         <input-type>textarea</input-type>
+         <hint> Enter any other description or comments in this box. </hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+   <form name="one">
+     <page number="1">
+       <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>One: Authors</label>
+                 <input-type>name</input-type>
+         <hint>Enter the names of the authors of this item below.</hint>
+         <required></required>
+       </field>
+      </page>
+    </form>
+
+   <form name="scsd">
+     <page number="1">
+
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Title</label>
+         <input-type>onebox</input-type>
+         <hint>The name given to the resource.</hint>
+         <required>You must enter a main title for this item.</required>
+       </field>
+
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Other Titles</label>
+         <input-type>onebox</input-type>
+         <hint>Alternative title for the item, such as a translated or abbreviated form of the title.</hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>creator</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Author</label>
+         <input-type>name</input-type>
+         <hint>An entity primarily responsible for making the content of the resource.</hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Contributor</label>
+         <input-type>name</input-type>
+         <hint>An entity responsible for making contributions to the content of the resource.</hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Date of Issue</label>
+         <input-type>date</input-type>
+         <hint>The date the resource was published or issued.</hint>
+         <required>You must enter at least the year.</required>
+       </field>
+
+<!--
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Publisher</label>
+         <input-type>onebox</input-type>
+         <hint>The entity responsible for making the resource available.</hint>
+         <required></required>
+       </field>
+
+-->
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Subject Keywords</label>
+         <input-type>twobox</input-type>
+         <hint> The topic of the content of the resource. </hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+       </field>
+
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Description</label>
+         <input-type>textarea</input-type>
+         <hint> An account of the content of the resource. </hint>
+         <required></required>
+       </field>
+
+<!--
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartof</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Digital Collection</label>
+         <input-type>onebox</input-type>
+         <hint>A reference to a group or collection that the resource is part of.</hint>
+         <required></required>
+       </field>
+-->
+
+     </page>
+
+     <page number="2">
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>source</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Source</label>
+         <input-type>onebox</input-type>
+         <hint>A reference to a resource from which the present resource is derived.</hint>
+         <required></required>
+       </field>
+
+<!--
+       <field>
+	 <dc-schema>sd</dc-schema>
+         <dc-element>website</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Website</label>
+         <input-type>onebox</input-type>
+         <hint>This should be the URL to the web site to the collection mentioned in the Digital Collection field.</hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>sd</dc-schema>
+         <dc-element>holding</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Holding Institution</label>
+         <input-type>onebox</input-type>
+         <hint>Includes information on institutions or administrative units that contributed to the creation, management, description, and/or dissemination of the digital resource.</hint>
+         <required></required>
+       </field>
+-->
+
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>format</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Item Format</label>
+         <input-type value-pairs-name="sc_formats">dropdown</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>sd</dc-schema>
+         <dc-element>mediatype</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Media Type</label>
+         <input-type value-pairs-name="sc_mediatype">dropdown</input-type>
+         <hint>Used to more accurately describe and qualify the type of material in the collection. The following entries for "Media Type" are strongly encouraged:  Newspapers, Books, Images, Maps, Manuscripts,  Pamphlets,     Objects, Film, Audio, Document</hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>sd</dc-schema>
+         <dc-element>region</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>SC Region</label>
+         <input-type value-pairs-name="sc_region">dropdown</input-type>
+         <hint>If relevant, supply South Carolina regional information to reflect the geographical content of the material. Regions used by SCDL include Upstate, Midlands, Low Country, and Pee Dee.</hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>sd</dc-schema>
+         <dc-element>county</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>SC County</label>
+         <input-type value-pairs-name="sc_county">dropdown</input-type>
+         <hint>If relevant, supply South Carolina County information to reflect the geographical content of the material.</hint>
+         <required></required>
+       </field>
+
+<!--
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Language</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>A language of the intellectual content of the resource.</hint>
+         <required></required>
+       </field>
+-->
+
+       <field>
+	 <dc-schema>sd</dc-schema>
+         <dc-element>specifications</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Digitization Specifications</label>
+         <!--input-type value-pairs-name="sc_specifications">dropdown</input-type-->
+         <input-type>textarea</input-type>
+         <hint>When the information is available, include: bit depth, resolution, scanner hardware and software used, and archival master file type (i.e.: TIFF)</hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Type</label>
+         <input-type value-pairs-name="common_types">dropdown</input-type>
+         <hint> The nature or genre of the content of the resource.</hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>sd</dc-schema>
+         <dc-element>notes</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Notes</label>
+         <input-type>textarea</input-type>
+         <hint>Additional information about the resource for an external audience. </hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+   <form name="uctp">
+     <page number="1">
+
+       <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>plotid</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Plot ID</label>
+         <input-type>onebox</input-type>
+         <hint>Project accession number for each record</hint>
+         <required>You must enter a Plot ID for this item.</required>
+       </field>
+
+	<field>
+	  <dc-schema>dc</dc-schema>
+	  <dc-element>title</dc-element>
+	  <dc-qualifier></dc-qualifier>
+	  <repeatable>false</repeatable>
+	  <label>Full Name</label>
+	  <input-type>onebox</input-type>
+          <hint>Full name of person. Example, John C. Smith</hint>
+          <required>You must enter a Full name for this item.</required>
+	</field>
+
+       <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>lastname</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Last name</label>
+	 <input-type>onebox</input-type>
+         <hint>Last name or initial</hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>firstname</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>First name</label>
+	 <input-type>onebox</input-type>
+         <hint>First name or initial</hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>middlename</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Middle name</label>
+	 <input-type>onebox</input-type>
+         <hint>Middle name or initial</hint>
+         <required></required>
+       </field>
+
+       <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>birthday</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Birth day</label>
+         <input-type>date</input-type>
+         <hint>Birthday including day and month if available</hint>
+         <required></required>
+       </field>
+	   
+   <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>deathday</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Death date</label>
+         <input-type>date</input-type>
+         <hint>Date of death including day and month if available</hint>
+         <required></required>
+       </field>
+	   
+   <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>age</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Age</label>
+	 <input-type>onebox</input-type>
+	 <hint>Age if it is provided on the tombstone</hint>
+         <required></required>
+       </field>
+	   
+	   <!--
+       <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>cemetery</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Cemetery</label>
+         <input-type>onebox</input-type>
+         <hint>Name of the cemetery</hint>
+         <required></required>
+       </field>
+	   -->
+     </page>
+
+     <page number="2">
+       <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>text</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Transcript</label>
+         <input-type>textarea</input-type>
+         <hint>Transcription of the tombstone and footstone if available</hint>
+         <required></required>
+       </field>
+	   
+   <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>special</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Special attribute</label>
+         <input-type>twobox</input-type>
+         <hint>Special attributes of the person or tombstone</hint>
+         <required></required>
+       </field>
+	   
+   <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>other</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Other name</label>
+         <input-type>onebox</input-type>
+         <hint>Other name that is listed on the tombstone</hint>
+         <required></required>
+       </field>
+	   
+	   <field>
+	 <dc-schema>ts</dc-schema>
+         <dc-element>notes</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notes</label>
+         <input-type>twobox</input-type>
+         <hint>Other notes about the record</hint>
+         <required></required>
+       </field>
+
+     </page>
+   </form>
+ </form-definitions>
+
+
+ <!-- form-value-pairs populate dropdown and qualdrop-value lists.          -->
+ <!-- The form-value-pairs element holds child elements named 'value-pairs' -->
+ <!-- A 'value-pairs' element has a value-pairs-name and a dc-term          -->
+ <!-- attribute. The dc-term attribute specifies which to which Dublin Core -->
+ <!-- Term this set of value-pairs applies.                                 -->
+ <!--     Current dc-terms are: identifier-pairs, type-pairs, and           -->
+ <!--     language_iso-pairs. The name attribute matches a name             -->
+ <!--     in the form-map, above.                                           -->
+ <!-- A value-pair contains one 'pair' for each value displayed in the list -->
+ <!-- Each pair contains a 'displayed-value' element and a 'stored-value'   -->
+ <!-- element. A UI list displays the displayed-values, but the program     -->
+ <!-- stores the associated stored-values in the database.                  -->
+
+ <form-value-pairs>
+   <value-pairs value-pairs-name="common_identifiers" dc-term="identifier">
+     <pair>
+       <displayed-value>ISSN</displayed-value>
+       <stored-value>issn</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Other</displayed-value>
+       <stored-value>other</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>ISMN</displayed-value>
+       <stored-value>ismn</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Gov't Doc #</displayed-value>
+       <stored-value>govdoc</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>URI</displayed-value>
+       <stored-value>uri</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>ISBN</displayed-value>
+       <stored-value>isbn</stored-value>
+     </pair>
+   </value-pairs>
+
+   <value-pairs value-pairs-name="common_types" dc-term="type">
+     <pair>
+       <displayed-value>Text</displayed-value>
+       <stored-value>Text</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Image</displayed-value>
+       <stored-value>Image</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Sound</displayed-value>
+       <stored-value>Sound</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Moving Image</displayed-value>
+       <stored-value>Moving Image</stored-value>
+     </pair>
+   </value-pairs>
+
+   <!-- default language order: (from dspace 1.2.1)
+        "en_US", "en", "es", "de", "fr", "it", "ja", "zh", "other", ""
+     -->
+   <value-pairs value-pairs-name="common_iso_languages" dc-term="language_iso">
+     <pair>
+       <displayed-value>N/A</displayed-value>
+       <stored-value></stored-value>
+     </pair>
+     <pair>
+       <displayed-value>English (United States)</displayed-value>
+       <stored-value>en_US</stored-value>
+      </pair>
+     <pair>
+       <displayed-value>English</displayed-value>
+       <stored-value>en</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Spanish</displayed-value>
+       <stored-value>es</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>German</displayed-value>
+       <stored-value>de</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>French</displayed-value>
+       <stored-value>fr</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Italian</displayed-value>
+       <stored-value>it</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Japanese</displayed-value>
+       <stored-value>ja</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Chinese</displayed-value>
+       <stored-value>zh</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>(Other)</displayed-value>
+       <stored-value>other</stored-value>
+     </pair>
+   </value-pairs>
+
+   <value-pairs value-pairs-name="sc_mediatype" dc-term="mediatype">
+     <pair>
+       <displayed-value>Document</displayed-value>
+       <stored-value>Document</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Newspapers</displayed-value>
+       <stored-value>Newspapers</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Books</displayed-value>
+       <stored-value>Books</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Images</displayed-value>
+       <stored-value>Images</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Maps</displayed-value>
+       <stored-value>Maps</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Manuscripts</displayed-value>
+       <stored-value>Manuscripts</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Pamphlets</displayed-value>
+       <stored-value>Pamphlets</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Objects</displayed-value>
+       <stored-value>Objects</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Audio</displayed-value>
+       <stored-value>Audio</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Film</displayed-value>
+       <stored-value>Film</stored-value>
+     </pair>
+   </value-pairs>
+
+   <value-pairs value-pairs-name="sc_region" dc-term="region">
+     <pair>
+       <displayed-value>N/A</displayed-value>
+       <stored-value></stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Upstate</displayed-value>
+       <stored-value>Upstate</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Midlands</displayed-value>
+       <stored-value>Midlands</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Low Country</displayed-value>
+       <stored-value>Low Country</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Pee Dee</displayed-value>
+       <stored-value>Pee Dee</stored-value>
+     </pair>
+   </value-pairs>
+
+   <value-pairs value-pairs-name="sc_county" dc-term="county">
+     <pair>
+       <displayed-value>N/A</displayed-value>
+       <stored-value></stored-value>
+     </pair>
+<pair><displayed-value>Abbeville County (S.C.)</displayed-value><stored-value>Abbeville County (S.C.)</stored-value></pair>
+<pair><displayed-value>Aiken County (S.C.)</displayed-value><stored-value>Aiken County (S.C.)</stored-value></pair>
+<pair><displayed-value>Allendale County (S.C.)</displayed-value><stored-value>Allendale County (S.C.)</stored-value></pair>
+<pair><displayed-value>Anderson County (S.C.)</displayed-value><stored-value>Anderson County (S.C.)</stored-value></pair>
+<pair><displayed-value>Bamberg County (S.C.)</displayed-value><stored-value>Bamberg County (S.C.)</stored-value></pair>
+<pair><displayed-value>Barnwell County (S.C.)</displayed-value><stored-value>Barnwell County (S.C.)</stored-value></pair>
+<pair><displayed-value>Beaufort County (S.C.)</displayed-value><stored-value>Beaufort County (S.C.)</stored-value></pair>
+<pair><displayed-value>Berkeley County (S.C.)</displayed-value><stored-value>Berkeley County (S.C.)</stored-value></pair>
+<pair><displayed-value>Calhoun County (S.C.)</displayed-value><stored-value>Calhoun County (S.C.)</stored-value></pair>
+<pair><displayed-value>Charleston County (S.C.)</displayed-value><stored-value>Charleston County (S.C.)</stored-value></pair>
+<pair><displayed-value>Cherokee County (S.C.)</displayed-value><stored-value>Cherokee County (S.C.)</stored-value></pair>
+<pair><displayed-value>Chester County (S.C.)</displayed-value><stored-value>Chester County (S.C.)</stored-value></pair>
+<pair><displayed-value>Chesterfield County (S.C.)</displayed-value><stored-value>Chesterfield County (S.C.)</stored-value></pair>
+<pair><displayed-value>Clarendon County (S.C.)</displayed-value><stored-value>Clarendon County (S.C.)</stored-value></pair>
+<pair><displayed-value>Colleton County (S.C.)</displayed-value><stored-value>Colleton County (S.C.)</stored-value></pair>
+<pair><displayed-value>Darlington County (S.C.)</displayed-value><stored-value>Darlington County (S.C.)</stored-value></pair>
+<pair><displayed-value>Dillon County (S.C.)</displayed-value><stored-value>Dillon County (S.C.)</stored-value></pair>
+<pair><displayed-value>Dorchester County (S.C.)</displayed-value><stored-value>Dorchester County (S.C.)</stored-value></pair>
+<pair><displayed-value>Edgefield County (S.C.)</displayed-value><stored-value>Edgefield County (S.C.)</stored-value></pair>
+<pair><displayed-value>Fairfield County (S.C.)</displayed-value><stored-value>Fairfield County (S.C.)</stored-value></pair>
+<pair><displayed-value>Florence County (S.C.)</displayed-value><stored-value>Florence County (S.C.)</stored-value></pair>
+<pair><displayed-value>Georgetown County (S.C.)</displayed-value><stored-value>Georgetown County (S.C.)</stored-value></pair>
+<pair><displayed-value>Greenville County (S.C.)</displayed-value><stored-value>Greenville County (S.C.)</stored-value></pair>
+<pair><displayed-value>Greenwood County (S.C.)</displayed-value><stored-value>Greenwood County (S.C.)</stored-value></pair>
+<pair><displayed-value>Hampton County (S.C.)</displayed-value><stored-value>Hampton County (S.C.)</stored-value></pair>
+<pair><displayed-value>Horry County (S.C.)</displayed-value><stored-value>Horry County (S.C.)</stored-value></pair>
+<pair><displayed-value>Jasper County (S.C.)</displayed-value><stored-value>Jasper County (S.C.)</stored-value></pair>
+<pair><displayed-value>Kershaw County (S.C.)</displayed-value><stored-value>Kershaw County (S.C.)</stored-value></pair>
+<pair><displayed-value>Lancaster County (S.C.)</displayed-value><stored-value>Lancaster County (S.C.)</stored-value></pair>
+<pair><displayed-value>Laurens County (S.C.)</displayed-value><stored-value>Laurens County (S.C.)</stored-value></pair>
+<pair><displayed-value>Lee County (S.C.)</displayed-value><stored-value>Lee County (S.C.)</stored-value></pair>
+<pair><displayed-value>Lexington County (S.C.)</displayed-value><stored-value>Lexington County (S.C.)</stored-value></pair>
+<pair><displayed-value>Marion County (S.C.)</displayed-value><stored-value>Marion County (S.C.)</stored-value></pair>
+<pair><displayed-value>Marlboro County (S.C.)</displayed-value><stored-value>Marlboro County (S.C.)</stored-value></pair>
+<pair><displayed-value>McCormick County (S.C.)</displayed-value><stored-value>McCormick County (S.C.)</stored-value></pair>
+<pair><displayed-value>Newberry County (S.C.)</displayed-value><stored-value>Newberry County (S.C.)</stored-value></pair>
+<pair><displayed-value>Oconee County (S.C.)</displayed-value><stored-value>Oconee County (S.C.)</stored-value></pair>
+<pair><displayed-value>Orangeburg County (S.C.)</displayed-value><stored-value>Orangeburg County (S.C.)</stored-value></pair>
+<pair><displayed-value>Pickens County (S.C.)</displayed-value><stored-value>Pickens County (S.C.)</stored-value></pair>
+<pair><displayed-value>Richland County (S.C.)</displayed-value><stored-value>Richland County (S.C.)</stored-value></pair>
+<pair><displayed-value>Saluda County (S.C.)</displayed-value><stored-value>Saluda County (S.C.)</stored-value></pair>
+<pair><displayed-value>Spartanburg County (S.C.)</displayed-value><stored-value>Spartanburg County (S.C.)</stored-value></pair>
+<pair><displayed-value>Sumter County (S.C.)</displayed-value><stored-value>Sumter County (S.C.)</stored-value></pair>
+<pair><displayed-value>Union County (S.C.)</displayed-value><stored-value>Union County (S.C.)</stored-value></pair>
+<pair><displayed-value>Williamsburg County (S.C.)</displayed-value><stored-value>Williamsburg County (S.C.)</stored-value></pair>
+<pair><displayed-value>York County (S.C.)</displayed-value><stored-value>York County (S.C.)</stored-value></pair>
+   </value-pairs>
+
+   <value-pairs value-pairs-name="sc_specifications" dc-term="specifications">
+     <pair>
+       <displayed-value>300ppi, Epson Expression 10000xl  flatbed scanner with Adobe Acrobat X Standard software, Archival Master file is a multi-image TIFF; online version is a PDF/A-1b. Color depth varies by collection: 24-bit color, 8-bit grayscale, or black &amp; white. </displayed-value>
+       <stored-value>300ppi, Epson Expression 10000xl  flatbed scanner with Adobe Acrobat X Standard software, Archival Master file is a multi-image TIFF; online version is a PDF/A-1b. Color depth varies by collection: 24-bit color, 8-bit grayscale, or black &amp; white. </stored-value>
+     </pair>
+     <pair>
+       <displayed-value>300ppi, Bookeye 3 scanner with OPUS FreeFlow software, Archival Master file is a multi-image TIFF; online version is a PDF/A-1b. Color depth varies by collection: 24-bit color, 8-bit grayscale, or black &amp; white.</displayed-value>
+       <stored-value>300ppi, Bookeye 3 scanner with OPUS FreeFlow software, Archival Master file is a multi-image TIFF; online version is a PDF/A-1b. Color depth varies by collection: 24-bit color, 8-bit grayscale, or black &amp; white.</stored-value>
+     </pair>
+   </value-pairs>
+
+   <!-- New Staff Member and a Question (RMW-611282) -->
+   <value-pairs value-pairs-name="sc_formats" dc-term="format">
+     <pair>
+       <displayed-value> </displayed-value>
+       <stored-value> </stored-value>
+     </pair>
+     <pair>
+       <displayed-value>application/pdf</displayed-value>
+       <stored-value>application/pdf</stored-value>
+     </pair>
+   </value-pairs>
+
+    </form-value-pairs>
+
+</input-forms>
