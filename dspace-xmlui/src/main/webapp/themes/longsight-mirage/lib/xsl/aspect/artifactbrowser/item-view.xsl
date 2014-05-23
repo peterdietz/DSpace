@@ -395,7 +395,7 @@
                         <xsl:otherwise>
                             <xsl:call-template name="getFileFormatIcon">
                                 <xsl:with-param name="mimetype">
-                                    <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file/@MIMETYPE"/>
+                                    <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file[@GROUPID=current()/@GROUPID]/@MIMETYPE"/>
                                 </xsl:with-param>
                             </xsl:call-template>
                         </xsl:otherwise>
