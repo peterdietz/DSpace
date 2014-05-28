@@ -114,6 +114,8 @@
                     </xsl:if>
                 </div>
                 <div class="col-sm-8">
+                    <a name="preview"></a>
+                    <div id="preview-embed"/>
                     <xsl:call-template name="itemSummaryView-DIM-abstract"/>
                     <xsl:call-template name="itemSummaryView-DIM-URI"/>
                     <xsl:call-template name="itemSummaryView-collections"/>
@@ -358,55 +360,82 @@
                             <xsl:value-of select="substring-after(@MIMETYPE,'/')"/>
                         </xsl:with-param>
                     </xsl:call-template>
-                                    <xsl:choose>
-                                        <xsl:when test="contains($label-1, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label">
-                                            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
-                                        </xsl:when>
-                                        <xsl:when test="contains($label-1, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title">
-                                            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
-                                        </xsl:when>
-                                        <xsl:when test="contains($label-2, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label">
-                                            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
-                                        </xsl:when>
-                                        <xsl:when test="contains($label-2, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title">
-                                            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:call-template name="getFileTypeDesc">
-                                                <xsl:with-param name="mimetype">
-                                                    <xsl:value-of select="substring-before(@MIMETYPE,'/')"/>
-                                                    <xsl:text>/</xsl:text>
-                                                    <xsl:value-of select="substring-before(substring-after(@MIMETYPE,'/'),';')"/>
-                                                </xsl:with-param>
-                                            </xsl:call-template>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                    <xsl:text> (</xsl:text>
-                                    <xsl:choose>
-                                        <xsl:when test="@SIZE &lt; 1024">
-                                            <xsl:value-of select="@SIZE"/>
-                                            <i18n:text>xmlui.dri2xhtml.METS-1.0.size-bytes</i18n:text>
-                                        </xsl:when>
-                                        <xsl:when test="@SIZE &lt; 1024 * 1024">
-                                            <xsl:value-of select="substring(string(@SIZE div 1024),1,5)"/>
-                                            <i18n:text>xmlui.dri2xhtml.METS-1.0.size-kilobytes</i18n:text>
-                                        </xsl:when>
-                                        <xsl:when test="@SIZE &lt; 1024 * 1024 * 1024">
-                                            <xsl:value-of select="substring(string(@SIZE div (1024 * 1024)),1,5)"/>
-                                            <i18n:text>xmlui.dri2xhtml.METS-1.0.size-megabytes</i18n:text>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:value-of select="substring(string(@SIZE div (1024 * 1024 * 1024)),1,5)"/>
-                                            <i18n:text>xmlui.dri2xhtml.METS-1.0.size-gigabytes</i18n:text>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                    <xsl:text>)</xsl:text>
-                                </a>
-                            </div>
+                            <xsl:choose>
+                                <xsl:when test="contains($label-1, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
+                                </xsl:when>
+                                <xsl:when test="contains($label-1, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
+                                </xsl:when>
+                                <xsl:when test="contains($label-2, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
+                                </xsl:when>
+                                <xsl:when test="contains($label-2, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:call-template name="getFileTypeDesc">
+                                        <xsl:with-param name="mimetype">
+                                            <xsl:value-of select="substring-before(@MIMETYPE,'/')"/>
+                                            <xsl:text>/</xsl:text>
+                                            <xsl:value-of select="substring-before(substring-after(@MIMETYPE,'/'),';')"/>
+                                        </xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            <xsl:text> (</xsl:text>
+                            <xsl:choose>
+                                <xsl:when test="@SIZE &lt; 1024">
+                                    <xsl:value-of select="@SIZE"/>
+                                    <i18n:text>xmlui.dri2xhtml.METS-1.0.size-bytes</i18n:text>
+                                </xsl:when>
+                                <xsl:when test="@SIZE &lt; 1024 * 1024">
+                                    <xsl:value-of select="substring(string(@SIZE div 1024),1,5)"/>
+                                    <i18n:text>xmlui.dri2xhtml.METS-1.0.size-kilobytes</i18n:text>
+                                </xsl:when>
+                                <xsl:when test="@SIZE &lt; 1024 * 1024 * 1024">
+                                    <xsl:value-of select="substring(string(@SIZE div (1024 * 1024)),1,5)"/>
+                                    <i18n:text>xmlui.dri2xhtml.METS-1.0.size-megabytes</i18n:text>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="substring(string(@SIZE div (1024 * 1024 * 1024)),1,5)"/>
+                                    <i18n:text>xmlui.dri2xhtml.METS-1.0.size-gigabytes</i18n:text>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            <xsl:text>)</xsl:text>
+                        </a>
+
+                        <a>
+                            <xsl:attribute name="href"><xsl:text>#preview</xsl:text></xsl:attribute>
+                            <xsl:attribute name="onclick">
+                                <xsl:text>embeddedPreview("</xsl:text>
+                                <xsl:call-template name="googleDocViewerURL">
+                                    <xsl:with-param name="bitstreamID" select="@ID"/>
+                                    <!-- select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/> -->
+                                </xsl:call-template>
+                                <xsl:text>");</xsl:text>
+                            </xsl:attribute>
+                            <xsl:text>Preview</xsl:text>
+                        </a>
+                    </div>
 
                 </xsl:for-each>
             </div>
         </xsl:if>
+    </xsl:template>
+
+
+    <xsl:template name="googleDocViewerURL">
+        <xsl:param name="bitstreamID"/>
+
+        <xsl:text>https://docs.google.com/viewer?url=</xsl:text>
+        <xsl:variable name="dspaceURI" select="confman:getProperty('dspace.url')"/>
+
+        <xsl:value-of select="$dspaceURI"/>
+        <xsl:text>/bitstream/id/</xsl:text>
+        <xsl:value-of select="substring($bitstreamID,6)"/>
+        <xsl:text>/file.pdf</xsl:text>
+        <xsl:text>&amp;embedded=true</xsl:text>
     </xsl:template>
 
     <xsl:template match="dim:dim" mode="itemDetailView-DIM">
