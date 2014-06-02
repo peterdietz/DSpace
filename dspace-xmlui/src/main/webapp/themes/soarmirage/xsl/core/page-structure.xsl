@@ -90,15 +90,10 @@
                             </div>
 
                             <div id="main-container" class="container">
-
                                 <div class="row row-offcanvas row-offcanvas-right">
                                     <div class="horizontal-slider clearfix">
                                         <div class="col-xs-12 col-sm-12 col-md-9 main-content">
                                             <xsl:apply-templates select="*[not(self::dri:options)]"/>
-
-                                            <div class="visible-xs visible-sm">
-                                                <xsl:call-template name="buildFooter"/>
-                                            </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                                             <xsl:apply-templates select="dri:options"/>
@@ -106,15 +101,12 @@
 
                                     </div>
                                 </div>
+                            </div>
 
-                                <!--
+                            <!--
                             The footer div, dropping whatever extra information is needed on the page. It will
                             most likely be something similar in structure to the currently given example. -->
-                            <div class="hidden-xs hidden-sm">
                             <xsl:call-template name="buildFooter"/>
-                             </div>
-                         </div>
-
 
                         </xsl:otherwise>
                     </xsl:choose>
@@ -388,7 +380,7 @@
                                 </xsl:otherwise>
                             </xsl:choose>
                         </ul>
-                              </div>
+                      </div>
                     </div>
 
                     <div class="navbar-header pull-right hidden-xs">
@@ -430,10 +422,13 @@
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <li>
-                                        <a href="{/dri:document/dri:meta/dri:userMeta/
-                            dri:metadata[@element='identifier' and @qualifier='loginURL']}">
+                                        <a>
+                                            <xsl:attribute name="href">
+                                                <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                                <xsl:text>/submit</xsl:text>
+                                            </xsl:attribute>
                                             <span class="hidden-xs">
-                                                <i18n:text>xmlui.dri2xhtml.structural.login</i18n:text>
+                                                Upload to SOAR <i class="glyphicon glyphicon-upload" aria-hidden="true"/>
                                             </span>
                                         </a>
                                     </li>
@@ -624,36 +619,40 @@
     <!-- Like the header, the footer contains various miscellaneous text, links, and image placeholders -->
     <xsl:template name="buildFooter">
         <footer>
+            <div class="container-fluid">
+                <!-- AddThis Button BEGIN -->
                 <div class="row">
-                    <hr/>
-                    <div class="col-xs-7 col-sm-8">
-                        <div>
-                            <a href="http://www.dspace.org/" target="_blank">DSpace software</a> copyright&#160;&#169;&#160;2002-2013&#160; <a href="http://www.duraspace.org/" target="_blank">Duraspace</a>
-                        </div>
-                        <div>
-                            <a>
-                                <xsl:attribute name="href">
-                                    <xsl:value-of
-                                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                                    <xsl:text>/contact</xsl:text>
-                                </xsl:attribute>
-                                <i18n:text>xmlui.dri2xhtml.structural.contact-link</i18n:text>
-                            </a>
-                            <xsl:text> | </xsl:text>
-                            <a>
-                                <xsl:attribute name="href">
-                                    <xsl:value-of
-                                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                                    <xsl:text>/feedback</xsl:text>
-                                </xsl:attribute>
-                                <i18n:text>xmlui.dri2xhtml.structural.feedback-link</i18n:text>
-                            </a>
-                        </div>
+                    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                        <a class="addthis_button_preferred_1"></a>
+                        <a class="addthis_button_preferred_2"></a>
+                        <a class="addthis_button_preferred_3"></a>
+                        <a class="addthis_button_preferred_4"></a>
+                        <a class="addthis_button_compact"></a>
+                        <a class="addthis_counter addthis_bubble_style"></a>
                     </div>
-                    <div class="col-xs-5 col-sm-4">
-                        <div class="pull-right">
-                        </div>
-
+                </div>
+                <!-- AddThis Button END -->
+                    <div class="row">
+                        <a href="http://www.dspace.org/" target="_blank">DSpace software</a> Copyright&#160;&#169;&#160;2014&#160; <a href="http://www.duraspace.org/" target="_blank">Duraspace</a>
+                    </div>
+                    <div class="row">
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:value-of
+                                        select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                <xsl:text>/contact</xsl:text>
+                            </xsl:attribute>
+                            <i18n:text>xmlui.dri2xhtml.structural.contact-link</i18n:text>
+                        </a>
+                        <xsl:text> | </xsl:text>
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:value-of
+                                        select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                <xsl:text>/feedback</xsl:text>
+                            </xsl:attribute>
+                            <i18n:text>xmlui.dri2xhtml.structural.feedback-link</i18n:text>
+                        </a>
                     </div>
                 </div>
                 <!--Invisible link to HTML sitemap (for search engines) -->
@@ -665,7 +664,7 @@
                     </xsl:attribute>
                     <xsl:text>&#160;</xsl:text>
                 </a>
-            <p>&#160;</p>
+                <p>&#160;</p>
         </footer>
     </xsl:template>
 
@@ -735,6 +734,14 @@
 
         <script src="{$theme-path}/scripts/theme.js">&#160;</script>
 
+        <!-- add "shared" javascript from static, path is relative to webapp root -->
+        <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='javascript'][@qualifier='url']">
+            <script type="text/javascript">
+                <xsl:attribute name="src">
+                    <xsl:value-of select="."/>
+                </xsl:attribute>&#160;</script>
+        </xsl:for-each>
+
         <!-- Add javascipt specified in DRI -->
         <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='javascript'][not(@qualifier)]">
             <script>
@@ -787,6 +794,9 @@
                   ga('send', 'pageview');
            </xsl:text></script>
         </xsl:if>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-538ca3c07d0ff968"></script>
     </xsl:template>
 
     <xsl:template name="languageSelection">

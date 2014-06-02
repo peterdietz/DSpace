@@ -109,3 +109,12 @@ table#aspect_administrative_ControlPanel_table_users a {
     /* 6 columns */
   }
 }
+
+/* User Registration */
+#aspect_eperson_StartRegistration_list_registration-progress li {
+    padding-left: 18px;
+}
+
+#aspect_eperson_StartRegistration_list_registration-progress .arrow {
+    padding-left: 0px;
+}
