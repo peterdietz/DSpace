@@ -122,41 +122,15 @@ dl {
   display: none;
 }
 
-footer hr {
-  display: none;
+footer {
+    //background-color: #f5b23e;
+    //color: #3a658e;
+    padding: 20px 20px;
 }
-footer .row > div {
-  padding-top: 20px;
-  border: 0;
-  border-top: 1px solid #eeeeee;
-}
-@media (min-width: 992px) {
-  footer .row > div {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-footer > .container {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-top: 1px solid #e5e5e5;
-  padding-left: 0;
-  padding-right: 0;
-}
-@media (max-width: 991px) {
-  footer > .container {
-    margin-top: 20px;
-    width: 100%;
-  }
-}
-@media (max-width: 767px) {
-  footer > .container {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-footer > .container .pull-right {
-  text-align: center;
+
+
+footer a {
+    //color: #ccc;
 }
 
 #ds-options {
