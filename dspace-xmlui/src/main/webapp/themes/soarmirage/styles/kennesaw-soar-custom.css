@@ -5,7 +5,7 @@ header .navbar {
   background-color: #231f20;
 }
 header .navbar .container {
-  background: #242021 url('../images/soarbanner.jpg') no-repeat;
+  background: #242021;
   height: 80px;
   min-height: 80px;
 }
@@ -24,4 +24,15 @@ div.trail-wrapper {
 
 #file_news_div_news .thumbs>img {
     width:230px;
+}
+
+.custom-nav {
+    background-color: #f5b23e;
+    border-bottom: 1px solid #f5b23e;
+    border: 0;
+    border-radius: 0;
+}
+
+.custom-nav .navbar-nav>li>a {
+    color: #000;
 }

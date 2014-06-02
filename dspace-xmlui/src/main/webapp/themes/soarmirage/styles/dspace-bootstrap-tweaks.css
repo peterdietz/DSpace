@@ -3,7 +3,19 @@ ul.ds-simple-list.vocabulary ul {
 }
 
 header .navbar-brand img {
-  height: 22px;
+  height: 80px;
+}
+
+header .navbar-brand {
+    padding-top: 0px;
+}
+
+.menu-navbar {
+    padding-left: 20px;
+}
+
+.custom-nav {
+
 }
 
 @media (max-width: 767px) {

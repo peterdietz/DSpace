@@ -313,6 +313,11 @@
                             <span class="icon-bar"></span>
                         </button>
 
+                        <a href="{$context-path}/" class="navbar-brand">
+                            <img src="{$theme-path}/images/logo.png" class="img-responsive" />
+                        </a>
+
+
                         <div class="navbar-header pull-right visible-xs hidden-sm hidden-md hidden-lg">
                         <ul class="nav nav-pills pull-left ">
 
@@ -454,8 +459,8 @@
 
 
     <xsl:template name="buildNavbar">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
+        <nav class="navbar navbar-default custom-nav" role="navigation">
+            <!--<div class="container-fluid">-->
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -468,7 +473,7 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav menu-navbar">
                         <li><a href="#">About</a></li>
 
                         <li class="dropdown">
@@ -497,7 +502,7 @@
                         </form>
                     </ul>
                 </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+            <!--</div>--><!-- /.container-fluid -->
         </nav>
     </xsl:template>
 
