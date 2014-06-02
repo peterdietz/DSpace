@@ -1,0 +1,27 @@
+body {
+  font-family: "Gill Sans", Trebuchet, Verdana, Arial;
+}
+header .navbar {
+  background-color: #231f20;
+}
+header .navbar .container {
+  background: #242021 url('../images/soarbanner.jpg') no-repeat;
+  height: 80px;
+  min-height: 80px;
+}
+div.trail-wrapper {
+  background-color: #f5b23e;
+  border-bottom: 1px solid #f5b23e;
+}
+.btn-primary, .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+  background-color: #711d0c;
+  border-color: #711d0c;
+  color: #FFFFFF;
+}
+#main-container #sidebar {
+  background-color: #FFF8EC;
+}
+
+#file_news_div_news .thumbs>img {
+    width:230px;
+}
