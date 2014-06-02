@@ -79,7 +79,7 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:call-template name="buildHeader"/>
-                            <xsl:call-template name="buildTrail"/>
+                            <xsl:call-template name="buildNavbar"/>
                             <!--javascript-disabled warning, will be invisible if javascript is enabled-->
                             <div id="no-js-warning-wrapper" class="hidden">
                                 <div id="no-js-warning">
@@ -102,6 +102,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <xsl:call-template name="buildTrail"/>
 
                             <!--
                             The footer div, dropping whatever extra information is needed on the page. It will
@@ -448,6 +450,55 @@
 
         </header>
 
+    </xsl:template>
+
+
+    <xsl:template name="buildNavbar">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">About</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Title</a></li>
+                                <li><a href="#">Communities</a></li>
+                                <li><a href="#">Subject</a></li>
+                                <li><a href="#">Format</a></li>
+                                <li><a href="#">Author/Creator</a></li>
+                                <li><a href="#">Date Range</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">KSU Archives</a></li>
+                        <li><a href="#">Contact</a></li>
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search"/>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
     </xsl:template>
 
 
