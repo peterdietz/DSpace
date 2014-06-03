@@ -15,3 +15,7 @@ Disallow: /search-filter
 # Disallow: /login
 # Disallow: /register
 # Disallow: /search
+
+#KJZ-893386 SUNY Block a thesis
+Disallow: /bitstream/handle/1951/56015/*
+Disallow: /handle/1951/56015*
