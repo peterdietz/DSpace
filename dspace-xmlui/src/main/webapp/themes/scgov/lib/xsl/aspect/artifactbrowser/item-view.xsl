@@ -515,7 +515,25 @@
                     <i18n:text><xsl:value-of select="$dc-code" /></i18n:text>
                 </td>
             <td>
-              <xsl:copy-of select="./node()"/>
+                <!-- Linkify certain fields-->
+                <xsl:choose>
+                    <xsl:when test="@element='subject' and not(@qualifier)">
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$context-path"/>
+                                <xsl:text>/browse?value=</xsl:text>
+                                <xsl:value-of select="url:encode(./node())" />
+                                <xsl:text>&amp;type=subject</xsl:text>
+                            </xsl:attribute>
+                            <xsl:copy-of select="./node()"/>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="./node()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+
+
               <xsl:if test="./@authority and ./@confidence">
                 <xsl:call-template name="authorityConfidenceIcon">
                   <xsl:with-param name="confidence" select="./@confidence"/>
