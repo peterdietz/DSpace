@@ -42,6 +42,39 @@
         <xsl:apply-templates select="./mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim"
         mode="itemSummaryView-DIM"/>
 
+	<xsl:variable name="samtest">
+		<xsl:choose>
+			<xsl:when test="//dim:field[@element='identifier' and @qualifier='doi']">
+				<div>
+					<xsl:attribute name="data-badge-details">right</xsl:attribute>
+					<xsl:attribute name="data-badge-type">donut</xsl:attribute>
+					<xsl:attribute name="data-hide-no-mentions">true</xsl:attribute>
+					<xsl:attribute name="class">altmetric-embed</xsl:attribute>
+					<xsl:attribute name="data-doi"><xsl:value-of select="//dim:field[@element='identifier' and @qualifier='doi']"/></xsl:attribute>
+					<xsl:text> &#160; </xsl:text>
+				</div>
+			</xsl:when>
+			<xsl:when test="//dim:field[@element='identifier' and @qualifier='uri']">
+				<div>
+					<xsl:attribute name="data-badge-details">right</xsl:attribute>
+					<xsl:attribute name="data-badge-type">donut</xsl:attribute>
+					<xsl:attribute name="data-hide-no-mentions">true</xsl:attribute>
+					<xsl:attribute name="class">altmetric-embed</xsl:attribute>
+					<xsl:attribute name="data-doi"><xsl:value-of select="//dim:field[@element='identifier' and @qualifier='uri']"/></xsl:attribute>
+					<xsl:text> &#160; </xsl:text>
+				</div>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:variable>
+
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			jQuery('#aspect_statistics_Navigation_list_statistics').append('<xsl:copy-of select="$samtest" />');
+			_altmetric_embed_init();
+		});
+	</script>
+
+
         <xsl:copy-of select="$SFXLink" />
         <!-- Generate the bitstream information from the file section -->
         <xsl:choose>
@@ -289,7 +322,7 @@
           </xsl:when>
 
           <!-- MBL custom dc.rights row -->
-          <xsl:when test="$clause = 8 and (dim:field[@element='rights' and @qualifier='uri'])">
+          <xsl:when test="$clause = 8 and (dim:field[@element='rights' and @qualifier='uri-see-YSO-795453'])">
                     <div class="simple-item-view-other">
 	                <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-rights-uri</i18n:text>:</span>
 	                <span>
@@ -383,6 +416,7 @@
 	               	</xsl:for-each>
 	                </span>
 	         </div>
+
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>

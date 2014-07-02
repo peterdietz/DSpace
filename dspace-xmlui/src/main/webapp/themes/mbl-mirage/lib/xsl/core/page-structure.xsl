@@ -117,7 +117,8 @@
                 </xsl:otherwise>
             </xsl:choose>
                 <!-- Javascript at the bottom for fast page loading -->
-              <xsl:call-template name="addJavascript"/>
+<!-- WHOI custom moved to top for Altmetric -->
+              <!--xsl:call-template name="addJavascript"/-->
 
             <xsl:text disable-output-escaping="yes">&lt;/body&gt;</xsl:text>
         </html>
@@ -281,6 +282,9 @@
                     <xsl:text>/lib/js/modernizr-1.7.min.js</xsl:text>
                 </xsl:attribute>&#160;</script>
 
+            <!-- Custom WHOI --> 
+            <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js">&#160;</script>
+
             <!-- Add the title in -->
             <xsl:variable name="page_title" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='title']" />
             <title>
@@ -307,6 +311,9 @@
             <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[substring(@element, 1, 9) = 'citation_']">
                 <meta name="{@element}" content="{.}"></meta>
             </xsl:for-each>
+
+            <!-- WHOI Custom moved from footer for Altmetric -->
+            <xsl:call-template name="addJavascript"/>
 
         </head>
     </xsl:template>

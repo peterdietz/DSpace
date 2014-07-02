@@ -1388,3 +1388,6 @@ a, a:active, a:visited {
 #aspect_eperson_PasswordLogin_field_login_email, #aspect_eperson_PasswordLogin_field_login_password {
   width: 300px;
 }
+div.altmetric-embed {
+  padding: 8px;
+}
