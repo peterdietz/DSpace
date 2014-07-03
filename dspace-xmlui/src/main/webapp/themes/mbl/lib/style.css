@@ -324,7 +324,7 @@ a.previous-page-link {
 
 a.next-page-link {
 		position: absolute;
-		right: 50px;
+		right: 90px;
 		bottom: 5px;
 }
 
@@ -813,4 +813,20 @@ div.license-info {
 }
 #ds-feed-option a {
  	padding-left: 23px;
+}
+
+div.gear-icon{
+    background-image: url('../images/gear_6D859C_25x25.png');
+}
+
+ul.gear-selection li.gear-option-selected{
+    background: url('../images/check_606060_15x15.png') no-repeat 3px center;
+}
+
+div#aspect_discovery_SimpleSearch_div_search-controls-gear {
+  float: none;
+  position: absolute;
+  right: 50px;
+  bottom: 1px;
+display: none;
 }
