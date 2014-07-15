@@ -25,7 +25,8 @@ br.getPageURI = function(index, reduce, rotate) {
     var leafStr = '000';            
     var imgStr = (index+1).toString();
     var re = new RegExp("0{"+imgStr.length+"}$");
-    var url = 'http://www.archive.org/download/BookReader/img/page'+leafStr.replace(re, imgStr) + '.jpg';
+    //var url = 'http://www.archive.org/download/BookReader/img/page'+leafStr.replace(re, imgStr) + '.jpg';
+    var url = $("a.imagebitstream").eq(index).attr("href");
     return url;
 }
 
@@ -77,11 +78,11 @@ br.getPageNum = function(index) {
 }
 
 // Total number of leafs
-br.numLeafs = 15;
+    br.numLeafs = $("a.imagebitstream").length;
 
 // Book title and the URL used for the book title link
-br.bookTitle= 'Open Library BookReader Presentation';
-br.bookUrl  = 'http://openlibrary.org';
+    br.bookTitle= document.title;
+    br.bookUrl  = $('meta[name=DC.identifier][scheme=DCTERMS.URI]').attr('content');
 
 // Override the path used to find UI images
 br.imagesBaseURL = '../BookReader/images/';

@@ -109,12 +109,14 @@
         <div class="item-summary-view-metadata">
             <xsl:call-template name="itemSummaryView-DIM-title"/>
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-2">
                     <div class="row">
                         <div class="col-xs-6 col-sm-12">
                             <xsl:call-template name="itemSummaryView-DIM-thumbnail"/>
                         </div>
-                        <!-- Moved the file list from sidebar to main -->
+                        <div class="col-xs-6 col-sm-12">
+                            <xsl:call-template name="itemSummaryView-DIM-file-section"/>
+                        </div>
                     </div>
                     <xsl:call-template name="itemSummaryView-DIM-date"/>
                     <xsl:call-template name="itemSummaryView-DIM-authors"/>
@@ -122,7 +124,7 @@
                         <xsl:call-template name="itemSummaryView-show-full"/>
                     </xsl:if>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-10">
                     <xsl:call-template name="itemSummaryView-DIM-abstract"/>
                     <xsl:call-template name="itemSummaryView-DIM-URI"/>
                     <xsl:call-template name="itemSummaryView-collections"/>
@@ -363,6 +365,13 @@
                     <xsl:attribute name="href">
                         <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
                     </xsl:attribute>
+                    <xsl:choose>
+                        <xsl:when test="contains('image/jpeg', @MIMETYPE)">
+                            <xsl:attribute name="class">
+                                <xsl:text>imagebitstream</xsl:text>
+                            </xsl:attribute>
+                        </xsl:when>
+                    </xsl:choose>
                     <xsl:call-template name="getFileIcon">
                         <xsl:with-param name="mimetype">
                             <xsl:value-of select="substring-before(@MIMETYPE,'/')"/>
@@ -689,6 +698,10 @@
     <xsl:template name="itemSummaryView-DIM-file-section-snazy">
         <xsl:param name="context" />
         <xsl:param name="primaryBitstream" />
+
+        <!-- If there are images, maybe show the archive.org viewer first -->
+        <div id="BookReader">loading...</div>
+
         <ul id="file_list" class="snazy ds-file-list no-js">
             <xsl:apply-templates select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file" mode="snazy">
                 <xsl:with-param name="context" select="$context"/>
