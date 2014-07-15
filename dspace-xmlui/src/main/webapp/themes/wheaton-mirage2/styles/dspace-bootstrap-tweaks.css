@@ -266,3 +266,8 @@ ul.snazy.no-js li.file-entry .slide-arrow {
     display: none; }
 ul.snazy.no-js li.file-entry .file-view {
     display: block; }
+
+/* Snazy Overrides */
+img.smalldisplay {
+    width:100%;
+}
