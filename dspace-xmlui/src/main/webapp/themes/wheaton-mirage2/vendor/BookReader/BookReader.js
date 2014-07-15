@@ -250,15 +250,15 @@ BookReader.prototype.init = function() {
     });
 
     if (this.protected) {
-        $('.BRpagediv1up').on('contextmenu dragstart', this, function(e) {
+        $('.BRpagediv1up').live('contextmenu dragstart', this, function(e) {
             return false;
         });
 
-        $('.BRpageimage').on('contextmenu dragstart', this, function(e) {
+        $('.BRpageimage').live('contextmenu dragstart', this, function(e) {
             return false;
         });
 
-        $('.BRpagedivthumb').on('contextmenu dragstart', this, function(e) {
+        $('.BRpagedivthumb').live('contextmenu dragstart', this, function(e) {
             return false;
         });
 
@@ -3959,12 +3959,12 @@ BookReader.prototype.bindNavigationHandlers = function() {
 
 
     this.initSwipeData();
-    $('#BookReader').off('mousemove.navigation').on('mousemove.navigation',
+    $('#BookReader').die('mousemove.navigation').live('mousemove.navigation',
         { 'br': this },
         this.navigationMousemoveHandler
     );
 
-    $('.BRpageimage').off('mousedown.swipe').on('mousedown.swipe',
+    $('.BRpageimage').die('mousedown.swipe').live('mousedown.swipe',
         { 'br': this },
         this.swipeMousedownHandler
     );
@@ -3976,7 +3976,7 @@ BookReader.prototype.bindNavigationHandlers = function() {
 //______________________________________________________________________________
 // Unbind navigation handlers
 BookReader.prototype.unbindNavigationHandlers = function() {
-    $('#BookReader').off('mousemove.navigation');
+    $('#BookReader').die('mousemove.navigation');
 }
 
 // navigationMousemoveHandler
