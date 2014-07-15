@@ -205,7 +205,17 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
      <form name="fredoniaMusic">
          <page number="1">
-             
+             <field>
+                 <dc-schema>dc</dc-schema>
+                 <dc-element>contributor</dc-element>
+                 <dc-qualifier>composer</dc-qualifier>
+                 <repeatable>true</repeatable>
+                 <label>Composers</label>
+                 <input-type>name</input-type>
+                 <hint>Enter the names of the Composers of this item below.</hint>
+                 <required></required>
+             </field>
+
              <field>
                  <dc-schema>dc</dc-schema>
                  <dc-element>contributor</dc-element>
@@ -219,6 +229,39 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
              <field>
                  <dc-schema>dc</dc-schema>
+                 <dc-element>contributor</dc-element>
+                 <dc-qualifier>illustrator</dc-qualifier>
+                 <repeatable>true</repeatable>
+                 <label>Illustrators</label>
+                 <input-type>name</input-type>
+                 <hint>Enter the names of the Illustrators of this item below.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>dc</dc-schema>
+                 <dc-element>contributor</dc-element>
+                 <dc-qualifier>corporate-author</dc-qualifier>
+                 <repeatable>true</repeatable>
+                 <label>Corporate Authors</label>
+                 <input-type>name</input-type>
+                 <hint>Enter the names of the Corporate Authors of this item below.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>dc</dc-schema>
+                 <dc-element>contributor</dc-element>
+                 <dc-qualifier>other</dc-qualifier>
+                 <repeatable>true</repeatable>
+                 <label>Other Authors</label>
+                 <input-type>name</input-type>
+                 <hint>Enter the names of the Other Authors of this item below.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>dc</dc-schema>
                  <dc-element>title</dc-element>
                  <dc-qualifier></dc-qualifier>
                  <repeatable>false</repeatable>
@@ -226,6 +269,28 @@ it, please enter the types and the actual numbers or codes below.</hint>
                  <input-type>onebox</input-type>
                  <hint>Enter the main title of the item.</hint>
                  <required>You must enter a main title for this item.</required>
+             </field>
+
+             <field>
+                 <dc-schema>dc</dc-schema>
+                 <dc-element>title</dc-element>
+                 <dc-qualifier>first-line-of-text</dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>First Line of Text</label>
+                 <input-type>onebox</input-type>
+                 <hint>Enter the First Line of Text of the item.</hint>
+                 <required></required>
+             </field>
+
+             <field>
+                 <dc-schema>dc</dc-schema>
+                 <dc-element>title</dc-element>
+                 <dc-qualifier>first-line-of-chorus</dc-qualifier>
+                 <repeatable>false</repeatable>
+                 <label>First Line of Chorus</label>
+                 <input-type>onebox</input-type>
+                 <hint>Enter the First Line of the Chorus of the item.</hint>
+                 <required></required>
              </field>
 
              <field>
@@ -276,23 +341,12 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
              <field>
                  <dc-schema>dc</dc-schema>
-                 <dc-element>relation</dc-element>
-                 <dc-qualifier>ispartofseries</dc-qualifier>
-                 <repeatable>true</repeatable>
-                 <label>Series/Report No.</label>
-                 <input-type>series</input-type>
-                 <hint>Enter the series and number assigned to this item by your community.</hint>
-                 <required></required>
-             </field>
-
-             <field>
-                 <dc-schema>dc</dc-schema>
                  <dc-element>identifier</dc-element>
                  <dc-qualifier></dc-qualifier>
                  <!-- An input-type of qualdrop_value MUST be marked as repeatable -->
                  <repeatable>true</repeatable>
                  <label>Identifiers</label>
-                 <input-type value-pairs-name="common_identifiers">qualdrop_value</input-type>
+                 <input-type value-pairs-name="fredonia_music_identifiers">qualdrop_value</input-type>
                  <hint>If the item has any identification numbers or codes associated with
                      it, please enter the types and the actual numbers or codes below.</hint>
                  <required></required>
@@ -338,31 +392,9 @@ it, please enter the types and the actual numbers or codes below.</hint>
              <field>
                  <dc-schema>dc</dc-schema>
                  <dc-element>description</dc-element>
-                 <dc-qualifier>abstract</dc-qualifier>
-                 <repeatable>false</repeatable>
-                 <label>Abstract</label>
-                 <input-type>textarea</input-type>
-                 <hint>Enter the abstract of the item below. </hint>
-                 <required></required>
-             </field>
-
-             <field>
-                 <dc-schema>dc</dc-schema>
-                 <dc-element>description</dc-element>
-                 <dc-qualifier>sponsorship</dc-qualifier>
-                 <repeatable>false</repeatable>
-                 <label>Sponsors</label>
-                 <input-type>textarea</input-type>
-                 <hint>Enter the names of any sponsors and/or funding codes in the box below. </hint>
-                 <required></required>
-             </field>
-
-             <field>
-                 <dc-schema>dc</dc-schema>
-                 <dc-element>description</dc-element>
                  <dc-qualifier></dc-qualifier>
-                 <repeatable>false</repeatable>
-                 <label>Description</label>
+                 <repeatable>true</repeatable>
+                 <label>Notes</label>
                  <input-type>textarea</input-type>
                  <hint>Enter any other description or comments in this box. </hint>
                  <required></required>
@@ -427,6 +459,43 @@ it, please enter the types and the actual numbers or codes below.</hint>
        <stored-value>isbn</stored-value>
      </pair>
    </value-pairs>
+
+
+     <value-pairs value-pairs-name="fredonia_music_identifiers" dc-term="identifier">
+         <pair>
+             <displayed-value>ISSN</displayed-value>
+             <stored-value>issn</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Other</displayed-value>
+             <stored-value>other</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>ISMN</displayed-value>
+             <stored-value>ismn</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Gov't Doc #</displayed-value>
+             <stored-value>govdoc</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>URI</displayed-value>
+             <stored-value>uri</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>ISBN</displayed-value>
+             <stored-value>isbn</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Plate No.</displayed-value>
+             <stored-value>plate</stored-value>
+         </pair>
+         <pair>
+             <displayed-value>Issue No.</displayed-value>
+             <stored-value>issue</stored-value>
+         </pair>
+     </value-pairs>
+
 
    <value-pairs value-pairs-name="common_types" dc-term="type">
      <pair>
