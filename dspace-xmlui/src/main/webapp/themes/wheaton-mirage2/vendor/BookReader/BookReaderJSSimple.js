@@ -32,7 +32,14 @@ br.getPageURI = function(index, reduce, rotate) {
 
 // Return which side, left or right, that a given page should be displayed on
 br.getPageSide = function(index) {
-    if (0 == (index & 0x1)) {
+    var firstPageSide = $("#ds-firstpage-side").attr('data-side');
+
+    var parity = 0;
+    if(firstPageSide == 'left') {
+        parity = 1;
+    }
+
+    if (parity == (index & 0x1)) {
         return 'R';
     } else {
         return 'L';
