@@ -700,7 +700,19 @@
         <xsl:param name="primaryBitstream" />
 
         <!-- If there are images, maybe show the archive.org viewer first -->
-        <div id="BookReader">loading...</div>
+        <span id="ds-firstpage-side">
+            <xsl:choose>
+                <xsl:when test="dim:field[@mdschema='ds' and @element='firstpage' and @qualifier='side']">
+                    <xsl:attribute name="data-side">
+                        <xsl:text>left</xsl:text>
+                    </xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
+        </span>
+
+        <div id="BookReader">
+            <xsl:text>loading...</xsl:text>
+        </div>
 
         <ul id="file_list" class="snazy ds-file-list no-js">
             <xsl:apply-templates select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file" mode="snazy">
