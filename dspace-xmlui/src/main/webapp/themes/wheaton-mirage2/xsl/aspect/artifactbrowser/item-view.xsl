@@ -702,7 +702,7 @@
         <xsl:variable name="flashvideo" select="'video/mp4'" />
         <xsl:variable name="googledocsviewer" select="'application/jsjsjsj'" />
         <xsl:variable name="embedwithfallback" select="'application/x-pdf application/pdf'" />
-        <xsl:variable name="archivereader" select="'image/jpeg'"/>
+        <xsl:variable name="image" select="'image/jpeg'"/>
         <xsl:variable name="mview">
             <xsl:choose>
                 <xsl:when test="contains($googleplayer, @MIMETYPE)">
@@ -720,8 +720,8 @@
                 <xsl:when test="contains($embedwithfallback, @MIMETYPE)">
                     <xsl:text>embedwithfallback</xsl:text>
                 </xsl:when>
-                <xsl:when test="contains($archivereader, @MIMETYPE)">
-                    <xsl:text>archivereader</xsl:text>
+                <xsl:when test="contains($image, @MIMETYPE)">
+                    <xsl:text>image</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:text>default</xsl:text>
@@ -859,8 +859,12 @@
                                 </a>
                             </object>
                         </xsl:when>
-                        <xsl:when test="$mview='archivereader'">
-                            <div id="BookReader">Internet Archive Bookreader Demo</div>
+                        <xsl:when test="$mview='image'">
+                            <img class="smalldisplay">
+                                <xsl:attribute name="src">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                </xsl:attribute>
+                            </img>
                         </xsl:when>
                         <xsl:otherwise>
                             <a>
