@@ -366,7 +366,7 @@
                         <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
                     </xsl:attribute>
                     <xsl:choose>
-                        <xsl:when test="contains('image/jpeg', @MIMETYPE)">
+                        <xsl:when test="contains('image/jpeg', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))">
                             <xsl:attribute name="class">
                                 <xsl:text>imagebitstream</xsl:text>
                             </xsl:attribute>
@@ -710,9 +710,10 @@
             </xsl:choose>
         </span>
 
-        <div id="BookReader">
-            <xsl:text>loading...</xsl:text>
-        </div>
+        <!-- Only show the BookReader when there are accessible images in the bitstreams -->
+        <xsl:if test="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file[contains('image/jpeg', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))]">
+            <div id="BookReader"></div>
+        </xsl:if>
 
         <ul id="file_list" class="snazy ds-file-list no-js">
             <xsl:apply-templates select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file" mode="snazy">
@@ -727,7 +728,7 @@
         <xsl:variable name="flashvideo" select="'video/mp4'" />
         <xsl:variable name="googledocsviewer" select="'application/jsjsjsj'" />
         <xsl:variable name="embedwithfallback" select="'application/x-pdf application/pdf'" />
-        <xsl:variable name="image" select="'image/jpeg'"/>
+        <xsl:variable name="image" select="'image/OFFjpeg'"/>
         <xsl:variable name="mview">
             <xsl:choose>
                 <xsl:when test="contains($googleplayer, @MIMETYPE)">
