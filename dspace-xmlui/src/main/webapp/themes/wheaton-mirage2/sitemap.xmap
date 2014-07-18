@@ -151,6 +151,7 @@
 
 
                     <map:parameter name="stylesheet.screen#1" value="vendor/BookReader/BookReader.css"/>
+                    <map:parameter name="stylesheet.screen#2" value="styles/snazy.css"/>
 
                     <map:parameter name="theme.path" value="{global:theme-path}/"/>
                     <map:parameter name="theme.name" value="{global:theme-name}/"/>
