@@ -69,12 +69,12 @@ ul.snazy li.file-entry .file-view {
     clear: both;
     text-align: center; }
 ul.snazy li.file-entry .file-view object, ul.snazy li.file-entry .file-view embed, ul.snazy li.file-entry .file-view video, ul.snazy li.file-entry .file-view audio {
-    max-width: 732px; }
+    max-width: 570px; }
 ul.snazy li.file-entry .embedwithfallback {
-    width: 732px;
+    width: 570px;
     height: 500px; }
 ul.snazy li.file-entry .flashvideo {
-    width: 732px;
+    width: 570px;
     height: 411.75px; }
 ul.snazy li.file-entry .googleplayer {
     overflow: hidden;
