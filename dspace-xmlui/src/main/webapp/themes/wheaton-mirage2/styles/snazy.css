@@ -24,7 +24,7 @@ ul.snazy li.file-entry {
     border-radius: 4px;
     /* Styling for views */ }
 ul.snazy li.file-entry .file-item {
-    max-width: 732px;
+    max-width: 570px;
     line-height: 1.2em;
     margin: 0 0 0.4em; }
 ul.snazy li.file-entry .file-item.last {
