@@ -84,6 +84,7 @@ ul.snazy li.file-entry .googleplayer .file-mimetype {
 ul.snazy li.file-entry .googleplayer .file-view {
     float: right; }
 ul.snazy.js li.file-entry .slide-arrow {
+    height: 25px;
     display: block; }
 ul.snazy.js li.file-entry .file-view {
     display: none; }
