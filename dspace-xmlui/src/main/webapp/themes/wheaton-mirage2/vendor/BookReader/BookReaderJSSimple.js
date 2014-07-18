@@ -89,10 +89,10 @@ br.getPageNum = function(index) {
 
 // Book title and the URL used for the book title link
     br.bookTitle= document.title;
-    br.bookUrl  = $('meta[name=DC.identifier][scheme=DCTERMS.URI]').attr('content');
+    br.bookUrl  = $("meta[name='DC.identifier'][scheme='DCTERMS.URI']").attr('content');
 
 // Override the path used to find UI images
-br.imagesBaseURL = '../BookReader/images/';
+br.imagesBaseURL = $('meta[name="themePath"]').attr('content')+"/vendor/BookReader/images/";
 
 br.getEmbedCode = function(frameWidth, frameHeight, viewParams) {
     return "Embed code not supported in bookreader demo.";

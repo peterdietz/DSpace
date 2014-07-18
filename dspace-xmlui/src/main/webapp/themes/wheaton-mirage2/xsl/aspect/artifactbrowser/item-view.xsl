@@ -129,7 +129,7 @@
                     <xsl:call-template name="itemSummaryView-DIM-URI"/>
                     <xsl:call-template name="itemSummaryView-collections"/>
 
-                    <!-- Moved files to main body -->
+                    <!-- Add a snazy presentation section -->
                     <xsl:call-template name="itemSummaryView-DIM-file-section-snazy"/>
                 </div>
             </div>
@@ -186,7 +186,7 @@
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
-                    <img alt="Thumbnail3">
+                    <img alt="Thumbnail">
                         <xsl:attribute name="src">
                             <xsl:value-of select="$src"/>
                         </xsl:attribute>
@@ -195,7 +195,7 @@
                 <xsl:otherwise>
                     <!--<i class="glyphicon glyphicon-file" aria-hidden="true"/>-->
 
-                    <img alt="Thumbnail4">
+                    <img alt="Thumbnail">
                         <xsl:attribute name="data-src">
                             <xsl:text>holder.js/100%x</xsl:text>
                             <xsl:value-of select="$thumbnail.maxheight"/>
@@ -531,7 +531,7 @@
                         <xsl:choose>
                             <xsl:when test="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
                         mets:file[@GROUPID=current()/@GROUPID]">
-                                <img alt="Thumbnail1">
+                                <img alt="Thumbnail">
                                     <xsl:attribute name="src">
                                         <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
                                     mets:file[@GROUPID=current()/@GROUPID]/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
@@ -540,7 +540,7 @@
                             </xsl:when>
                             <xsl:otherwise>
                                 <!--<i class="glyphicon glyphicon-file" aria-hidden="true"/>-->
-                                <img alt="Thumbnail2">
+                                <img alt="Thumbnail">
                                     <xsl:attribute name="data-src">
                                         <xsl:text>holder.js/100%x</xsl:text>
                                         <xsl:value-of select="$thumbnail.maxheight"/>

@@ -162,6 +162,17 @@
                 </xsl:attribute>
             </meta>
 
+            <!-- the URL of this theme, used to make building paths to referenced files easier -->
+            <meta name="themePath">
+                <xsl:attribute name="content">
+                    <xsl:value-of
+                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                    <xsl:text>/themes/</xsl:text>
+                    <xsl:value-of
+                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='theme'][@qualifier='path']"/>
+                </xsl:attribute>
+            </meta>
+
             <!-- Add stylsheets -->
 
             <!--TODO figure out a way to include these in the concat & minify-->
