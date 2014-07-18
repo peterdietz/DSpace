@@ -109,7 +109,7 @@
         <div class="item-summary-view-metadata">
             <xsl:call-template name="itemSummaryView-DIM-title"/>
             <div class="row">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <div class="row">
                         <div class="col-xs-6 col-sm-12">
                             <xsl:call-template name="itemSummaryView-DIM-thumbnail"/>
@@ -124,7 +124,7 @@
                         <xsl:call-template name="itemSummaryView-show-full"/>
                     </xsl:if>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <xsl:call-template name="itemSummaryView-DIM-abstract"/>
                     <xsl:call-template name="itemSummaryView-DIM-URI"/>
                     <xsl:call-template name="itemSummaryView-collections"/>
@@ -365,6 +365,11 @@
                             <xsl:attribute name="href">
                                 <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
                             </xsl:attribute>
+                            <xsl:if test="mets:FLocat[@LOCTYPE='URL']/@xlink:label and not(mets:FLocat[@LOCTYPE='URL']/@xlink:label = '')">
+                                <xsl:attribute name="title">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
+                                </xsl:attribute>
+                            </xsl:if>
                             <xsl:choose>
                                 <xsl:when test="contains('image/jpeg', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))">
                                     <xsl:attribute name="class">
@@ -380,16 +385,16 @@
                                 </xsl:with-param>
                             </xsl:call-template>
                             <xsl:choose>
-                                <xsl:when test="contains($label-1, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label">
+                                <xsl:when test="contains($label-1, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label and not(mets:FLocat[@LOCTYPE='URL']/@xlink:label = '')">
                                     <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
                                 </xsl:when>
-                                <xsl:when test="contains($label-1, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title">
+                                <xsl:when test="contains($label-1, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title and not(mets:FLocat[@LOCTYPE='URL']/@xlink:title = '')">
                                     <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
                                 </xsl:when>
-                                <xsl:when test="contains($label-2, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label">
+                                <xsl:when test="contains($label-2, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label and not(mets:FLocat[@LOCTYPE='URL']/@xlink:label = '')">
                                     <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
                                 </xsl:when>
-                                <xsl:when test="contains($label-2, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title">
+                                <xsl:when test="contains($label-2, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title and not(mets:FLocat[@LOCTYPE='URL']/@xlink:title = '')">
                                     <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
                                 </xsl:when>
                                 <xsl:otherwise>
