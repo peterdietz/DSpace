@@ -730,7 +730,7 @@
     <xsl:template match="mets:file" mode="snazy">
         <xsl:variable name="googleplayer" select="'audio/mpeg audio/basic audio/x-wav'" />
         <xsl:variable name="html5video" select="'video/webm'" />
-        <xsl:variable name="flashvideo" select="'video/mp4'" />
+        <xsl:variable name="flashvideo" select="'video/mp4 video/mpeg'" />
         <xsl:variable name="googledocsviewer" select="'application/jsjsjsj'" />
         <xsl:variable name="embedwithfallback" select="'application/x-pdf application/pdf'" />
         <xsl:variable name="image" select="'image/OFFjpeg'"/>
