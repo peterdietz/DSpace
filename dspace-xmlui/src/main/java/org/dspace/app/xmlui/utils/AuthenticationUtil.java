@@ -326,15 +326,20 @@ public class AuthenticationUtil
             throw new AuthorizeException("xmlui.utils.AuthenticationUtil.onlyAuthenticatedAdmins");
         }
 	    
-	    // You may not assume the login of another super administrator
+
 	    if (loginAs == null)
         {
             return;
         }
-	    Group administrators = Group.find(context,1);
-	    if (administrators.isMember(loginAs))
+
+        // Configurable: Allowed to login as other super administrator or not
+        if (!ConfigurationManager.getBooleanProperty("webui.user.assumeloginAdmin", false))
         {
-            throw new AuthorizeException("xmlui.utils.AuthenticationUtil.notAnotherAdmin");
+            Group administrators = Group.find(context,1);
+            if (administrators.isMember(loginAs))
+            {
+                throw new AuthorizeException("xmlui.utils.AuthenticationUtil.notAnotherAdmin");
+            }
         }
 	    
 	    // Success, allow the user to login as another user.
