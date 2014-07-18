@@ -147,7 +147,7 @@
                     <map:parameter name="javascript#6" value="vendor/BookReader/jquery.bt.min.js"/>
                     <map:parameter name="javascript#7" value="vendor/BookReader/BookReader.js"/>
                     <map:parameter name="javascript#8" value="vendor/BookReader/BookReaderJSSimple.js"/>
-                    <map:parameter name="javascript#9" value="scripts/br.js"/>
+                    <map:parameter name="javascript#9" value="scripts/snazy.js"/>
 
 
                     <map:parameter name="stylesheet.screen#1" value="vendor/BookReader/BookReader.css"/>

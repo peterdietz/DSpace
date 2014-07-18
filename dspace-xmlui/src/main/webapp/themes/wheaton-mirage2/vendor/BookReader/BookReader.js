@@ -3717,10 +3717,9 @@ BookReader.prototype.blankInfoDiv = function() {
                     '<div class="BRfloatTitle">',
                         '<h2><a/></h2>',
                     '</div>',
+                    '<div><ul><li>dc.title: ABC</li><li>dc.contributor.author: ABC</li><li>dc.subject: ABC</li><li>dc.date.issued: ABC</li></div>',
                 '</div>',
-            '</div>',
-            '<div class="BRfloatFoot">',
-                '<a href="https://openlibrary.org/dev/docs/bookreader">About the BookReader</a>',
+                '<br/><div>The BookReader for DSpace was built by <a href="http://www.longsight.com">Longsight</a>, a DSpace Registered Service Provider. Using the <a href="https://openlibrary.org/dev/docs/bookreader">Internet Archive BookReader</a></div>',
             '</div>',
         '</div>'].join('\n')
     );
