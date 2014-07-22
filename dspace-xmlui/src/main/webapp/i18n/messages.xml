@@ -124,15 +124,19 @@
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_keyword">Keyword</message>
 
    <!--  some common other possibilities for Advanced Search Fields -->
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_advisor">Advisor</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_composer">Composer</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_contributor">Contributor</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_creator">Creator</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject">Subject</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_department">Department</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_description">Description</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_relation">Relation</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_firstLineOfChorus">First Line of Chorus</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_firstLineOfText">First Line Of Text</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_mime">Mime-Type</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_other">Other Contributor</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_advisor">Advisor</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_department">Department</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_publisher">Publisher</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_relation">Relation</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject">Subject</message>
 
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_ANY">Full Text</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.and">AND</message>
@@ -165,6 +169,11 @@
 
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.author.column_heading">Authors Name</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.subject.column_heading">Subject</message>
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.composer.column_heading">Composer</message>
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.corporateAuthor.column_heading">Corporate Author</message>
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.publisher.column_heading">Publisher</message>
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.firstLineOfText.column_heading">First Line of Text</message>
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.firstLineOfChorus.column_heading">First Line of Chorus</message>
 
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.author">Browsing {0} by Author {1}</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.author">Browsing {0} by Author</message>
@@ -180,6 +189,21 @@
 
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.dateaccessioned">Browsing {0} by Submit Date {1}</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.dateaccessioned">Browsing {0} by Submit Date</message>
+
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.composer">Browsing {0} by Composer {1}</message>
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.composer">Browsing {0} by Composer</message>
+
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.corporateAuthor">Browsing {0} by Corporate Author {1}</message>
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.corporateAuthor">Browsing {0} by Corporate Author</message>
+
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.publisher">Browsing {0} by Publisher {1}</message>
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.publisher">Browsing {0} by Publisher</message>
+
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.firstLineOfText">Browsing {0} by First Line of Text {1}</message>
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.firstLineOfText">Browsing {0} by First Line of Text</message>
+
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.firstLineOfChorus">Browsing {0} by First Line of Chorus {1}</message>
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.firstLineOfChorus">Browsing {0} by First Line of Chorus</message>
 
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.CollectionViewer.java -->
@@ -255,6 +279,11 @@
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_subject">Subjects</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_dateissued">By Issue Date</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_dateaccessioned">By Submit Date</message>
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_composer">Composer</message>
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_corporateAuthor">Corporate Author</message>
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_publisher">Publisher</message>
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_firstLineOfText">First Line of Text</message>
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_firstLineOfChorus">First Line of Chorus</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.head_this_collection">This Collection</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.head_this_community">This Community</message>
 
