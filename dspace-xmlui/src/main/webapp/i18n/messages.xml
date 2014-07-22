@@ -2148,8 +2148,13 @@
 	<message key="xmlui.dri2xhtml.METS-1.0.item-preview">Preview</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-title">Title</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-author">Author</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-author-corporate">Corporate Author</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-author-of-text">Author of Text</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-abstract">Abstract</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-composer">Composer</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-description">Description</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-first-line-of-chorus">First Line of Chorus</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-first-line-of-text">First Line of Text</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-uri">URI</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-date">Date</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-publisher">Publisher</message>
