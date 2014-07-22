@@ -120,7 +120,8 @@ public final class BrowseIndex
             this.defaultOrder = SortOption.ASCENDING;
             this.number = number;
 
-            String rx = "(\\w+):(\\w+):([\\w\\.\\*,]+):?(\\w*):?(\\w*)";
+            //To support metadata with hyphens
+            String rx = "(\\w+):(\\w+):([\\w(\\-\\w)*\\.\\*,]+):?(\\w*):?(\\w*)";
             Pattern pattern = Pattern.compile(rx);
             Matcher matcher = pattern.matcher(definition);
 
