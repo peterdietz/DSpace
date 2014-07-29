@@ -53,30 +53,37 @@ public class DSpaceDynamicConfigurationService implements
         loadConfiguration();
     }
 
+    /*
+    * <p>The initial value of {@code dspace.dir} will be:</p>
+     * <ol>
+     *  <li>the value of the system property {@code dspace.dir} if defined;</li>
+     *  <li>else the value of {@code providedHome} if not null;</li>
+     *  <li>else the servlet container's home + "/dspace/" if defined (see getCatalina());</li>
+     *  <li>else the user's home directory if defined;</li>
+     *  <li>else "/".
+
+     */
     private void loadConfiguration () {
-        // now we load the settings from properties files
-        String homePath = System.getProperty(DSPACE_HOME);
+        List<String> homePathList = new ArrayList<String>();
+        homePathList.add(System.getProperty(DSPACE_HOME));
+        homePathList.add(this.home);
+        homePathList.add(System.getProperty("catalina.base") + File.separatorChar + DSPACE);
+        homePathList.add(System.getProperty("catalina.home") + File.separatorChar + DSPACE);
+        homePathList.add(System.getProperty("user.home") + File.separatorChar + DSPACE);
+        homePathList.add(File.separatorChar + DSPACE);
 
-        // now we load from the provided parameter if its not null
-        if (this.home != null && homePath == null) {
-            homePath = this.home;
-        }
-
-        if (homePath == null) {
-            String catalina = System.getProperty("catalina.base");
-            if (catalina == null)
-                catalina = System.getProperty("catalina.home");
-            if (catalina != null) {
-                homePath = catalina + File.separatorChar + DSPACE + File.separatorChar;
+        //Best dspace.dir is the first that exists
+        String homePath = null;
+        for(String homePathEntry : homePathList) {
+            File homePathFile = new File(homePathEntry  + File.separator + DSPACE_CONFIG_PATH);
+            if(homePathFile.exists()) {
+                homePath = homePathEntry;
+                log.error("Using dspace.dir of: " + homePathEntry);
+                break;
             }
         }
-        if (homePath == null) {
-            homePath = System.getProperty("user.home");
-        }
-        if (homePath == null) {
-            homePath = "/";
-        }
 
+        // now we load the settings from properties files
         try{
             config = new DSpacePropertiesConfiguration(homePath + File.separatorChar + DSPACE_CONFIG_PATH);
             File modulesDirectory = new File(homePath + File.separator + DSPACE_MODULES_CONFIG_PATH + File.separator);

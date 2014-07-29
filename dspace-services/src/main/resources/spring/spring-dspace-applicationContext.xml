@@ -23,6 +23,8 @@
     <context:component-scan base-package="org.dspace" name-generator="org.dspace.servicemanager.spring.FullPathBeanNameGenerator" />
     -->
 
+    <bean id="configurationService" class="org.dspace.servicemanager.config.DSpaceDynamicConfigurationService"/>
+
     <!-- the bean processor interceptor -->
     <bean class="org.dspace.servicemanager.spring.DSpaceBeanPostProcessor" />
 
