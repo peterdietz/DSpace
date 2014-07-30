@@ -652,64 +652,70 @@ public class ItemImport
     public void addItems(Context c, Collection[] mycollections,
             String sourceDir, String mapFile, boolean template) throws Exception
     {
-        Map<String, String> skipItems = new HashMap<String, String>(); // set of items to skip if in 'resume'
-        // mode
-
-        System.out.println("Adding items from directory: " + sourceDir);
-        System.out.println("Generating mapfile: " + mapFile);
-
         // create the mapfile
         File outFile = null;
         PrintWriter mapOut = null;
 
-        if (!isTest)
-        {
-            // get the directory names of items to skip (will be in keys of
-            // hash)
-            if (isResume)
+        try {
+            Map<String, String> skipItems = new HashMap<String, String>(); // set of items to skip if in 'resume'
+            // mode
+
+            System.out.println("Adding items from directory: " + sourceDir);
+            System.out.println("Generating mapfile: " + mapFile);
+
+
+
+            if (!isTest)
             {
-                skipItems = readMapFile(mapFile);
+                // get the directory names of items to skip (will be in keys of
+                // hash)
+                if (isResume)
+                {
+                    skipItems = readMapFile(mapFile);
+                }
+
+                // sneaky isResume == true means open file in append mode
+                outFile = new File(mapFile);
+                mapOut = new PrintWriter(new FileWriter(outFile, isResume));
+
+                if (mapOut == null)
+                {
+                    throw new Exception("can't open mapfile: " + mapFile);
+                }
             }
 
-            // sneaky isResume == true means open file in append mode
-            outFile = new File(mapFile);
-            mapOut = new PrintWriter(new FileWriter(outFile, isResume));
+            // open and process the source directory
+            File d = new java.io.File(sourceDir);
 
-            if (mapOut == null)
+            if (d == null || !d.isDirectory())
             {
-                throw new Exception("can't open mapfile: " + mapFile);
+                throw new Exception("Error, cannot open source directory " + sourceDir);
+            }
+
+            String[] dircontents = d.list(directoryFilter);
+
+            Arrays.sort(dircontents);
+
+            for (int i = 0; i < dircontents.length; i++)
+            {
+                if (skipItems.containsKey(dircontents[i]))
+                {
+                    System.out.println("Skipping import of " + dircontents[i]);
+                }
+                else
+                {
+                    addItem(c, mycollections, sourceDir, dircontents[i], mapOut, template);
+                    System.out.println(i + " " + dircontents[i]);
+                    c.clearCache();
+                }
+            }
+
+        } finally {
+            if(mapOut!=null) {
+                mapOut.flush();
+                mapOut.close();
             }
         }
-
-        // open and process the source directory
-        File d = new java.io.File(sourceDir);
-
-        if (d == null || !d.isDirectory())
-        {
-            throw new Exception("Error, cannot open source directory " + sourceDir);
-        }
-
-        String[] dircontents = d.list(directoryFilter);
-        
-        Arrays.sort(dircontents);
-
-        for (int i = 0; i < dircontents.length; i++)
-        {
-            if (skipItems.containsKey(dircontents[i]))
-            {
-                System.out.println("Skipping import of " + dircontents[i]);
-            }
-            else
-            {
-                addItem(c, mycollections, sourceDir, dircontents[i], mapOut, template);
-                System.out.println(i + " " + dircontents[i]);
-                c.clearCache();
-            }
-        }
-
-        //TODO null check?
-        mapOut.flush();
-        mapOut.close();
     }
 
     private void replaceItems(Context c, Collection[] mycollections,
