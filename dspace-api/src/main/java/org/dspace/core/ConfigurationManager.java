@@ -925,7 +925,7 @@ public class ConfigurationManager
         options.addOption("m", "module", true, "module");
         options.addOption("p", "property", true, "property");
         options.addOption("a", "all", false, "Print All Properties (no module)");
-        options.addOption("s", "service", true, "Specify ConfigurationService to use");
+        options.addOption("c", "configurationService", true, "Specify ConfigurationService to use");
 
         CommandLine line = null;
         try {
@@ -937,8 +937,8 @@ public class ConfigurationManager
 
         //TODO use the spring-loaded one
         ConfigurationService config = null;
-        if(line.hasOption('s')) {
-            config = new DSpace().getServiceManager().getServiceByName(line.getOptionValue('s'), ConfigurationService.class);
+        if(line.hasOption('c')) {
+            config = new DSpace().getServiceManager().getServiceByName(line.getOptionValue('c'), ConfigurationService.class);
         } else {
             config = new DSpaceDynamicConfigurationService();
         }
