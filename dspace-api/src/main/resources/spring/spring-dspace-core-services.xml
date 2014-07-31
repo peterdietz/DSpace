@@ -28,6 +28,8 @@
         <property name="configurationService" ref="org.dspace.services.ConfigurationService"/>
     </bean-->
 
+    <bean id="configurationService" class="org.dspace.servicemanager.config.DSpaceDynamicConfigurationService"/>
+
 
     <bean id="org.dspace.identifier.VersionedHandleIdentifierProvider" class="org.dspace.identifier.VersionedHandleIdentifierProvider"
           scope="singleton">

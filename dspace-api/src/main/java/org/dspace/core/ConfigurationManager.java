@@ -20,6 +20,10 @@ import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
 import org.apache.log4j.helpers.OptionConverter;
 import org.dspace.content.configuration.DSpacePropertiesConfiguration;
+import org.dspace.servicemanager.config.DSpaceConfigurationService;
+import org.dspace.servicemanager.config.DSpaceDynamicConfigurationService;
+import org.dspace.services.ConfigurationService;
+import org.dspace.utils.DSpace;
 
 /**
  * Class for reading the DSpace system configuration. The main configuration is
@@ -921,6 +925,7 @@ public class ConfigurationManager
         options.addOption("m", "module", true, "module");
         options.addOption("p", "property", true, "property");
         options.addOption("a", "all", false, "Print All Properties (no module)");
+        options.addOption("s", "service", true, "Specify ConfigurationService to use");
 
         CommandLine line = null;
         try {
@@ -929,6 +934,15 @@ public class ConfigurationManager
             log.error("Unable to parse config", e);
             System.exit(1);
         }
+
+        //TODO use the spring-loaded one
+        ConfigurationService config = null;
+        if(line.hasOption('s')) {
+            config = new DSpace().getServiceManager().getServiceByName(line.getOptionValue('s'), ConfigurationService.class);
+        } else {
+            config = new DSpaceDynamicConfigurationService();
+        }
+        System.out.println("ConfigClass: " + config.getClass());
 
         if(line.hasOption("a")) {
             //print all properties
@@ -943,12 +957,17 @@ public class ConfigurationManager
 
         if (line.hasOption('g') && line.hasOption('p')) {
             if(line.hasOption('m')) {
-                System.out.println("GET module:["  + line.getOptionValue('m') + "] property:[" + line.getOptionValue('p') + "] == " + getProperty(line.getOptionValue('m'), line.getOptionValue('p')));
+                String value = config.getProperty(line.getOptionValue('m'), line.getOptionValue('p'));
+                System.out.println("GET module:["  + line.getOptionValue('m') + "] property:[" + line.getOptionValue('p') + "] == " + value);
             } else {
-                System.out.println("GET property:[" + line.getOptionValue('p') + "] == " + getProperty(line.getOptionValue('p')));
+                String value = config.getProperty(line.getOptionValue('p'));
+                System.out.println("GET property:[" + line.getOptionValue('p') + "] == " + value);
             }
-        } else if(line.hasOption('s')) {
-            System.out.println("SET not yet implemented");
+        } else if(line.hasOption('s') && line.hasOption('p')) {
+
+            config.setProperty(line.getOptionValue('p'), "SET BY CLI");
+            System.out.println("SET (incomplete), setting value to 'SET BY CLI'");
+
         } else {
             HelpFormatter myhelp = new HelpFormatter();
             myhelp.printHelp("ConfigurationManager\n", options);

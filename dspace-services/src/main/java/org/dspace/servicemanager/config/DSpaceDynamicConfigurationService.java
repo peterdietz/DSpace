@@ -8,17 +8,14 @@
 package org.dspace.servicemanager.config;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.event.ConfigurationListener;
-import org.dspace.services.DynamicConfigurationService;
+import org.dspace.services.ConfigurationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.SimpleTypeConverter;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
@@ -28,8 +25,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
  * @author DSpace @ Lyncode
  * @author Peter Dietz @ Longsight
  */
-public class DSpaceDynamicConfigurationService implements
-        DynamicConfigurationService {
+public class DSpaceDynamicConfigurationService implements ConfigurationService {
     private static final Logger log = LoggerFactory.getLogger(DSpaceDynamicConfigurationService.class);
 
     private static final String DSPACE = "dspace";
@@ -42,7 +38,6 @@ public class DSpaceDynamicConfigurationService implements
     private String home;
     private DSpacePropertiesConfiguration config = null;
     private Map<String, DSpacePropertiesConfiguration> modulesConfig = null;
-    private Map<String, DSpacePropertiesConfiguration> addonsConfig = null;
 
     public DSpaceDynamicConfigurationService () {
         home = null;
@@ -111,57 +106,88 @@ public class DSpaceDynamicConfigurationService implements
             // This happens if an error occurs on parsing files
             log.error("Error while loading properties from " +  homePath + File.separator + DSPACE_MODULES_CONFIG_PATH , e);
         }
+    }
 
+    @Override
+    public <T> T getPropertyAsType(String name, Class<T> type) {
+        String value = config.getString(name);
+        return convert(value, type);
+    }
 
-        try{
-            File addonsDirectory = new File(homePath + File.separator + DSPACE_ADDONS_CONFIG_PATH + File.separator);
-            addonsConfig = new TreeMap<String, DSpacePropertiesConfiguration>();
-            if(addonsDirectory.exists()){
-                try{
-                    Resource[] resources = new PathMatchingResourcePatternResolver().getResources(addonsDirectory.toURI().toURL().toString() + "*" + DOT_CONFIG);
-                    if(resources != null){
-                        for(Resource resource : resources){
-                            String prefix = resource.getFilename().substring(0, resource.getFilename().lastIndexOf("."));
-                            addonsConfig.put(prefix, new DSpacePropertiesConfiguration(resource.getFile()));
-                        }
-                    }
-                }catch (Exception e){
-                    log.error("Error while loading the addons properties from:" + addonsDirectory.getAbsolutePath());
-                }
-            }else{
-                log.error("Failed to load the addons properties since (" + homePath + File.separator + DSPACE_ADDONS_CONFIG_PATH + "): Does not exist");
-            }
-
-        } catch (IllegalArgumentException e){
-            //This happens if we don't have a modules directory
-            log.error("Error while loading the module properties since (" +  homePath + File.separator + DSPACE_ADDONS_CONFIG_PATH + "): is not a valid directory", e);
+    @Override
+    public <T> T getPropertyAsType(String module, String name, Class<T> type) {
+        if (modulesConfig.containsKey(module)) {
+            String value = modulesConfig.get(module).getString(name);
+            return convert(value, type);
+        } else {
+            return null;
         }
     }
+
     @Override
-    public Object getProperty(String key) {
-        return config.getProperty(key);
+    public <T> T getPropertyAsType(String name, T defaultValue) {
+        return getPropertyAsType(name, defaultValue, false);
+    }
+
+    @Override
+    public <T> T getPropertyAsType(String module, String name, T defaultValue) {
+        return getPropertyAsType(module, name, defaultValue, false);
+    }
+
+    @Override
+    public <T> T getPropertyAsType(String name, T defaultValue, boolean setDefaultIfNotFound) {
+        String value = getProperty(name);
+        T property = null;
+        if (defaultValue == null) {
+            property = null; // just return null when default value is null
+        } else if (value == null) {
+            property = defaultValue; // just return the default value if nothing is currently set
+            // also set the default value as the current stored value
+            if (setDefaultIfNotFound) {
+                setProperty(name, defaultValue);
+            }
+        } else {
+            // something is already set so we convert the stored value to match the type
+            property = (T)convert(value, defaultValue.getClass());
+        }
+        return property;
+    }
+
+    @Override
+    public <T> T getPropertyAsType(String module, String name, T defaultValue, boolean setDefaultIfNotFound) {
+        String value = getProperty(module, name);
+        T property = null;
+        if (defaultValue == null) {
+            property = null; // just return null when default value is null
+        } else if (value == null) {
+            property = defaultValue; // just return the default value if nothing is currently set
+            // also set the default value as the current stored value
+            if (setDefaultIfNotFound) {
+                setProperty(module, name, defaultValue);
+            }
+        } else {
+            // something is already set so we convert the stored value to match the type
+            property = (T)convert(value, defaultValue.getClass());
+        }
+        return property;
+    }
+
+    @Override
+    public Map<String, String> getAllProperties() {
+        //All props? Is this just a map of props, or are we to include the modules...
+        return new HashMap(config.getProperties());
+    }
+
+    @Override
+    public String getProperty(String key) {
+        return config.getProperty(key).toString();
     }
     @Override
     public boolean setProperty(String key, Object value) {
         config.setProperty(key, value);
         return true;
     }
-    @Override
-    public String getString(String key, String defaultValue) {
-        return config.getString(key, defaultValue);
-    }
-    @Override
-    public int getInt(String key, int defaultValue) {
-        return config.getInt(key, defaultValue);
-    }
-    @Override
-    public long getLong(String key, long defaultValue) {
-        return config.getLong(key, defaultValue);
-    }
-    @Override
-    public boolean getBoolean(String key, boolean defaultValue) {
-        return config.getBoolean(key, defaultValue);
-    }
+
     @Override
     public List<String> getList(String key) {
         return config.getList(key);
@@ -173,152 +199,79 @@ public class DSpaceDynamicConfigurationService implements
 
 
     @Override
-    public Object getModuleProperty(String module, String key) {
+    public String getProperty(String module, String key) {
         if (modulesConfig.containsKey(module))
-            return modulesConfig.get(module).getProperty(key);
+            return modulesConfig.get(module).getProperty(key).toString();
         return null;
     }
+
     @Override
-    public boolean setModuleProperty(String module, String key, Object value) {
+    public Properties getProperties() {
+        return config.getProperties();
+    }
+
+    @Override
+    public Properties getProperties(String module) {
+        if(modulesConfig.containsKey(module)) {
+            return modulesConfig.get(module).getProperties();
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public boolean setProperty(String module, String key, Object value) {
         if (modulesConfig.containsKey(module)) {
             modulesConfig.get(module).setProperty(key, value);
             return true;
         }
         return false;
     }
+
     @Override
-    public String getModuleString(String module, String key, String defaultValue) {
-        if (modulesConfig.containsKey(module))
-            return modulesConfig.get(module).getString(key, defaultValue);
-        return defaultValue;
-    }
-    @Override
-    public int getModuleInt(String module, String key, int defaultValue) {
-        if (modulesConfig.containsKey(module))
-            return modulesConfig.get(module).getInt(key, defaultValue);
-        return defaultValue;
-    }
-    @Override
-    public long getModuleLong(String module, String key, long defaultValue) {
-        if (modulesConfig.containsKey(module))
-            return modulesConfig.get(module).getLong(key, defaultValue);
-        return defaultValue;
-    }
-    @Override
-    public boolean getModuleBoolean(String module, String key,
-                                    boolean defaultValue) {
-        if (modulesConfig.containsKey(module))
-            return modulesConfig.get(module).getBoolean(key, defaultValue);
-        return defaultValue;
-    }
-    @Override
-    public List<String> getModuleList(String module, String key) {
+    public List<String> getList(String module, String key) {
         if (modulesConfig.containsKey(module))
             return modulesConfig.get(module).getList(key);
         return new ArrayList<String>();
     }
     @Override
-    public void addModuleConfigurationListener(String module,
+    public void addConfigurationListener(String module,
                                                ConfigurationListener listener) {
         if (modulesConfig.containsKey(module))
             modulesConfig.get(module).addConfigurationEventListener(listener);
     }
 
-
-    @Override
-    public Object getAddonProperty(String addon, String key) {
-        if (addonsConfig.containsKey(addon))
-            return addonsConfig.get(addon).getProperty(key);
-        return null;
-    }
-    @Override
-    public boolean setAddonProperty(String addon, String key, Object value) {
-        if (addonsConfig.containsKey(addon)) {
-            addonsConfig.get(addon).setProperty(key, value);
-            return true;
-        }
-        return false;
-    }
-    @Override
-    public String getAddonString(String addon, String key, String defaultValue) {
-        if (addonsConfig.containsKey(addon))
-            return addonsConfig.get(addon).getString(key, defaultValue);
-        return defaultValue;
-    }
-    @Override
-    public long getAddonLong(String addon, String key, long defaultValue) {
-        if (addonsConfig.containsKey(addon))
-            return addonsConfig.get(addon).getLong(key, defaultValue);
-        return defaultValue;
-    }
-    @Override
-    public int getAddonInt(String addon, String key, int defaultValue) {
-        if (addonsConfig.containsKey(addon))
-            return addonsConfig.get(addon).getInt(key, defaultValue);
-        return defaultValue;
-    }
-    @Override
-    public boolean getAddonBoolean(String addon, String key,
-                                   boolean defaultValue) {
-        if (addonsConfig.containsKey(addon))
-            return addonsConfig.get(addon).getBoolean(key, defaultValue);
-        return defaultValue;
-    }
-    @Override
-    public List<String> getAddonList(String addon, String key) {
-        if (addonsConfig.containsKey(addon))
-            return addonsConfig.get(addon).getList(key);
-        return new ArrayList<String>();
-    }
-    @Override
-    public void addAddonConfigurationListener(String addon,
-                                              ConfigurationListener listener) {
-        if (addonsConfig.containsKey(addon))
-            addonsConfig.get(addon).addConfigurationEventListener(listener);
-    }
-    @Override
-    public boolean createAddonConfiguration(String addon) {
-        String path = this.home + File.separator + DSPACE_ADDONS_CONFIG_PATH + File.separator + addon + DOT_CONFIG;
-        try {
-            File f = new File(path);
-            f.mkdirs();
-            f.createNewFile();
-            DSpacePropertiesConfiguration config = new DSpacePropertiesConfiguration(f);
-            this.addonsConfig.put(addon, config);
-            return true;
-        } catch (ConfigurationException e) {
-            log.error("Error while loading the addon properties from: " + path);
-            return false;
-        } catch (IOException e) {
-            log.error("Error while creating the addon properties file at: " + path);
-            return false;
-        }
-
-    }
-    @Override
-    public boolean addProperty(String addon, String key, Object value,
-                               String description) {
-        if (addonsConfig.containsKey(addon)) {
-            addonsConfig.get(addon).addProperty(key, value);
-            addonsConfig.get(addon).setPropertyDescription(key, description);
-            return true;
-        }
-        return false;
-    }
     @Override
     public String getDescription(String key) {
         return config.getDescription(key);
     }
     @Override
-    public String getModuleDescription(String module, String key) {
+    public String getDescription(String module, String key) {
         if (modulesConfig.containsKey(module))
             return modulesConfig.get(module).getDescription(key);
         return null;
     }
-    @Override
-    public String getAddonDescription(String addon, String key) {
-        if (addonsConfig.containsKey(addon))
-            return addonsConfig.get(addon).getDescription(key);
-        return null;
+
+    private <T> T convert(String value, Class<T> type) {
+        SimpleTypeConverter converter = new SimpleTypeConverter();
+
+        if (value != null) {
+            if (type.isArray()) {
+                String[] values = value.split(",");
+                return (T)converter.convertIfNecessary(values, type);
+            }
+
+            if (type.isAssignableFrom(String.class)) {
+                return (T)value;
+            }
+        } else {
+            if (boolean.class.equals(type)) {
+                return (T)Boolean.FALSE;
+            } else if (int.class.equals(type) || long.class.equals(type)) {
+                return (T)converter.convertIfNecessary(0, type);
+            }
+        }
+
+        return (T)converter.convertIfNecessary(value, type);
     }
 }

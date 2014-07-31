@@ -13,6 +13,7 @@ import java.net.UnknownHostException;
 import java.util.*;
 import java.util.Map.Entry;
 
+import org.apache.commons.configuration.event.ConfigurationListener;
 import org.dspace.constants.Constants;
 import org.dspace.servicemanager.ServiceConfig;
 import org.dspace.services.ConfigurationService;
@@ -89,6 +90,11 @@ public final class DSpaceConfigurationService implements ConfigurationService {
         return props;
     }
 
+    @Override
+    public Properties getProperties(String module) {
+        return null;
+    }
+
     /* (non-Javadoc)
      * @see org.dspace.services.ConfigurationService#getProperty(java.lang.String)
      */
@@ -102,6 +108,11 @@ public final class DSpaceConfigurationService implements ConfigurationService {
         return value;
     }
 
+    @Override
+    public String getProperty(String module, String key) {
+        return null;
+    }
+
     /* (non-Javadoc)
      * @see org.dspace.services.ConfigurationService#getPropertyAsType(java.lang.String, java.lang.Class)
      */
@@ -111,12 +122,22 @@ public final class DSpaceConfigurationService implements ConfigurationService {
         return convert(value, type);
     }
 
+    @Override
+    public <T> T getPropertyAsType(String module, String name, Class<T> type) {
+        return null;
+    }
+
     /* (non-Javadoc)
      * @see org.dspace.services.ConfigurationService#getPropertyAsType(java.lang.String, java.lang.Object)
      */
     @Override
     public <T> T getPropertyAsType(String name, T defaultValue) {
         return getPropertyAsType(name, defaultValue, false);
+    }
+
+    @Override
+    public <T> T getPropertyAsType(String module, String name, T defaultValue) {
+        return null;
     }
 
     /* (non-Javadoc)
@@ -142,6 +163,11 @@ public final class DSpaceConfigurationService implements ConfigurationService {
         return property;
     }
 
+    @Override
+    public <T> T getPropertyAsType(String module, String name, T defaultValue, boolean setDefaultIfNotFound) {
+        return null;
+    }
+
     // config loading methods
 
     /* (non-Javadoc)
@@ -162,6 +188,41 @@ public final class DSpaceConfigurationService implements ConfigurationService {
             changed = loadConfig(name, sVal);
         }
         return changed;
+    }
+
+    @Override
+    public boolean setProperty(String module, String key, Object value) {
+        return false;
+    }
+
+    @Override
+    public String getDescription(String key) {
+        return null;
+    }
+
+    @Override
+    public String getDescription(String module, String key) {
+        return null;
+    }
+
+    @Override
+    public List<String> getList(String key) {
+        return null;
+    }
+
+    @Override
+    public List<String> getList(String module, String key) {
+        return null;
+    }
+
+    @Override
+    public void addConfigurationListener(ConfigurationListener listener) {
+
+    }
+
+    @Override
+    public void addConfigurationListener(String module, ConfigurationListener listener) {
+
     }
 
     // INTERNAL loading methods

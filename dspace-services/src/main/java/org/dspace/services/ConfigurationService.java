@@ -7,6 +7,9 @@
  */
 package org.dspace.services;
 
+import org.apache.commons.configuration.event.ConfigurationListener;
+
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -62,6 +65,18 @@ public interface ConfigurationService {
     public <T> T getPropertyAsType(String name, Class<T> type);
 
     /**
+     * Get a configuration property (setting) from the system as a
+     * specified type.
+     *
+     * @param <T>
+     * @param name the property name
+     * @param type the type to return the property as
+     * @return the property value OR null if none is found
+     * @throws UnsupportedOperationException if the type cannot be converted to the requested type
+     */
+    public <T> T getPropertyAsType(String module, String name, Class<T> type);
+
+    /**
      * Get a configuration property (setting) from the system, or return
      * a default value if none is found.
      * 
@@ -72,6 +87,19 @@ public interface ConfigurationService {
      * @throws IllegalArgumentException if the defaultValue type does not match the type of the property by name
      */
     public <T> T getPropertyAsType(String name, T defaultValue);
+
+
+    /**
+     * Get a configuration property (setting) from the system, or return
+     * a default value if none is found.
+     *
+     * @param <T>
+     * @param name the property name
+     * @param defaultValue the value to return if this name is not found
+     * @return the property value OR null if none is found
+     * @throws IllegalArgumentException if the defaultValue type does not match the type of the property by name
+     */
+    public <T> T getPropertyAsType(String module, String name, T defaultValue);
 
     /**
      * Get a configuration property (setting) from the system, or return 
@@ -90,6 +118,22 @@ public interface ConfigurationService {
     public <T> T getPropertyAsType(String name, T defaultValue, boolean setDefaultIfNotFound);
 
     /**
+     * Get a configuration property (setting) from the system, or return
+     * (and possibly store) a default value if none is found.
+     *
+     * @param <T>
+     * @param name the property name
+     * @param defaultValue the value to return if this name is not found
+     * @param setDefaultIfNotFound if this is true and the config value
+     * is not found then the default value will be set in the
+     * configuration store assuming it is not null.  Otherwise the
+     * default value is just returned but not set.
+     * @return the property value OR null if none is found
+     * @throws IllegalArgumentException if the defaultValue type does not match the type of the property by name
+     */
+    public <T> T getPropertyAsType(String module, String name, T defaultValue, boolean setDefaultIfNotFound);
+
+    /**
      * Get all currently known configuration settings
      * 
      * @return all the configuration properties as a map of name -> value
@@ -104,6 +148,7 @@ public interface ConfigurationService {
      * @return the property value OR null if none is found
      */
     public String getProperty(String name);
+    public String getProperty (String module, String key);
 
     /**
      * Convenience method - get all configuration properties (settings)
@@ -112,6 +157,8 @@ public interface ConfigurationService {
      * @return all the configuration properties in a properties object (name -> value)
      */
     public Properties getProperties();
+
+    public Properties getProperties(String module);
 
     /**
      * Set a configuration property (setting) in the system.
@@ -125,5 +172,15 @@ public interface ConfigurationService {
      * @throws UnsupportedOperationException if the type cannot be converted to something that is understandable by the system as a configuration property value
      */
     public boolean setProperty(String name, Object value);
+    public boolean setProperty (String module, String key, Object value);
 
+    // Main Configuration File API
+    public String getDescription (String key);
+    public String getDescription (String module, String key);
+
+    public List<String> getList (String key);
+    public List<String> getList (String module, String key);
+
+    public void addConfigurationListener (ConfigurationListener listener);
+    public void addConfigurationListener (String module, ConfigurationListener listener);
 }
