@@ -101,7 +101,7 @@ public class DSpaceDynamicConfigurationService implements
                     log.error("Error while loading the modules properties from:" + modulesDirectory.getAbsolutePath());
                 }
             }else{
-                log.info("Failed to load the modules properties since (" + homePath + File.separator + DSPACE_MODULES_CONFIG_PATH + "): Does not exist");
+                log.error("Failed to load the modules properties since (" + homePath + File.separator + DSPACE_MODULES_CONFIG_PATH + "): Does not exist");
             }
 
         } catch (IllegalArgumentException e){
@@ -129,7 +129,7 @@ public class DSpaceDynamicConfigurationService implements
                     log.error("Error while loading the addons properties from:" + addonsDirectory.getAbsolutePath());
                 }
             }else{
-                log.info("Failed to load the addons properties since (" + homePath + File.separator + DSPACE_ADDONS_CONFIG_PATH + "): Does not exist");
+                log.error("Failed to load the addons properties since (" + homePath + File.separator + DSPACE_ADDONS_CONFIG_PATH + "): Does not exist");
             }
 
         } catch (IllegalArgumentException e){

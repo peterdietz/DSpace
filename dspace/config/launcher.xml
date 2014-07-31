@@ -40,6 +40,14 @@
     </command>
 
     <command>
+        <name>config</name>
+        <description>Tool to see and manage configs</description>
+        <step>
+            <class>org.dspace.core.ConfigurationManager</class>
+        </step>
+    </command>
+
+    <command>
         <name>create-administrator</name>
         <description>Create a DSpace administrator account</description>
         <step>

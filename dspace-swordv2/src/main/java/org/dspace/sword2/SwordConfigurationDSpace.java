@@ -230,7 +230,7 @@ public class SwordConfigurationDSpace implements SwordConfiguration
             throws DSpaceSwordException, SwordError
 	{
 		List<String> dps = new ArrayList<String>();
-		Properties props = ConfigurationManager.getProperties("swordv2-server");
+		Properties props = ConfigurationManager.getProperties("swordv2-server").getProperties();
         Set keyset = props.keySet();
         for (Object keyObj : keyset)
         {
@@ -490,7 +490,7 @@ public class SwordConfigurationDSpace implements SwordConfiguration
 		List<String> aps = new ArrayList<String>();
 
 		// build the holding maps of identifiers
-        Properties props = ConfigurationManager.getProperties("swordv2-server");
+        Properties props = ConfigurationManager.getProperties("swordv2-server").getProperties();
         Set keyset = props.keySet();
         for (Object keyObj : keyset)
         {
@@ -543,7 +543,7 @@ public class SwordConfigurationDSpace implements SwordConfiguration
 		List<String> aps = new ArrayList<String>();
 
 		// build the holding maps of identifiers
-        Properties props = ConfigurationManager.getProperties("swordv2-server");
+        Properties props = ConfigurationManager.getProperties("swordv2-server").getProperties();
         Set keyset = props.keySet();
         for (Object keyObj : keyset)
         {

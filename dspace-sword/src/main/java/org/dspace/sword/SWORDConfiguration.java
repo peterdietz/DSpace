@@ -335,7 +335,7 @@ public class SWORDConfiguration
 		String handle = col.getHandle();
 
 		// build the holding maps of identifiers and q values
-        Properties props = ConfigurationManager.getProperties("sword-server");
+        Properties props = ConfigurationManager.getProperties("sword-server").getProperties();
         Set keyset = props.keySet();
         for (Object keyObj : keyset)
         {
