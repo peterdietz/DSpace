@@ -926,6 +926,7 @@ public class ConfigurationManager
         options.addOption("p", "property", true, "property");
         options.addOption("a", "all", false, "Print All Properties (no module)");
         options.addOption("c", "configurationService", true, "Specify ConfigurationService to use");
+        options.addOption("v", "value", true, "Value to set property to");
 
         CommandLine line = null;
         try {
@@ -963,10 +964,10 @@ public class ConfigurationManager
                 String value = config.getProperty(line.getOptionValue('p'));
                 System.out.println("GET property:[" + line.getOptionValue('p') + "] == " + value);
             }
-        } else if(line.hasOption('s') && line.hasOption('p')) {
+        } else if(line.hasOption('s') && line.hasOption('p') && line.hasOption('v')) {
 
-            config.setProperty(line.getOptionValue('p'), "SET BY CLI");
-            System.out.println("SET (incomplete), setting value to 'SET BY CLI'");
+            config.setProperty(line.getOptionValue('p'), line.getOptionValue('v'));
+            System.out.println("SET property:[" + line.getOptionValue('p')+ "] to value:[" + line.getOptionValue('v')+"]");
 
         } else {
             HelpFormatter myhelp = new HelpFormatter();
