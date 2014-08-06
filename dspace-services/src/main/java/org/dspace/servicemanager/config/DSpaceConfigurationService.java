@@ -53,13 +53,18 @@ public final class DSpaceConfigurationService implements ConfigurationService {
     protected transient Map<String, Map<String, ServiceConfig>> serviceNameConfigs;
     public static final String DSPACE_CONFIG_ADDON = "dspace/config-*";
 
+    //DSpace home directory, or null.
+    private static String providedHome = null;
+
     public DSpaceConfigurationService() {
         // init and load up current config settings
-        loadInitialConfig(null);
+        this.providedHome = null;
+        init();
     }
 
     public DSpaceConfigurationService(String providedHome) {
-		loadInitialConfig(providedHome);
+		this.providedHome = providedHome;
+        init();
 	}
 
     /* (non-Javadoc)
@@ -223,6 +228,11 @@ public final class DSpaceConfigurationService implements ConfigurationService {
     @Override
     public void addConfigurationListener(String module, ConfigurationListener listener) {
 
+    }
+
+    @Override
+    public void init() {
+        loadInitialConfig();
     }
 
     // INTERNAL loading methods
@@ -396,9 +406,9 @@ public final class DSpaceConfigurationService implements ConfigurationService {
      *  <li>else "/".
      * </ol>
      *
-     * @param providedHome DSpace home directory, or null.
      */
-    public void loadInitialConfig(String providedHome) {
+    public void loadInitialConfig() {
+        String providedHome = this.providedHome;
         Map<String, String> configMap = new LinkedHashMap<String, String>();
         // load default settings
         try {

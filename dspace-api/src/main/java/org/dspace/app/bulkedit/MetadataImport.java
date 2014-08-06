@@ -1142,7 +1142,7 @@ public class MetadataImport
     private static void setAuthorizedMetadataFields()
     {
         authorityControlled = new HashSet<String>();
-        Enumeration propertyNames = ConfigurationManager.getProperties().getProperties().propertyNames();
+        Enumeration propertyNames = ConfigurationManager.getProperties().propertyNames();
         while(propertyNames.hasMoreElements())
         {
             String key = ((String) propertyNames.nextElement()).trim();

@@ -133,7 +133,7 @@ public class DSpaceCocoonServletFilter implements Filter
             if(!ConfigurationManager.isConfigured())
             {
                 // Load in DSpace config
-                ConfigurationManager.loadConfig(dspaceConfig);
+                //ConfigurationManager.loadConfig(dspaceConfig);
             }
             
             

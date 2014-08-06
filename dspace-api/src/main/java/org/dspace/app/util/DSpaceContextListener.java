@@ -99,7 +99,7 @@ public class DSpaceContextListener implements ServletContextListener
          */
         try 
         {
-            ConfigurationManager.loadConfig(dspaceConfig);
+            //ConfigurationManager.loadConfig(dspaceConfig);
         }
         catch (RuntimeException e)
         {

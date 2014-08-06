@@ -232,7 +232,7 @@ public abstract class AbstractCurationTask implements CurationTask
     		{
     			// load property segments if present
     			modName.append(segment);
-    			Properties modProps = ConfigurationManager.getProperties(modName.toString()).getProperties();
+    			Properties modProps = ConfigurationManager.getProperties(modName.toString());
     			if (modProps != null)
     			{
     				taskProps.putAll(modProps);

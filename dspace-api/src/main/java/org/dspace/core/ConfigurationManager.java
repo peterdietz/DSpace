@@ -7,23 +7,16 @@
  */
 package org.dspace.core;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.*;
-
 import org.apache.commons.cli.*;
 import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
-import org.apache.log4j.helpers.OptionConverter;
-import org.dspace.content.configuration.DSpacePropertiesConfiguration;
-import org.dspace.servicemanager.config.DSpaceConfigurationService;
 import org.dspace.servicemanager.config.DSpaceDynamicConfigurationService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.utils.DSpace;
+
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Class for reading the DSpace system configuration. The main configuration is
@@ -50,16 +43,13 @@ public class ConfigurationManager
     /** log4j category */
     private static Logger log = Logger.getLogger(ConfigurationManager.class);
 
-    /** The configuration properties */
-    private static DSpacePropertiesConfiguration properties = null;
-    
-    /** module configuration properties */
-    private static Map<String, DSpacePropertiesConfiguration> moduleProps = new HashMap<String, DSpacePropertiesConfiguration>();
-
-
     protected ConfigurationManager()
     {
-
+        if(!isConfigured()) {
+            //ConfigurationService config = new DSpace().getConfigurationService();
+            ConfigurationService config = new DSpaceDynamicConfigurationService();
+            config.init();
+        }
     }
 
     /**
@@ -68,58 +58,33 @@ public class ConfigurationManager
      */
     public static boolean isConfigured()
     {
-        return properties != null;
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        return config.getProperties() != null;
     }
 
     public static boolean isConfigured(String module)
     {
-        return moduleProps.get(module) != null;
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        return config.getProperties(module) != null;
     }
-
-    /**
-     * REMOVED - Flushing the properties could be dangerous in the current DSpace state
-     * Need to consider how it will affect in-flight processes
-     *
-     * Discard all current properties - will force a reload from disk when
-     * any properties are requested.
-     */
-//    public static void flush()
-//    {
-//        properties = null;
-//    }
-
-    /**
-     * REMOVED - Flushing the properties could be dangerous in the current DSpace state
-     * Need to consider how it will affect in-flight processes
-     *
-     * Discard properties for a module -  will force a reload from disk
-     * when any of module's properties are requested
-     *
-     * @param module the module name
-     */
-//    public static void flush(String module)
-//    {
-//        moduleProps.remove(module);
-//    }
 
     /**
      * Returns all properties in main configuration
      *
      * @return properties - all non-modular properties
      */
-    public static DSpacePropertiesConfiguration getProperties()
+    public static Properties getProperties()
     {
     	return getMutableProperties();
     }
 
-    private static DSpacePropertiesConfiguration getMutableProperties()
+    private static Properties getMutableProperties()
     {
-        if (properties == null)
-        {
-            loadConfig(null);
-        }
-
-        return properties;
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        return config.getProperties();
     }
 
     /**
@@ -129,24 +94,16 @@ public class ConfigurationManager
      *        the name of the module
      * @return properties - all module's properties
      */
-    public static DSpacePropertiesConfiguration getProperties(String module)
+    public static Properties getProperties(String module)
     {
     	return getMutableProperties(module);
     }
 
-    private static DSpacePropertiesConfiguration getMutableProperties(String module)
+    private static Properties getMutableProperties(String module)
     {
-        if (module == null)
-            return properties;
-
-        DSpacePropertiesConfiguration retProps = moduleProps.get(module);
-        if (retProps == null)
-        {
-            loadModuleConfig(module);
-            retProps = moduleProps.get(module);
-        }
-
-        return retProps;
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        return config.getProperties(module);
     }
 
     /**
@@ -157,8 +114,9 @@ public class ConfigurationManager
      * @return Returns a String from configuration
      */
     public static String getString (String key, String defaultValue) {
-    	DSpacePropertiesConfiguration props = getMutableProperties();
-        String value = props == null ? null : props.getString(key, defaultValue);
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        String value = config.getProperty(key);
         return (value != null) ? value : defaultValue;
     }
 
@@ -169,12 +127,9 @@ public class ConfigurationManager
      * @return Returns a List of Strings from configuration
      */
     public static List<String> getList (String key) {
-    	DSpacePropertiesConfiguration props = getMutableProperties();
-        List<String> value = null;
-		if (props != null)
-			value = props.getList(key);
-        
-		return (value != null) ? value : new ArrayList<String>();
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        return config.getList(key);
     }
     /**
      * Returns a List of Strings from DSpace configuration
@@ -183,22 +138,9 @@ public class ConfigurationManager
      * @return Returns a List of Strings from configuration
      */
     public static List<String> getList (String module, String key) {
-    	if (module == null)
-        {
-            return getList(key);
-        }
-        
-    	List<String> value = null;
-        DSpacePropertiesConfiguration modProps = getMutableProperties(module);
-        
-        if (modProps != null && modProps.containsKey(key))
-        {
-        	value = modProps.getList(key);
-        } else {
-        	value = getList(module + "." + key);
-        }
-
-        return value;
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        return config.getList(module, key);
     }
 
     /**
@@ -210,25 +152,11 @@ public class ConfigurationManager
      * @return Returns a String from configuration
      */
     public static String getString (String module, String key, String defaultValue) {
-    	if (module == null)
-        {
-            return getString(key, defaultValue);
-        }
-        
-        String value = null;
-        DSpacePropertiesConfiguration modProps = getMutableProperties(module);
-        
-        if (modProps != null)
-        {
-            value = modProps.getString(key, null);
-        }
-
-        if (value == null)
-        {
-            // look in regular properties with module name prepended
-            value = getString(module + "." + key, defaultValue);
-        }
-
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        String value = config.getProperty(module, key);
+        // look in regular properties with module name prepended
+        //value = getString(module + "." + key, defaultValue);
         return (value != null) ? value : defaultValue;
     }
     
@@ -243,9 +171,9 @@ public class ConfigurationManager
      */
     public static String getProperty(String property)
     {
-    	DSpacePropertiesConfiguration props = getMutableProperties();
-        String value = props == null ? null : props.getString(property);
-        return (value != null) ? value.trim() : null;
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        return config.getProperty(property);
     }
     
     /**
@@ -255,9 +183,9 @@ public class ConfigurationManager
      * @return Description
      */
     public static String getDescription (String property) {
-    	DSpacePropertiesConfiguration props = getMutableProperties();
-    	if (props != null) return props.getDescription(property);
-    	return null;
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        return config.getDescription(property);
     }
 
     /**
@@ -268,11 +196,9 @@ public class ConfigurationManager
      * @return Description
      */
     public static String getDescription (String module, String property) {
-    	DSpacePropertiesConfiguration props = getMutableProperties(module);
-        String val = null;
-    	if (props != null) val = props.getDescription(property);
-        if (val == null) val = getDescription(module + "." + property);
-        return val;
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        return config.getDescription(module, property);
     }
     
     /**
@@ -289,26 +215,9 @@ public class ConfigurationManager
      */
     public static String getProperty(String module, String property)
     {
-        if (module == null)
-        {
-            return getProperty(property);
-        }
-
-        String value = null;
-        DSpacePropertiesConfiguration modProps = getMutableProperties(module);
-
-        if (modProps != null)
-        {
-            value = modProps.getString(property);
-        }
-
-        if (value == null)
-        {
-            // look in regular properties with module name prepended
-            value = getProperty(module + "." + property);
-        }
-
-        return (value != null) ? value.trim() : null;
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        return config.getProperty(module, property);
     }
 
     /**
@@ -603,251 +512,252 @@ public class ConfigurationManager
      */
     public static Enumeration<?> propertyNames(String module)
     {
-    	DSpacePropertiesConfiguration props = getProperties(module);
-        return (Enumeration<?>) (props == null ? null : props.getKeys());
+        //ConfigurationService config = new DSpace().getConfigurationService();
+        ConfigurationService config = new DSpaceDynamicConfigurationService();
+        return config.getProperties(module).propertyNames();
     }
-
-    /** The configuration that was loaded. */
-    private static File loadedFile = null;
-
-    /**
-     * Return the file that configuration was actually loaded from.
-     *
-     * @deprecated Please remove all direct usage of the configuration file.
-     * @return File naming configuration data file.
-     */
-    protected static File getConfigurationFile()
-    {
-        // in case it hasn't been done yet.
-        if (loadedFile == null)
-        {
-            loadConfig(null);
-        }
-
-        return loadedFile;
-    }
-
-    private static synchronized void loadModuleConfig(String module)
-    {
-        // try to find it in modules
-        File modFile = null;
-        try
-        {
-            modFile = new File(getProperty("dspace.dir") +
-                                File.separator + "config" +
-                                File.separator + "modules" +
-                                File.separator + module + ".cfg");
-
-            if (modFile.exists())
-            {
-                DSpacePropertiesConfiguration modProps = new DSpacePropertiesConfiguration(modFile);
-                if (loadedFile != null)
-                	modProps.load(loadedFile);
-                
-                moduleProps.put(module, modProps);
-            }
-            else
-            {
-                // log invalid request
-                warn("Requested configuration module: " + module + " not found");
-            }
-        }
-        catch (Exception ioE)
-        {
-            fatal("Can't load configuration: " + (modFile == null ? "<unknown>" : modFile.getAbsolutePath()), ioE);
-        } 
-
-        return;
-    }
-
-    /**
-     * Load the DSpace configuration properties. Only does anything if
-     * properties are not already loaded. Properties are loaded in from the
-     * specified file, or default locations.
-     *
-     * @param configFile
-     *            The <code>dspace.cfg</code> configuration file to use, or
-     *            <code>null</code> to try default locations
-     */
-    public static synchronized void loadConfig(String configFile)
-    {
-        if (properties != null)
-        {
-            return;
-        }
-
-        URL url = null;
-
-        InputStream is = null;
-        InputStreamReader reader = null;
-        try
-        {
-            String configProperty = null;
-            try
-            {
-                configProperty = System.getProperty("dspace.configuration");
-            }
-            catch (SecurityException se)
-            {
-                // A security manager may stop us from accessing the system properties.
-                // This isn't really a fatal error though, so catch and ignore
-                log.warn("Unable to access system properties, ignoring.", se);
-            }
-
-            // should only occur after a flush()
-            if (loadedFile != null)
-            {
-                info("Reloading current config file: " + loadedFile.getAbsolutePath());
-
-                url = loadedFile.toURI().toURL();
-            }
-            else if (configFile != null)
-            {
-                info("Loading provided config file: " + configFile);
-
-                loadedFile = new File(configFile);
-                url = loadedFile.toURI().toURL();
-
-            }
-            // Has the default configuration location been overridden?
-            else if (configProperty != null)
-            {
-                info("Loading system provided config property (-Ddspace.configuration): " + configProperty);
-
-                // Load the overriding configuration
-                loadedFile = new File(configProperty);
-                url = loadedFile.toURI().toURL();
-            }
-            // Load configuration from default location
-            else
-            {
-                url = ConfigurationManager.class.getResource("/dspace.cfg");
-                if (url != null)
-                {
-                    info("Loading from classloader: " + url);
-
-                    loadedFile = new File(url.getPath());
-                }
-            }
-
-            if (url == null)
-            {
-                fatal("Cannot find dspace.cfg");
-                throw new IllegalStateException("Cannot find dspace.cfg");
-            }
-            else
-            {
-                properties = new DSpacePropertiesConfiguration(url);
-
-                // walk values, interpolating any embedded references.
-                /*
-                for (Enumeration<?> pe = properties.propertyNames(); pe.hasMoreElements(); )
-                {
-                    String key = (String)pe.nextElement();
-                    String value = interpolate(key, properties.getProperty(key), 1);
-                    if (value != null)
-                    {
-                        properties.setProperty(key, value);
-                    }
-                }*/
-            }
-
-        }
-        catch (Exception e)
-        {
-            fatal("Can't load configuration: " + url, e);
-
-            // FIXME: Maybe something more graceful here, but without a
-            // configuration we can't do anything.
-            throw new IllegalStateException("Cannot load configuration: " + url, e);
-        }
-        finally
-        {
-            if (reader != null)
-            {
-                try {
-                    reader.close();
-                }
-                catch (IOException ioe)
-                {
-                }
-            }
-            if (is != null)
-            {
-                try
-                {
-                    is.close();
-                }
-                catch (IOException ioe)
-                {
-                }
-            }
-        }
-
-        try
-        {
-            /*
-             * Initialize Logging once ConfigurationManager is initialized.
-             *
-             * This is controlled by a property in dspace.cfg.  If the property
-             * is absent then nothing will be configured and the application
-             * will use the defaults provided by log4j.
-             *
-             * Property format is:
-             *
-             * log.init.config = ${dspace.dir}/config/log4j.properties
-             * or
-             * log.init.config = ${dspace.dir}/config/log4j.xml
-             *
-             * See default log4j initialization documentation here:
-             * http://logging.apache.org/log4j/docs/manual.html
-             *
-             * If there is a problem with the file referred to in
-             * "log.configuration", it needs to be sent to System.err
-             * so do not instantiate another Logging configuration.
-             *
-             */
-            String dsLogConfiguration = ConfigurationManager.getProperty("log.init.config");
-
-            if (dsLogConfiguration == null || System.getProperty("dspace.log.init.disable") != null)
-            {
-                /*
-                 * Do nothing if log config not set in dspace.cfg or "dspace.log.init.disable"
-                 * system property set.  Leave it upto log4j to properly init its logging
-                 * via classpath or system properties.
-                 */
-                info("Using default log4j provided log configuration." +
-                        "  If unintended, check your dspace.cfg for (log.init.config)");
-            }
-            else
-            {
-                info("Using dspace provided log configuration (log.init.config)");
-
-
-                File logConfigFile = new File(dsLogConfiguration);
-
-                if(logConfigFile.exists())
-                {
-                    info("Loading: " + dsLogConfiguration);
-
-                    OptionConverter.selectAndConfigure(logConfigFile.toURI()
-                            .toURL(), null, org.apache.log4j.LogManager
-                            .getLoggerRepository());
-                }
-                else
-                {
-                    info("File does not exist: " + dsLogConfiguration);
-                }
-            }
-
-        }
-        catch (MalformedURLException e)
-        {
-            fatal("Can't load dspace provided log4j configuration", e);
-            throw new IllegalStateException("Cannot load dspace provided log4j configuration",e);
-        }
-
-    }
+//
+//    /** The configuration that was loaded. */
+//    private static File loadedFile = null;
+//
+//    /**
+//     * Return the file that configuration was actually loaded from.
+//     *
+//     * @deprecated Please remove all direct usage of the configuration file.
+//     * @return File naming configuration data file.
+//     */
+//    protected static File getConfigurationFile()
+//    {
+//        // in case it hasn't been done yet.
+//        if (loadedFile == null)
+//        {
+//            loadConfig(null);
+//        }
+//
+//        return loadedFile;
+//    }
+//
+//    private static synchronized void loadModuleConfig(String module)
+//    {
+//        // try to find it in modules
+//        File modFile = null;
+//        try
+//        {
+//            modFile = new File(getProperty("dspace.dir") +
+//                                File.separator + "config" +
+//                                File.separator + "modules" +
+//                                File.separator + module + ".cfg");
+//
+//            if (modFile.exists())
+//            {
+//                DSpacePropertiesConfiguration modProps = new DSpacePropertiesConfiguration(modFile);
+//                if (loadedFile != null)
+//                	modProps.load(loadedFile);
+//
+//                moduleProps.put(module, modProps);
+//            }
+//            else
+//            {
+//                // log invalid request
+//                warn("Requested configuration module: " + module + " not found");
+//            }
+//        }
+//        catch (Exception ioE)
+//        {
+//            fatal("Can't load configuration: " + (modFile == null ? "<unknown>" : modFile.getAbsolutePath()), ioE);
+//        }
+//
+//        return;
+//    }
+//
+//    /**
+//     * Load the DSpace configuration properties. Only does anything if
+//     * properties are not already loaded. Properties are loaded in from the
+//     * specified file, or default locations.
+//     *
+//     * @param configFile
+//     *            The <code>dspace.cfg</code> configuration file to use, or
+//     *            <code>null</code> to try default locations
+//     */
+//    public static synchronized void loadConfig(String configFile)
+//    {
+//        if (properties != null)
+//        {
+//            return;
+//        }
+//
+//        URL url = null;
+//
+//        InputStream is = null;
+//        InputStreamReader reader = null;
+//        try
+//        {
+//            String configProperty = null;
+//            try
+//            {
+//                configProperty = System.getProperty("dspace.configuration");
+//            }
+//            catch (SecurityException se)
+//            {
+//                // A security manager may stop us from accessing the system properties.
+//                // This isn't really a fatal error though, so catch and ignore
+//                log.warn("Unable to access system properties, ignoring.", se);
+//            }
+//
+//            // should only occur after a flush()
+//            if (loadedFile != null)
+//            {
+//                info("Reloading current config file: " + loadedFile.getAbsolutePath());
+//
+//                url = loadedFile.toURI().toURL();
+//            }
+//            else if (configFile != null)
+//            {
+//                info("Loading provided config file: " + configFile);
+//
+//                loadedFile = new File(configFile);
+//                url = loadedFile.toURI().toURL();
+//
+//            }
+//            // Has the default configuration location been overridden?
+//            else if (configProperty != null)
+//            {
+//                info("Loading system provided config property (-Ddspace.configuration): " + configProperty);
+//
+//                // Load the overriding configuration
+//                loadedFile = new File(configProperty);
+//                url = loadedFile.toURI().toURL();
+//            }
+//            // Load configuration from default location
+//            else
+//            {
+//                url = ConfigurationManager.class.getResource("/dspace.cfg");
+//                if (url != null)
+//                {
+//                    info("Loading from classloader: " + url);
+//
+//                    loadedFile = new File(url.getPath());
+//                }
+//            }
+//
+//            if (url == null)
+//            {
+//                fatal("Cannot find dspace.cfg");
+//                throw new IllegalStateException("Cannot find dspace.cfg");
+//            }
+//            else
+//            {
+//                properties = new DSpacePropertiesConfiguration(url);
+//
+//                // walk values, interpolating any embedded references.
+//                /*
+//                for (Enumeration<?> pe = properties.propertyNames(); pe.hasMoreElements(); )
+//                {
+//                    String key = (String)pe.nextElement();
+//                    String value = interpolate(key, properties.getProperty(key), 1);
+//                    if (value != null)
+//                    {
+//                        properties.setProperty(key, value);
+//                    }
+//                }*/
+//            }
+//
+//        }
+//        catch (Exception e)
+//        {
+//            fatal("Can't load configuration: " + url, e);
+//
+//            // FIXME: Maybe something more graceful here, but without a
+//            // configuration we can't do anything.
+//            throw new IllegalStateException("Cannot load configuration: " + url, e);
+//        }
+//        finally
+//        {
+//            if (reader != null)
+//            {
+//                try {
+//                    reader.close();
+//                }
+//                catch (IOException ioe)
+//                {
+//                }
+//            }
+//            if (is != null)
+//            {
+//                try
+//                {
+//                    is.close();
+//                }
+//                catch (IOException ioe)
+//                {
+//                }
+//            }
+//        }
+//
+//        try
+//        {
+//            /*
+//             * Initialize Logging once ConfigurationManager is initialized.
+//             *
+//             * This is controlled by a property in dspace.cfg.  If the property
+//             * is absent then nothing will be configured and the application
+//             * will use the defaults provided by log4j.
+//             *
+//             * Property format is:
+//             *
+//             * log.init.config = ${dspace.dir}/config/log4j.properties
+//             * or
+//             * log.init.config = ${dspace.dir}/config/log4j.xml
+//             *
+//             * See default log4j initialization documentation here:
+//             * http://logging.apache.org/log4j/docs/manual.html
+//             *
+//             * If there is a problem with the file referred to in
+//             * "log.configuration", it needs to be sent to System.err
+//             * so do not instantiate another Logging configuration.
+//             *
+//             */
+//            String dsLogConfiguration = ConfigurationManager.getProperty("log.init.config");
+//
+//            if (dsLogConfiguration == null || System.getProperty("dspace.log.init.disable") != null)
+//            {
+//                /*
+//                 * Do nothing if log config not set in dspace.cfg or "dspace.log.init.disable"
+//                 * system property set.  Leave it upto log4j to properly init its logging
+//                 * via classpath or system properties.
+//                 */
+//                info("Using default log4j provided log configuration." +
+//                        "  If unintended, check your dspace.cfg for (log.init.config)");
+//            }
+//            else
+//            {
+//                info("Using dspace provided log configuration (log.init.config)");
+//
+//
+//                File logConfigFile = new File(dsLogConfiguration);
+//
+//                if(logConfigFile.exists())
+//                {
+//                    info("Loading: " + dsLogConfiguration);
+//
+//                    OptionConverter.selectAndConfigure(logConfigFile.toURI()
+//                            .toURL(), null, org.apache.log4j.LogManager
+//                            .getLoggerRepository());
+//                }
+//                else
+//                {
+//                    info("File does not exist: " + dsLogConfiguration);
+//                }
+//            }
+//
+//        }
+//        catch (MalformedURLException e)
+//        {
+//            fatal("Can't load dspace provided log4j configuration", e);
+//            throw new IllegalStateException("Cannot load dspace provided log4j configuration",e);
+//        }
+//
+//    }
 
     /**
      * Wrapper for {@link NewsManager#getNewsFilePath()}.

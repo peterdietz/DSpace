@@ -10,6 +10,7 @@ package org.dspace.servicemanager.config;
 import java.io.File;
 import java.util.*;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.event.ConfigurationListener;
 import org.dspace.services.ConfigurationService;
@@ -41,11 +42,11 @@ public class DSpaceDynamicConfigurationService implements ConfigurationService {
 
     public DSpaceDynamicConfigurationService () {
         home = null;
-        loadConfiguration();
+        init();
     }
     public DSpaceDynamicConfigurationService (String home) {
         this.home = home;
-        loadConfiguration();
+        init();
     }
 
     /*
@@ -180,7 +181,7 @@ public class DSpaceDynamicConfigurationService implements ConfigurationService {
 
     @Override
     public String getProperty(String key) {
-        return config.getProperty(key).toString();
+        return String.valueOf(config.getProperty(key));
     }
     @Override
     public boolean setProperty(String key, Object value) {
@@ -200,8 +201,18 @@ public class DSpaceDynamicConfigurationService implements ConfigurationService {
 
     @Override
     public String getProperty(String module, String key) {
-        if (modulesConfig.containsKey(module))
-            return modulesConfig.get(module).getProperty(key).toString();
+        if(modulesConfig == null) {
+            log.error("Modules is null for:" + module + "-" + key);
+            return null;
+        } else {
+            log.error("MCTS:" + modulesConfig.toString());
+
+            if(modulesConfig instanceof Map) {
+                if (modulesConfig.containsKey(module)) {
+                    return String.valueOf(modulesConfig.get(module).getProperty(key));
+                }
+            }
+        }
         return null;
     }
 
@@ -239,6 +250,11 @@ public class DSpaceDynamicConfigurationService implements ConfigurationService {
                                                ConfigurationListener listener) {
         if (modulesConfig.containsKey(module))
             modulesConfig.get(module).addConfigurationEventListener(listener);
+    }
+
+    @Override
+    public void init() {
+        loadConfiguration();
     }
 
     @Override

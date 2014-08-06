@@ -26,7 +26,7 @@ public class AbstractSimpleDC
         {
             // we should load our DC map from configuration
             this.dcMap = new HashMap<String, String>();
-            Properties props = ConfigurationManager.getProperties("swordv2-server").getProperties();
+            Properties props = ConfigurationManager.getProperties("swordv2-server");
             for (Object key : props.keySet())
             {
                 String keyString = (String) key;
@@ -42,7 +42,7 @@ public class AbstractSimpleDC
         if (this.atomMap == null)
         {
             this.atomMap = new HashMap<String, String>();
-            Properties props = ConfigurationManager.getProperties("swordv2-server").getProperties();
+            Properties props = ConfigurationManager.getProperties("swordv2-server");
                 for (Object key : props.keySet())
                 {
                     String keyString = (String) key;

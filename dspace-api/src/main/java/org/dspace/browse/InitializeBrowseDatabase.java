@@ -16,6 +16,7 @@ import org.dspace.core.ConfigurationManager;
  * @author Robert Tansley
  * @version $Revision$
  */
+@Deprecated
 public class InitializeBrowseDatabase
 {
     /** log4j category */
@@ -31,7 +32,7 @@ public class InitializeBrowseDatabase
             System.exit(1);
         }
 
-        ConfigurationManager.loadConfig(null);
+        //ConfigurationManager.loadConfig(null);
         log.info("Initializing Browse Database");
 
         try

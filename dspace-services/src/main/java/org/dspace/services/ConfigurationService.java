@@ -183,4 +183,6 @@ public interface ConfigurationService {
 
     public void addConfigurationListener (ConfigurationListener listener);
     public void addConfigurationListener (String module, ConfigurationListener listener);
+
+    public void init();
 }
