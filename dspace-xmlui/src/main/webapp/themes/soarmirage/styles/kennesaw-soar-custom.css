@@ -36,3 +36,9 @@ div.trail-wrapper {
 .custom-nav .navbar-nav>li>a {
     color: #000;
 }
+
+.soar-submit {
+    color:#fff;
+    background-color:#711d0c;
+    border-color:#711d0c;
+}

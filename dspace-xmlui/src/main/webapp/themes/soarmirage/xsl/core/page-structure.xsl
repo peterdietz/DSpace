@@ -434,9 +434,9 @@
                                                 <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
                                                 <xsl:text>/submit</xsl:text>
                                             </xsl:attribute>
-                                            <span class="hidden-xs">
-                                                Upload to SOAR <i class="glyphicon glyphicon-upload" aria-hidden="true"/>
-                                            </span>
+                                            <button type="button" class="btn btn-default btn-lg soar-submit">
+                                                <span class="glyphicon glyphicon-upload"></span> Upload to SOAR
+                                            </button>
                                         </a>
                                     </li>
                                 </xsl:otherwise>
