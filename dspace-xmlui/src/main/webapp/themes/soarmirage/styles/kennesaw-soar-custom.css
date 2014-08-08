@@ -24,6 +24,7 @@ div.trail-wrapper {
 
 #file_news_div_news .thumbs>img {
     width:230px;
+    padding: 0px 5px 10px 5px;
 }
 
 .custom-nav {
