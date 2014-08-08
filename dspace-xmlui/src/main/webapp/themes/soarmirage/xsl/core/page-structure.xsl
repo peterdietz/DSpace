@@ -460,7 +460,7 @@
 
     <xsl:template name="buildNavbar">
         <nav class="navbar navbar-default custom-nav" role="navigation">
-            <!--<div class="container-fluid">-->
+            <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -500,7 +500,7 @@
                         </form>
                     </ul>
                 </div><!-- /.navbar-collapse -->
-            <!--</div>--><!-- /.container-fluid -->
+            </div><!-- /.container-fluid -->
         </nav>
     </xsl:template>
 
@@ -673,7 +673,7 @@
     <!-- Like the header, the footer contains various miscellaneous text, links, and image placeholders -->
     <xsl:template name="buildFooter">
         <footer>
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <!-- AddThis Button BEGIN -->
