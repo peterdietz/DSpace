@@ -42,3 +42,12 @@ div.trail-wrapper {
     background-color:#711d0c;
     border-color:#711d0c;
 }
+
+footer {
+    color:white;
+    background-color:black;
+}
+
+.footer-logo {
+    height:55px;
+}

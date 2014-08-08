@@ -676,51 +676,53 @@
     <xsl:template name="buildFooter">
         <footer>
             <div class="container-fluid">
-                <!-- AddThis Button BEGIN -->
                 <div class="row">
-                    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-                        <a class="addthis_button_preferred_1"></a>
-                        <a class="addthis_button_preferred_2"></a>
-                        <a class="addthis_button_preferred_3"></a>
-                        <a class="addthis_button_preferred_4"></a>
-                        <a class="addthis_button_compact"></a>
-                        <a class="addthis_counter addthis_bubble_style"></a>
-                    </div>
-                </div>
-                <!-- AddThis Button END -->
-                    <div class="row">
-                        <a href="http://www.dspace.org/" target="_blank">DSpace software</a> Copyright&#160;&#169;&#160;2014&#160; <a href="http://www.duraspace.org/" target="_blank">Duraspace</a>
-                    </div>
-                    <div class="row">
-                        <a>
+                    <div class="col-md-6">
+                        <!-- AddThis Button BEGIN -->
+                        <div class="row">
+                            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                                <a class="addthis_button_preferred_1"></a>
+                                <a class="addthis_button_preferred_2"></a>
+                                <a class="addthis_button_preferred_3"></a>
+                                <a class="addthis_button_preferred_4"></a>
+                                <a class="addthis_button_compact"></a>
+                                <a class="addthis_counter addthis_bubble_style"></a>
+                            </div>
+                        </div>
+                        <!-- AddThis Button END -->
+                        <div class="row vcard">
+                            <span class="logo"><img class="logo img-responsive footer-logo">
+                                <xsl:attribute name="src">
+                                    <xsl:value-of select="concat($theme-path,'/images/KSUMtn_LogoWhite.gif')"/>
+                                </xsl:attribute>
+                            </img></span>
+                            <span class="org">Kennesaw State University</span>, <span class="adr"><span class="street-address">1000 Chastain Road</span>, <span class="locality">Kennesaw</span>, <span class="region">GA</span> <span class="postal-code">30144</span></span><br/>
+                            (c) 2014 Kennesaw State University. All rights reserved.
+                        </div>
+
+                        <!--Invisible link to HTML sitemap (for search engines) -->
+                        <a class="hidden">
                             <xsl:attribute name="href">
                                 <xsl:value-of
                                         select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                                <xsl:text>/contact</xsl:text>
+                                <xsl:text>/htmlmap</xsl:text>
                             </xsl:attribute>
-                            <i18n:text>xmlui.dri2xhtml.structural.contact-link</i18n:text>
+                            <xsl:text>&#160;</xsl:text>
                         </a>
-                        <xsl:text> | </xsl:text>
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:value-of
-                                        select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                                <xsl:text>/feedback</xsl:text>
-                            </xsl:attribute>
-                            <i18n:text>xmlui.dri2xhtml.structural.feedback-link</i18n:text>
-                        </a>
+                        <p>&#160;</p>
                     </div>
+                    <div class="col-md-6">
+                        <span class="vcard">
+                            <span class="org">KSU Archives</span><br/>
+                            Phone: <span class="tel">(770) 423-6289</span><br/>
+                            Email: <span class="email"><a class="email" href="mailto:archives@kennesaw.edu">archives@kennesaw.edu</a></span>
+                        </span>
+
+
+                    </div>
+
                 </div>
-                <!--Invisible link to HTML sitemap (for search engines) -->
-                <a class="hidden">
-                    <xsl:attribute name="href">
-                        <xsl:value-of
-                                select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                        <xsl:text>/htmlmap</xsl:text>
-                    </xsl:attribute>
-                    <xsl:text>&#160;</xsl:text>
-                </a>
-                <p>&#160;</p>
+            </div>
         </footer>
     </xsl:template>
 
