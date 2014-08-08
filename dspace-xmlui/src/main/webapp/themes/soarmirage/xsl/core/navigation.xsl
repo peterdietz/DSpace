@@ -37,8 +37,8 @@
         <div id="ds-options" class="word-break">
             <div class="ds-option-set">
                 <ul class="list-group">
-                    <li class="list-group-item ds-option"><a href="#archives">KSU Archives</a></li>
-                    <li class="list-group-item ds-option"><a href="#finding">Finding Aid Portal</a></li>
+                    <li class="list-group-item ds-option"><a href="http://archives.kennesaw.edu">KSU Archives</a></li>
+                    <li class="list-group-item ds-option"><a href="#finding">All Collections</a></li>
                 </ul>
             </div>
 
