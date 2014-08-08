@@ -511,12 +511,14 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
-		
-		<dependency>
-	    	<groupId>backport-util-concurrent</groupId>
-	    	<artifactId>backport-util-concurrent</artifactId>
-	    	<version>3.1</version>
-		</dependency>
+
+        <!-- For ImageMagick MediaFilters -->
+        <dependency>
+            <groupId>org.im4java</groupId>
+            <artifactId>im4java</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>
