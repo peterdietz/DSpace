@@ -38,7 +38,7 @@
             <div class="ds-option-set">
                 <ul class="list-group">
                     <li class="list-group-item ds-option"><a href="http://archives.kennesaw.edu">KSU Archives</a></li>
-                    <li class="list-group-item ds-option"><a href="#finding">All Collections</a></li>
+                    <li class="list-group-item ds-option"><a href="{concat($context-path, '/page/primary-communities')}">All Collections</a></li>
                 </ul>
             </div>
 
