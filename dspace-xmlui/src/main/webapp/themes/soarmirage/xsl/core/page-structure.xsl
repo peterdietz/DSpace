@@ -269,8 +269,8 @@
             <xsl:variable name="page_title" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='title'][last()]" />
             <title>
                 <xsl:choose>
-                    <xsl:when test="starts-with($request-uri, 'page/about')">
-                        <xsl:text>About This Repository</xsl:text>
+                    <xsl:when test="starts-with($request-uri, 'page/primary-communities')">
+                        <xsl:text>Primary Communities</xsl:text>
                     </xsl:when>
                     <xsl:when test="not($page_title)">
                         <xsl:text>  </xsl:text>
@@ -474,8 +474,6 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav menu-navbar">
-                        <li><a href="#">About</a></li>
-
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -749,14 +747,31 @@
 
             <!-- Check for the custom pages -->
             <xsl:choose>
-                <xsl:when test="starts-with($request-uri, 'page/about')">
+                <xsl:when test="starts-with($request-uri, 'page/primary-communities')">
                     <div class="hero-unit">
-                        <h1>About This Repository</h1>
-                        <p>To add your own content to this page, edit webapps/xmlui/themes/Mirage/lib/xsl/core/page-structure.xsl and
-                            add your own content to the title, trail, and body. If you wish to add additional pages, you
-                            will need to create an additional xsl:when block and match the request-uri to whatever page
-                            you are adding. Currently, static pages created through altering XSL are only available
-                            under the URI prefix of page/.</p>
+                        <h1>Primary Communities</h1>
+                        <div class="main_categories">
+                            <a href="/handle/1803/244" alt="Blair School of Music" class="rollover_blair">
+                                <span class="displace">Blair School of Music</span>
+                            </a>
+                            <p class="category_description">
+                                The Blair School of Music serves as the focal point within Vanderbilt University for the study of music as a human endeavor and as a performing art.
+                            </p>
+                            <p class="category_link">
+                                <a href="/handle/1803/244" target="_self" class="read_more">read more...</a>
+                            </p>
+                        </div>
+                        <div class="main_categories">
+                            <a href="/handle/1803/3706" alt="College of Arts and Science" target="_self" class="rollover_artsscience">
+                                <span class="displace">College of Arts and Science</span>
+                            </a>
+                            <p class="category_description">
+                                The College of Arts and Science at Vanderbilt University is a highly selective liberal arts college at the heart of a major research university.
+                            </p>
+                            <p class="category_link">
+                                <a href="/handle/1803/3706" target="_self" class="read_more">read more...</a>
+                            </p>
+                        </div>
                     </div>
                 </xsl:when>
                 <!-- Otherwise use default handling of body -->
