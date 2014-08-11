@@ -42,8 +42,8 @@
         -->
         <map:component-configurations>
             <global-variables>
-                <theme-path>wheaton-mirage2</theme-path>
-                <theme-name>Mirage 2</theme-name>
+                <theme-path>wheaton-mirage2-bookreader</theme-path>
+                <theme-name>Wheaton Mirage 2 Bookreader</theme-name>
             </global-variables>
         </map:component-configurations>
 
