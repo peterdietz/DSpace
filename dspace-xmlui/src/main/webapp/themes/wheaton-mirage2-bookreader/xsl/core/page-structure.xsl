@@ -189,7 +189,7 @@
             </xsl:for-each>
 
             <!--### CLASSIC MIRAGE COLOR SCHEME START ###-->
-            <link rel="stylesheet" href="{concat($theme-path, 'styles/bootstrap-classic-mirage-colors-min.css')}"/>
+            <link rel="stylesheet" href="{concat($theme-path, 'styles/bootstrap.min.css')}"/>
             <link rel="stylesheet" href="{concat($theme-path, 'styles/classic-mirage-style.css')}"/>
             <!--### CLASSIC MIRAGE COLOR SCHEME END ###-->
 
@@ -733,7 +733,10 @@
             <xsl:text>if(!window.DSpace){window.DSpace={};}window.DSpace.context_path='</xsl:text><xsl:value-of select="$context-path"/><xsl:text>';window.DSpace.theme_path='</xsl:text><xsl:value-of select="$theme-path"/><xsl:text>';</xsl:text>
         </script>
 
-        <script src="{$theme-path}/scripts/theme.js">&#160;</script>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="{$theme-path}/scripts/bootstrap.min.js">&#160;</script>
+        <script src="{$theme-path}/scripts/holder.js">&#160;</script>
+
 
         <!-- add "shared" javascript from static, path is relative to webapp root -->
         <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='javascript'][@qualifier='url']">
