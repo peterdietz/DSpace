@@ -810,18 +810,16 @@
             </div>
 
             <div class="slide-arrow show">
-                <div class="showhide">
+                <div class="showhide" data-toggle="modal">
+                    <!-- Button trigger modal -->
+                    <xsl:attribute name="data-target">
+                        <xsl:text>#myModal_</xsl:text>
+                        <xsl:value-of select="@ID"/>
+                    </xsl:attribute>
                     Show File
                 </div>
             </div>
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary btn-lg" data-toggle="modal">
-                <xsl:attribute name="data-target">
-                    <xsl:text>#myModal_</xsl:text>
-                    <xsl:value-of select="@ID"/>
-                </xsl:attribute>
-                Launch demo modal
-            </button>
+
 
             <xsl:attribute name="id">
                 <xsl:text>myModal_</xsl:text>
@@ -904,13 +902,14 @@
                                 <div class="modal-dialog modal-dialog-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&amp;times;</span><span class="sr-only">Close</span></button>
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title">
                                                 <xsl:attribute name="id">
                                                     <xsl:text>myModalLabel_</xsl:text>
                                                     <xsl:value-of select="@ID"/>
                                                 </xsl:attribute>
-                                                Modal title (<xsl:value-of select="@ID"/>)
+                                                
+                                                <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
                                             </h4>
                                         </div>
                                         <div class="modal-body">
@@ -931,7 +930,6 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
                                         </div>
                                     </div>
                                 </div>
