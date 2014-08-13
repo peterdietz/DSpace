@@ -139,17 +139,6 @@
                 <map:transform src="xsl/preprocess.xsl"/>
 
                 <map:transform type="IncludePageMeta">
-                    <map:parameter name="javascript.url#1" value="//www.archive.org/includes/jquery-1.4.2.min.js"/>
-                    <map:parameter name="javascript#2" value="vendor/BookReader/jquery-ui-1.8.5.custom.min.js"/>
-                    <map:parameter name="javascript#3" value="vendor/BookReader/dragscrollable.js"/>
-                    <map:parameter name="javascript.url#4" value="//cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.4.33/jquery.colorbox-min.js"/>
-                    <map:parameter name="javascript#5" value="vendor/BookReader/jquery.ui.ipad.js"/>
-                    <map:parameter name="javascript#6" value="vendor/BookReader/jquery.bt.min.js"/>
-                    <map:parameter name="javascript#7" value="vendor/BookReader/BookReader.js"/>
-                    <map:parameter name="javascript#8" value="vendor/BookReader/BookReaderJSSimple.js"/>
-                    <map:parameter name="javascript#9" value="scripts/snazy.js"/>
-
-
                     <map:parameter name="stylesheet.screen#1" value="vendor/BookReader/BookReader.css"/>
                     <map:parameter name="stylesheet.screen#2" value="styles/snazy.css"/>
 
