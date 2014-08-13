@@ -3913,16 +3913,30 @@ BookReader.prototype.bindNavigationHandlers = function() {
             var url = (window.location + '').replace("?ui=embed","");
             window.open(url);
         } else {
-            $('#BookReader').addClass('BRoverlay');
-            $('.full').addClass('BRhide');
-            $('.BRclose').removeClass('BRhide');
+            bookreaderFullscreen();
         }
     });
 
     $('.BRclose').click(function() {
+        bookreaderCloseFullscreen();
+    });
+
+    function bookreaderFullscreen() {
+        $('#BookReader').addClass('BRoverlay');
+        $('.full').addClass('BRhide');
+        $('.BRclose').removeClass('BRhide');
+    }
+
+    function bookreaderCloseFullscreen() {
         $('#BookReader').removeClass('BRoverlay');
         $('.full').removeClass('BRhide');
         $('.BRclose').addClass('BRhide');
+    }
+
+    $(document).keyup(function(e) {
+        if (e.keyCode == 27) {
+            bookreaderCloseFullscreen();
+        }   // esc
     });
 
 
