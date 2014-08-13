@@ -720,6 +720,13 @@
             <div id="BookReader"></div>
         </xsl:if>
 
+        <!-- Button trigger modal -->
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Launch demo modal
+        </button>
+
+
+
         <ul id="file_list" class="snazy ds-file-list no-js">
             <xsl:apply-templates select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file" mode="snazy">
                 <xsl:with-param name="context" select="$context"/>
@@ -875,20 +882,38 @@
                             </iframe>
                         </xsl:when>
                         <xsl:when test="$mview='embedwithfallback'">
-                            <object class="embedwithfallback">
-                                <xsl:attribute name="data">
-                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
-                                </xsl:attribute>
-                                <xsl:attribute name="type">
-                                    <xsl:value-of select="@MIMETYPE" />
-                                </xsl:attribute>
-                                <a>
-                                    <xsl:attribute name="href">
-                                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
-                                    </xsl:attribute>
-                                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
-                                </a>
-                            </object>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&amp;times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Modal title (<xsl:value-of select="@ID"/>)</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <object class="embedwithfallback">
+                                                <xsl:attribute name="data">
+                                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                                </xsl:attribute>
+                                                <xsl:attribute name="type">
+                                                    <xsl:value-of select="@MIMETYPE" />
+                                                </xsl:attribute>
+                                                <a>
+                                                    <xsl:attribute name="href">
+                                                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                                    </xsl:attribute>
+                                                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
+                                                </a>
+                                            </object>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </xsl:when>
                         <xsl:when test="$mview='image'">
                             <img class="smalldisplay">
