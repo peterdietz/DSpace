@@ -720,13 +720,6 @@
             <div id="BookReader"></div>
         </xsl:if>
 
-        <!-- Button trigger modal -->
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            Launch demo modal
-        </button>
-
-
-
         <ul id="file_list" class="snazy ds-file-list no-js">
             <xsl:apply-templates select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file" mode="snazy">
                 <xsl:with-param name="context" select="$context"/>
@@ -821,6 +814,20 @@
                     Show File
                 </div>
             </div>
+            <!-- Button trigger modal -->
+            <button class="btn btn-primary btn-lg" data-toggle="modal">
+                <xsl:attribute name="data-target">
+                    <xsl:text>#myModal_</xsl:text>
+                    <xsl:value-of select="@ID"/>
+                </xsl:attribute>
+                Launch demo modal
+            </button>
+
+            <xsl:attribute name="id">
+                <xsl:text>myModal_</xsl:text>
+                <xsl:value-of select="@ID"/>
+            </xsl:attribute>
+
             <div class="file-item file-mimetype last">
                 <span class="label">MIME type:</span>
                 <span class="value">
@@ -883,12 +890,28 @@
                         </xsl:when>
                         <xsl:when test="$mview='embedwithfallback'">
                             <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
+                            <div class="modal modal-lg fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                <xsl:attribute name="id">
+                                    <xsl:text>myModal_</xsl:text>
+                                    <xsl:value-of select="@ID"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="aria-labelledby">
+                                    <xsl:text>myModalLabel_</xsl:text>
+                                    <xsl:value-of select="@ID"/>
+                                </xsl:attribute>
+
+
+                                <div class="modal-dialog modal-dialog-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&amp;times;</span><span class="sr-only">Close</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">Modal title (<xsl:value-of select="@ID"/>)</h4>
+                                            <h4 class="modal-title">
+                                                <xsl:attribute name="id">
+                                                    <xsl:text>myModalLabel_</xsl:text>
+                                                    <xsl:value-of select="@ID"/>
+                                                </xsl:attribute>
+                                                Modal title (<xsl:value-of select="@ID"/>)
+                                            </h4>
                                         </div>
                                         <div class="modal-body">
                                             <object class="embedwithfallback">

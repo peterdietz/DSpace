@@ -73,6 +73,18 @@ ul.snazy li.file-entry .file-view object, ul.snazy li.file-entry .file-view embe
 ul.snazy li.file-entry .embedwithfallback {
     width: 570px;
     height: 500px; }
+
+/* Embed large when inside modal */
+@media (min-width: 992px) {
+    ul.snazy li.file-entry .embedwithfallback {
+        width: 900px;
+    }
+
+    ul.snazy li.file-entry .file-view object, ul.snazy li.file-entry .file-view embed, ul.snazy li.file-entry .file-view video, ul.snazy li.file-entry .file-view audio {
+        max-width: 850px;
+    }
+}
+
 ul.snazy li.file-entry .flashvideo {
     width: 570px;
     height: 411.75px; }
