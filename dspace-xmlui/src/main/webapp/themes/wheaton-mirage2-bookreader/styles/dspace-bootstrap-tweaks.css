@@ -130,3 +130,10 @@ table#aspect_administrative_ControlPanel_table_users a {
         width: 900px;
     }
 }
+
+
+@media (min-width: 992px) {
+    .modal-lg {
+        width: auto
+    }
+}
