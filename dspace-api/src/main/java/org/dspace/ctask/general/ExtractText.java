@@ -7,30 +7,23 @@
  */
 package org.dspace.ctask.general;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import org.apache.commons.io.input.ReaderInputStream;
-
+import org.apache.log4j.Logger;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.mime.MediaType;
-import org.apache.tika.parser.AutoDetectParser;
-import org.apache.tika.parser.CompositeParser;
-import org.apache.tika.parser.Parser;
-import org.apache.tika.parser.ParsingReader;
-import org.apache.tika.parser.ParseContext;
-
+import org.apache.tika.parser.*;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Bitstream;
 import org.dspace.content.Item;
 import org.dspace.curate.Curator;
 import org.dspace.curate.Mutative;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * ExtractText task produces text derivatives and stores them in designated
