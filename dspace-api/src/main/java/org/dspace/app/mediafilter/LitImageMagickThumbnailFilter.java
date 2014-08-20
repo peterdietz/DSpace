@@ -34,18 +34,16 @@ import org.dspace.core.ConfigurationManager;
  */
 public abstract class LitImageMagickThumbnailFilter extends MediaFilter implements SelfRegisterInputFormats
 {
-	int width = 180;
-	int height = 120;
-	public LitImageMagickThumbnailFilter() {
-		String pre = LitImageMagickThumbnailFilter.class.getName();
-		//System.out.println(pre+ ".ProcessStarter");
-		String s = ConfigurationManager.getProperty(pre + ".ProcessStarter");
-		ProcessStarter.setGlobalSearchPath(s);
-		width = ConfigurationManager.getIntProperty(pre + ".ThumbnailWidth", width);
-		height = ConfigurationManager.getIntProperty(pre + ".ThumbnailHeight", height);
-		//System.out.println(s+ " "+ width+" "+height);
-	}
-	
+    static int width;
+    static int height;
+
+    static {
+        String pre = LitImageMagickThumbnailFilter.class.getName();
+        String s = ConfigurationManager.getProperty(pre + ".ProcessStarter");
+        ProcessStarter.setGlobalSearchPath(s);
+        width = ConfigurationManager.getIntProperty("thumbnail.maxwidth", 180);
+        height = ConfigurationManager.getIntProperty("thumbnail.maxheight", 120);
+    }
 	
     public String getFilteredName(String oldFilename)
     {
@@ -77,7 +75,7 @@ public abstract class LitImageMagickThumbnailFilter extends MediaFilter implemen
         return "LIT Thumbnail";
     }
 
-    public File inputStreamToTempFile(InputStream source, String prefix, String suffix) throws IOException {
+    public static File inputStreamToTempFile(InputStream source, String prefix, String suffix) throws IOException {
 		File f = File.createTempFile(prefix, suffix);
 		f.deleteOnExit();
     	FileOutputStream fos = new FileOutputStream(f);
@@ -92,7 +90,7 @@ public abstract class LitImageMagickThumbnailFilter extends MediaFilter implemen
 		return f;
     }
     
-    public File getThumbnailFile(File f) throws IOException, InterruptedException, IM4JavaException {
+    public static  File getThumbnailFile(File f) throws IOException, InterruptedException, IM4JavaException {
     	File f2 = new File(f.getParentFile(), f.getName() + ".jpg");
     	f2.deleteOnExit();
     	ConvertCmd cmd = new ConvertCmd();
@@ -105,7 +103,7 @@ public abstract class LitImageMagickThumbnailFilter extends MediaFilter implemen
 		return f2;
     }
     
-    public File getImageFile(File f, int page) throws IOException, InterruptedException, IM4JavaException {
+    public static File getImageFile(File f, int page) throws IOException, InterruptedException, IM4JavaException {
     	File f2 = new File(f.getParentFile(), f.getName() + ".jpg");
     	f2.deleteOnExit();
     	ConvertCmd cmd = new ConvertCmd();
