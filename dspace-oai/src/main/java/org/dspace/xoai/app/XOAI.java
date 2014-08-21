@@ -301,6 +301,19 @@ public class XOAI
         {
             doc.addField("metadata.dc.format.mimetype", f);
         }
+
+        Bundle[] contentBundles = item.getBundles(Constants.CONTENT_BUNDLE_NAME);
+        boolean hasPublicBitstream = false;
+        for (Bundle bundle : contentBundles) {
+            Bitstream[] bitstreams = bundle.getBitstreams();
+            for (Bitstream bitstream : bitstreams) {
+                if (AuthorizeManager.authorizeActionBoolean(_context, bitstream, Constants.READ)) {
+                    hasPublicBitstream = true;
+                    break;
+                }
+            }
+        }
+        doc.addField("item.publicBitstream", hasPublicBitstream);
         
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             MarshallingUtils.writeMetadata(out, ItemUtils.retrieveMetadata(item));
