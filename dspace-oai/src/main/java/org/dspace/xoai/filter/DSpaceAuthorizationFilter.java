@@ -25,7 +25,9 @@ import org.dspace.handle.HandleManager;
 import org.dspace.xoai.data.DSpaceItem;
 
 /**
- * BitstreamAccessFilter - To determine if there is a publicly accessible bitstream that is accessible
+ * Does this item have full-text available?
+ * i.e. publicly accessible bitstream in the content/original bundle
+ *
  * @author Lyncode Development Team <dspace@lyncode.com>
  */
 public class DSpaceAuthorizationFilter extends DSpaceFilter
@@ -36,7 +38,6 @@ public class DSpaceAuthorizationFilter extends DSpaceFilter
     @Override
     public DatabaseFilterResult getWhere(Context context)
     {
-        log.info("GetWhere");
         List<Object> params = new ArrayList<Object>();
         return new DatabaseFilterResult("EXISTS (SELECT p.action_id FROM "
                 + "resourcepolicy p, " + "bundle2bitstream b, " + "bundle bu, "
@@ -50,7 +51,6 @@ public class DSpaceAuthorizationFilter extends DSpaceFilter
     @Override
     public boolean isShown(DSpaceItem item)
     {
-        log.info("Check if isShown for item: " + item.getIdentifier());
         try
         {
             Context ctx = super.getContext();
@@ -73,8 +73,6 @@ public class DSpaceAuthorizationFilter extends DSpaceFilter
                 }
             }
 
-            //If previous loop didn't return true after it found a readable content bitstream, then nothing readable
-            log.info("NO accessible bitstream in: " + dsitem.getHandle());
             return false;
         }
         catch (SQLException ex)
@@ -91,7 +89,6 @@ public class DSpaceAuthorizationFilter extends DSpaceFilter
     @Override
     public SolrFilterResult getQuery()
     {
-        log.info("SOLR getQuery");
         return new SolrFilterResult("item.public:true AND item.publicBitstream:true");
     }
 

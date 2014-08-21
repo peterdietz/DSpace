@@ -15,8 +15,7 @@
 
 	<Contexts>
 		<Context baseurl="request">
-            <!-- Open Access (Downloadable) -->
-            <Filter refid="bitstreamaccessFilter"/>
+            <!--<Filter refid="bitstreamaccessFilter"/>-->
 
 			<Format refid="oaidc" />
 			<Format refid="mets" />
