@@ -188,6 +188,10 @@
 
             <link rel="stylesheet" href="{concat($theme-path, 'styles/dspace-bootstrap-tweaks.css')}"/>
             <link rel="stylesheet" href="{concat($theme-path, 'styles/jquery-ui-1.10.3.custom.css')}"/>
+            <link rel="stylesheet" href="{concat($theme-path, 'styles/theme.css')}"/>
+
+            <!-- WLU Custom -->
+            <link href="http://library.wlu.edu/dspace/wlu-override.css" type="text/css" rel="stylesheet" />
 
             <!-- Add syndication feeds -->
             <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='feed']">
@@ -312,7 +316,7 @@
                         </button>
 
                         <a href="{$context-path}/" class="navbar-brand">
-                            <img src="{$theme-path}/images/logo.png" />
+                            <img src="{$theme-path}/images/wordmark2.gif" />
                         </a>
 
 
@@ -621,7 +625,7 @@
     <!-- Like the header, the footer contains various miscellaneous text, links, and image placeholders -->
     <xsl:template name="buildFooter">
         <footer>
-            <div class="container-fluid">
+            <div class="container">
                     <div class="row">
                         <a href="http://www.dspace.org/" target="_blank">DSpace software</a> Copyright&#160;&#169;&#160;2014&#160; <a href="http://www.duraspace.org/" target="_blank">Duraspace</a>
                     </div>

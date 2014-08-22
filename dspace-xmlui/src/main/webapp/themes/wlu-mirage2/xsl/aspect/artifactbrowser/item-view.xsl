@@ -360,7 +360,14 @@
                     </xsl:call-template>
                                     <xsl:choose>
                                         <xsl:when test="contains($label-1, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label">
-                                            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
+                                            <xsl:choose>
+                                                <xsl:when test="mets:FLocat[@LOCTYPE='URL']/@xlink:label != ''">
+                                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
                                         </xsl:when>
                                         <xsl:when test="contains($label-1, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title">
                                             <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
@@ -495,6 +502,8 @@
 
     <xsl:template match="mets:file">
         <xsl:param name="context" select="."/>
+        <!-- WLU Don't show TIFF's -->
+        <xsl:if test="@MIMETYPE != 'image/tiff'">
         <div class="file-wrapper row">
             <div class="col-xs-6 col-sm-3">
                 <div class="thumbnail">
@@ -611,6 +620,7 @@
                 </xsl:choose>
             </div>
         </div>
+        </xsl:if>
 
 </xsl:template>
 
@@ -619,6 +629,8 @@
             <xsl:attribute name="href">
                 <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
             </xsl:attribute>
+            <!-- WLU custom the way links to full text open in DSpace (HVD-617495) -->
+            <xsl:attribute name="target">_blank</xsl:attribute>
             <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
         </a>
     </xsl:template>
