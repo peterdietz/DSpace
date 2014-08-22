@@ -147,6 +147,7 @@
    <!-- Item always present information -->
    <field name="item.id" type="int" indexed="true" stored="true" multiValued="false" />
    <field name="item.public" type="boolean" indexed="true" stored="true" multiValued="false" />
+   <field name="item.publicBitstream" type="boolean" indexed="true" stored="true" multiValued="false" />
    <field name="item.handle" type="string" indexed="true" stored="true" multiValued="false" />
    <field name="item.collections" type="string" indexed="true" stored="true" multiValued="true" />
    <field name="item.communities" type="string" indexed="true" stored="true" multiValued="true" />

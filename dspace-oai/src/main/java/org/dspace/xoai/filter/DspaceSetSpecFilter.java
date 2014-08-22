@@ -43,8 +43,9 @@ public class DspaceSetSpecFilter extends DSpaceFilter
         {
             try
             {
-                DSpaceObject dso = HandleManager.resolveToObject(context,
-                        _setSpec.replace("col_", ""));
+                //&set=col_123456789_2920
+                String handleString = _setSpec.replace("col_", "").replaceFirst("_", "/");
+                DSpaceObject dso = HandleManager.resolveToObject(context, handleString);
                 return new DatabaseFilterResult(
                         "EXISTS (SELECT tmp.* FROM collection2item tmp WHERE tmp.item_id=i.item_id AND collection_id = ?)",
                         dso.getID());
@@ -58,8 +59,8 @@ public class DspaceSetSpecFilter extends DSpaceFilter
         {
             try
             {
-                DSpaceObject dso = HandleManager.resolveToObject(context,
-                        _setSpec.replace("com_", ""));
+                String handleString = _setSpec.replace("com_", "").replaceFirst("_", "/");
+                DSpaceObject dso = HandleManager.resolveToObject(context, handleString);
                 List<Integer> list = XOAIDatabaseManager.getAllSubCollections(
                         context, dso.getID());
                 String subCollections = StringUtils.join(list.iterator(), ",");

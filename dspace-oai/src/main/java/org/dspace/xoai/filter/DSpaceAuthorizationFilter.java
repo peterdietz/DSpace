@@ -16,6 +16,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.AuthorizeManager;
+import org.dspace.content.Bitstream;
 import org.dspace.content.Bundle;
 import org.dspace.content.Item;
 import org.dspace.core.Constants;
@@ -24,7 +25,9 @@ import org.dspace.handle.HandleManager;
 import org.dspace.xoai.data.DSpaceItem;
 
 /**
- * 
+ * Does this item have full-text available?
+ * i.e. publicly accessible bitstream in the content/original bundle
+ *
  * @author Lyncode Development Team <dspace@lyncode.com>
  */
 public class DSpaceAuthorizationFilter extends DSpaceFilter
@@ -54,14 +57,23 @@ public class DSpaceAuthorizationFilter extends DSpaceFilter
             String handle = DSpaceItem.parseHandle(item.getIdentifier());
             if (handle == null) return false;
             Item dsitem = (Item) HandleManager.resolveToObject(ctx, handle);
-            AuthorizeManager.authorizeAction(ctx, dsitem, Constants.READ);
-            for (Bundle b : dsitem.getBundles())
-                AuthorizeManager.authorizeAction(ctx, b, Constants.READ);
-            return true;
-        }
-        catch (AuthorizeException ex)
-        {
-            log.debug(ex.getMessage());
+
+            if(AuthorizeManager.authorizeActionBoolean(ctx, dsitem, Constants.READ)) {
+                Bundle[] contentBundles = dsitem.getBundles(Constants.CONTENT_BUNDLE_NAME);
+                for (Bundle bundle : contentBundles) {
+                    if (AuthorizeManager.authorizeActionBoolean(ctx, bundle, Constants.READ)) {
+                        Bitstream[] bitstreams = bundle.getBitstreams();
+                        for (Bitstream bitstream : bitstreams) {
+                            if (AuthorizeManager.authorizeActionBoolean(ctx, bitstream, Constants.READ)) {
+                                log.info("There is an accessible bitstream in: " + dsitem.getHandle());
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
         catch (SQLException ex)
         {
@@ -77,7 +89,7 @@ public class DSpaceAuthorizationFilter extends DSpaceFilter
     @Override
     public SolrFilterResult getQuery()
     {
-        return new SolrFilterResult("item.public:true");
+        return new SolrFilterResult("item.public:true AND item.publicBitstream:true");
     }
 
 }

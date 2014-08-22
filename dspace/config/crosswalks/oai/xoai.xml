@@ -15,6 +15,8 @@
 
 	<Contexts>
 		<Context baseurl="request">
+            <!--<Filter refid="bitstreamaccessFilter"/>-->
+
 			<Format refid="oaidc" />
 			<Format refid="mets" />
 			<Format refid="xoai" />
