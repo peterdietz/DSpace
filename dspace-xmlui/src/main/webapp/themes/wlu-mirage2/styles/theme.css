@@ -7,7 +7,6 @@ h2 {
 
 body {
     background: url(../images/brick_background.jpg) repeat;
-    font-family: Verdana,Geneva,sans-serif;
     color: #192C4D;
 }
 
@@ -58,11 +57,17 @@ header .navbar-brand img {
 .trail-wrapper .breadcrumb {
     padding-left: 0px;
     padding-top: 4px;
+    font-size:11px;
+    font-family: Verdana, Geneva, sans-serif;
 }
 
 .trail-wrapper .breadcrumb > .active {
     color: #eee;
     font-weight: bold;
+}
+
+.trail-wrapper .breadcrumb > li + li:before {
+    color: #ccc;
 }
 
 footer {

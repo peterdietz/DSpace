@@ -468,7 +468,7 @@
                     <div class="col-xs-12">
                         <xsl:choose>
                             <xsl:when test="count(/dri:document/dri:meta/dri:pageMeta/dri:trail) > 1">
-                                <div class="breadcrumb dropdown visible-xs">
+                                <ol class="breadcrumb dropdown visible-xs">
                                     <a id="trail-dropdown-toggle" href="#" role="button" class="dropdown-toggle"
                                        data-toggle="dropdown">
                                         <xsl:variable name="last-node"
@@ -488,15 +488,15 @@
                                         <xsl:apply-templates select="/dri:document/dri:meta/dri:pageMeta/dri:trail"
                                                              mode="dropdown"/>
                                     </ul>
-                                </div>
-                                <ul class="breadcrumb hidden-xs">
+                                </ol>
+                                <ol class="breadcrumb hidden-xs">
                                     <xsl:apply-templates select="/dri:document/dri:meta/dri:pageMeta/dri:trail"/>
-                                </ul>
+                                </ol>
                             </xsl:when>
                             <xsl:otherwise>
-                                <ul class="breadcrumb">
+                                <ol class="breadcrumb">
                                     <xsl:apply-templates select="/dri:document/dri:meta/dri:pageMeta/dri:trail"/>
-                                </ul>
+                                </ol>
                             </xsl:otherwise>
                         </xsl:choose>
                     </div>
