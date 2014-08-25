@@ -12,7 +12,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "collectionList")
+@XmlRootElement(name = "communityList")
 public class CommunityReturn {
 	private org.dspace.rest.common.Context context;
 	private List<org.dspace.rest.common.Community> community;
