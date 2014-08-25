@@ -55,7 +55,7 @@ public class CollectionsResource {
     public org.dspace.rest.common.CollectionReturn list(@QueryParam("expand") String expand, 
     		@QueryParam("limit") @DefaultValue("100") Integer limit, @QueryParam("offset") @DefaultValue("0") Integer offset,
     		@Context HttpServletRequest request) {
-	org.dspace.core.Context context = null;
+        org.dspace.core.Context context = null;
         try {
             context = new org.dspace.core.Context();
 
@@ -70,7 +70,6 @@ public class CollectionsResource {
             }
             
             collections = org.dspace.content.Collection.findAll(context, limit, offset);
-
 
             ArrayList<org.dspace.rest.common.Collection> collectionArrayList = new ArrayList<org.dspace.rest.common.Collection>();
             for(org.dspace.content.Collection collection : collections) {
@@ -131,7 +130,7 @@ public class CollectionsResource {
             org.dspace.content.Collection collection = org.dspace.content.Collection.find(context, collection_id);
             if(AuthorizeManager.authorizeActionBoolean(context, collection, org.dspace.core.Constants.READ)) {
             	if(writeStatistics){
-    				writeStats(collection_id, user_ip, user_agent, xforwarderfor, headers, request);
+    				writeStats(context, collection, user_ip, user_agent, xforwarderfor, headers, request);
     			}
                 return new org.dspace.rest.common.Collection(collection, expand, context, limit, offset);
             } else {
@@ -153,37 +152,42 @@ public class CollectionsResource {
         @GET
     @Path("/{prefix}/{suffix}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public org.dspace.rest.common.Collection getCollection(@PathParam("prefix") String prefix, @PathParam("suffix") String suffix, @QueryParam("expand") String expand, 
-    		@QueryParam("limit") @DefaultValue("100") Integer limit, @QueryParam("offset") @DefaultValue("0") Integer offset,
-    		@QueryParam("userIP") String user_ip, @QueryParam("userAgent") String user_agent, @QueryParam("xforwarderfor") String xforwarderfor,
-    		@Context HttpHeaders headers, @Context HttpServletRequest request) {
-        try {
-            if(context == null || !context.isValid() ) {
+        public org.dspace.rest.common.Collection getCollection(@PathParam("prefix") String prefix, @PathParam("suffix") String suffix, @QueryParam("expand") String expand,
+                                                               @QueryParam("limit") @DefaultValue("100") Integer limit, @QueryParam("offset") @DefaultValue("0") Integer offset,
+                                                               @QueryParam("userIP") String user_ip, @QueryParam("userAgent") String user_agent, @QueryParam("xforwarderfor") String xforwarderfor,
+                                                               @Context HttpHeaders headers, @Context HttpServletRequest request) {
+            org.dspace.core.Context context = null;
+            try {
                 context = new org.dspace.core.Context();
-                //Failed SQL is ignored as a failed SQL statement, prevent: current transaction is aborted, commands ignored until end of transaction block
-                context.getDBConnection().setAutoCommit(true);
+
+                org.dspace.content.DSpaceObject dso = HandleManager.resolveToObject(context, prefix + "/" + suffix);
+                if (dso instanceof org.dspace.content.Collection) {
+                    org.dspace.content.Collection collection = (org.dspace.content.Collection) dso;
+                    if (AuthorizeManager.authorizeActionBoolean(context, collection, org.dspace.core.Constants.READ)) {
+                        if (writeStatistics) {
+                            writeStats(context, collection, user_ip, user_agent, xforwarderfor, headers, request);
+                        }
+                        return new org.dspace.rest.common.Collection(collection, expand, context, limit, offset);
+                    } else {
+                        throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+                    }
+                } else {
+                    throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+                }
+            } catch (SQLException e) {
+                log.error(e.getMessage());
+                throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+            } finally {
+                if (context != null) {
+                    try {
+                        context.complete();
+                    } catch (SQLException e) {
+                        log.error(e.getMessage() + " occurred while trying to close");
+                    }
+                }
             }
-            
-            org.dspace.content.DSpaceObject dso = HandleManager.resolveToObject(context, prefix + "/" + suffix);
-            if(dso instanceof org.dspace.content.Collection){
-            	org.dspace.content.Collection collection = (org.dspace.content.Collection)dso;
-	            if(AuthorizeManager.authorizeActionBoolean(context, collection, org.dspace.core.Constants.READ)) {
-	            	if(writeStatistics){
-	    				writeStats(collection, user_ip, user_agent, xforwarderfor, headers, request);
-	    			}
-	                return new org.dspace.rest.common.Collection(collection, expand, context, limit, offset);
-	            } else {
-	                throw new WebApplicationException(Response.Status.UNAUTHORIZED);
-	            }
-	        } else {
-	        	throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
-	        }
-        } catch (SQLException e) {
-            log.error(e.getMessage());
-            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
         }
-    }
-    private void writeStats(org.dspace.content.DSpaceObject dso, String user_ip, String user_agent,
+    private void writeStats(org.dspace.core.Context context, org.dspace.content.DSpaceObject dso, String user_ip, String user_agent,
 			String xforwarderfor, HttpHeaders headers,
 			HttpServletRequest request) {
 		

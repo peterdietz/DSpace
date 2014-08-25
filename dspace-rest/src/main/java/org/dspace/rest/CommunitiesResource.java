@@ -51,7 +51,7 @@ public class CommunitiesResource {
         org.dspace.core.Context context = null;
         try {
             context = new org.dspace.core.Context();
-	    if(limit==null || limit<0 || limit>maxPagination){
+	        if(limit==null || limit<0 || limit>maxPagination){
             	limit=maxPagination;
             }
             int count=0;
@@ -113,19 +113,16 @@ public class CommunitiesResource {
     public org.dspace.rest.common.Community getCommunity(@PathParam("prefix") String prefix, @PathParam("suffix") String suffix,   @QueryParam("expand") String expand,
     		@QueryParam("userIP") String user_ip, @QueryParam("userAgent") String user_agent, @QueryParam("xforwarderfor") String xforwarderfor,
     		@Context HttpHeaders headers, @Context HttpServletRequest request) {
+        org.dspace.core.Context context = null;
         try {
-            if(context == null || !context.isValid() ) {
-                context = new org.dspace.core.Context();
-                //Failed SQL is ignored as a failed SQL statement, prevent: current transaction is aborted, commands ignored until end of transaction block
-                context.getDBConnection().setAutoCommit(true);
-            }
+            context = new org.dspace.core.Context();
 
             org.dspace.content.DSpaceObject dso = HandleManager.resolveToObject(context, prefix + "/" + suffix);
             if(dso instanceof org.dspace.content.Community){
             	org.dspace.content.Community community = (org.dspace.content.Community)dso;
 	            if(AuthorizeManager.authorizeActionBoolean(context, community, org.dspace.core.Constants.READ)) {
 	            	if(writeStatistics){
-	    				writeStats(community, user_ip, user_agent, xforwarderfor, headers, request);
+	    				writeStats(context, community, user_ip, user_agent, xforwarderfor, headers, request);
 	    			}
 	                return new org.dspace.rest.common.Community(community, expand, context);
 	            } else {
@@ -137,7 +134,15 @@ public class CommunitiesResource {
         } catch (SQLException e) {
             log.error(e.getMessage());
             throw new WebApplicationException(Response.Status.NO_CONTENT);
-        } //finally?
+        } finally {
+            if(context != null) {
+                try {
+                    context.complete();
+                } catch (SQLException e) {
+                    log.error(e.getMessage() + " occurred while trying to close");
+                }
+            }
+        }
     }
 
 
@@ -154,7 +159,7 @@ public class CommunitiesResource {
             org.dspace.content.Community community = org.dspace.content.Community.find(context, community_id);
             if(AuthorizeManager.authorizeActionBoolean(context, community, org.dspace.core.Constants.READ)) {
             	if(writeStatistics){
-    				writeStats(community, user_ip, user_agent, xforwarderfor, headers, request);
+    				writeStats(context, community, user_ip, user_agent, xforwarderfor, headers, request);
     			}
                 return new org.dspace.rest.common.Community(community, expand, context);
             } else {
@@ -174,7 +179,7 @@ public class CommunitiesResource {
         }
     }
     
-    private void writeStats(org.dspace.content.DSpaceObject dso, String user_ip, String user_agent,
+    private void writeStats(org.dspace.core.Context context, org.dspace.content.DSpaceObject dso, String user_ip, String user_agent,
  			String xforwarderfor, HttpHeaders headers,
  			HttpServletRequest request) {
  		

@@ -152,21 +152,19 @@ public class ItemsResource {
             item_return.setContext(item_context);
             item_return.setItem(selectedItems);
             return(item_return);
-           
-          } finally {
-            if(context != null) {
+
+        } catch (SQLException e)  {
+            log.error(e.getMessage());
+            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+        } finally {
+            if (context != null) {
                 try {
                     context.complete();
                 } catch (SQLException e) {
                     log.error(e.getMessage() + " occurred while trying to close");
                 }
-            } 
-            
-    	 } catch (SQLException e)  {
-             log.error(e.getMessage());
-             throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
-         }
-    	
+            }
+        }
     }
 
     /**
@@ -189,7 +187,7 @@ public class ItemsResource {
             	org.dspace.content.Item item = (org.dspace.content.Item)dso;
 	            if(AuthorizeManager.authorizeActionBoolean(context, item, org.dspace.core.Constants.READ)) {
 	            	if(writeStatistics){
-	    				writeStats(item, user_ip, user_agent, xforwarderfor, headers, request);
+	    				writeStats(context, item, user_ip, user_agent, xforwarderfor, headers, request);
 	    			}
 	                return new org.dspace.rest.common.Item(item, expand, context);
 	            } else {
@@ -198,18 +196,19 @@ public class ItemsResource {
             } else {
             	throw new WebApplicationException(Response.Status.NO_CONTENT);
             }
-            } finally {
-            if(context != null) {
+
+
+        } catch (SQLException e)  {
+            log.error(e.getMessage());
+            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+        } finally {
+            if (context != null) {
                 try {
                     context.complete();
                 } catch (SQLException e) {
                     log.error(e.getMessage() + " occurred while trying to close");
                 }
             }
-
-        } catch (SQLException e)  {
-            log.error(e.getMessage());
-            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -231,7 +230,7 @@ public class ItemsResource {
 
             if(AuthorizeManager.authorizeActionBoolean(context, item, org.dspace.core.Constants.READ)) {
             	if(writeStatistics){
-    				writeStats(item, user_ip, user_agent, xforwarderfor, headers, request);
+    				writeStats(context, item, user_ip, user_agent, xforwarderfor, headers, request);
     			}
                 return new org.dspace.rest.common.Item(item, expand, context);
             } else {
@@ -265,36 +264,35 @@ public class ItemsResource {
     		@QueryParam(ORDER_ASC) String order_asc,
     		@QueryParam(ORDER_DESC) String order_desc,
     		@Context HttpServletRequest request) throws WebApplicationException{
-       org.dspace.core.Context context = null;
-       try {
+        org.dspace.core.Context context = null;
+        try {
             context = new org.dspace.core.Context();
-            if(limit==null || limit>maxPagination){
-    			limit=maxPagination;
-    		}
-    		if(offset==null){
-    			offset=0;
-    		}
-            
-            if(query!=null){
-            	return luceneSearch(query, expand, limit, offset, request, order_asc, order_desc);
-            } else {
-            	return parameterSearch(expand, limit, offset, request, order_asc, order_desc);
+            if (limit == null || limit > maxPagination) {
+                limit = maxPagination;
             }
-           } finally {
-            if(context != null) {
+            if (offset == null) {
+                offset = 0;
+            }
+
+            if (query != null) {
+                return luceneSearch(context, query, expand, limit, offset, request, order_asc, order_desc);
+            } else {
+                return parameterSearch(context, expand, limit, offset, request, order_asc, order_desc);
+            }
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+        } finally {
+            if (context != null) {
                 try {
                     context.complete();
                 } catch (SQLException e) {
                     log.error(e.getMessage() + " occurred while trying to close");
                 }
             }
-        }
-        }catch (SQLException e) {
-            log.error(e.getMessage());
-            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
-        } catch (IOException e) {
-            log.error(e.getMessage());
-            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
     
@@ -359,7 +357,7 @@ public class ItemsResource {
 
         
     
-	private org.dspace.rest.common.ItemReturn luceneSearch(String query,
+	private org.dspace.rest.common.ItemReturn luceneSearch(org.dspace.core.Context context, String query,
 	String expand, Integer limit, Integer offset,
 	HttpServletRequest request, String order_asc, String order_desc) throws IOException, SQLException,
 	WebApplicationException {
@@ -419,7 +417,7 @@ public class ItemsResource {
 	}
     
 	
-	private  ArrayList<Integer> luceneIdSearch(String query,
+	private  ArrayList<Integer> luceneIdSearch(org.dspace.core.Context context, String query,
 	HttpServletRequest request) throws IOException, SQLException,
 	WebApplicationException {
 		
@@ -444,7 +442,7 @@ public class ItemsResource {
 	}
 	
 	private org.dspace.rest.common.ItemReturn parameterSearch(
-			String expand, Integer limit, Integer offset,
+			org.dspace.core.Context context, String expand, Integer limit, Integer offset,
 			HttpServletRequest request, String order_asc, String order_desc) throws IOException, SQLException,
 			WebApplicationException {
 				
@@ -541,7 +539,7 @@ public class ItemsResource {
 	}
 	
 	private ArrayList<Integer> parameterIdSearch(
-			HttpServletRequest request) throws IOException, SQLException,
+			org.dspace.core.Context context, HttpServletRequest request) throws IOException, SQLException,
 			WebApplicationException {
 				
 		if(searchClass==null){
@@ -591,7 +589,7 @@ public class ItemsResource {
 	}
     
     
-     private void writeStats(org.dspace.content.DSpaceObject dso, String user_ip, String user_agent,
+     private void writeStats(org.dspace.core.Context context, org.dspace.content.DSpaceObject dso, String user_ip, String user_agent,
 			String xforwarderfor, HttpHeaders headers,
 			HttpServletRequest request) {
 		
