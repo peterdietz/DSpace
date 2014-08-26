@@ -30,6 +30,8 @@ import java.util.List;
 public class Community extends DSpaceObject{
     private static Logger log = Logger.getLogger(Community.class);
 
+    private org.dspace.rest.common.Context context;
+
     //Exandable relationships
     private Bitstream logo;
 
@@ -170,5 +172,12 @@ public class Community extends DSpaceObject{
 
     public Bitstream getLogo() {
         return logo;
+    }
+
+    public org.dspace.rest.common.Context getContext() {
+        return context;
+    }
+    public void setContext(org.dspace.rest.common.Context context) {
+        this.context = context;
     }
 }

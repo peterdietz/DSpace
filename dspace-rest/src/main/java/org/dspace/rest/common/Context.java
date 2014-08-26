@@ -8,15 +8,20 @@
 
 package org.dspace.rest.common;
 
+import org.apache.log4j.Logger;
+
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlType
 public class Context {
+    private static Logger log = Logger.getLogger(Context.class);
 	
 	private int limit;
 	private int offset;
@@ -51,6 +56,23 @@ public class Context {
 	public Context(){
 		query_date = sdf.format(new Date());
 	}
+
+    //Constructor with all needed data
+    public Context(HttpServletRequest request, int total_count, int limit, int offset) {
+        new Context();
+
+        StringBuffer requestURL = request.getRequestURL();
+        String queryString = request.getQueryString();
+
+        if (queryString == null) {
+            setQuery(requestURL.toString());
+        } else {
+            setQuery(requestURL.append('?').append(queryString).toString());
+        }
+        setLimit(limit);
+        setOffset(offset);
+        setTotal_count(total_count);
+    }
 	
 	public long getTotal_count() {
 		return total_count;

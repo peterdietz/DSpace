@@ -29,6 +29,8 @@ import java.util.List;
  */
 @XmlRootElement(name = "collection")
 public class Collection extends DSpaceObject {
+    private org.dspace.rest.common.Context context;
+
     Logger log = Logger.getLogger(Collection.class);
 
     //Relationships
@@ -119,6 +121,13 @@ public class Collection extends DSpaceObject {
         }
 
         this.setNumberItems(collection.countItems());
+    }
+
+    public org.dspace.rest.common.Context getContext() {
+        return context;
+    }
+    public void setContext(org.dspace.rest.common.Context context) {
+        this.context = context;
     }
 
     public Bitstream getLogo() {

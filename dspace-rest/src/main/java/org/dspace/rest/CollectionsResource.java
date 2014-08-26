@@ -8,6 +8,7 @@
 package org.dspace.rest;
 
 
+import com.google.common.primitives.Ints;
 import org.apache.log4j.Logger;
 import org.dspace.authorize.AuthorizeManager;
 import org.dspace.core.ConfigurationManager;
@@ -81,23 +82,10 @@ public class CollectionsResource {
 
             CollectionReturn collection_return= new CollectionReturn();
             collection_return.setCollection(collectionArrayList);
-            
-            org.dspace.rest.common.Context collection_context = new org.dspace.rest.common.Context();
 
-            StringBuffer requestURL = request.getRequestURL();
-            String queryString = request.getQueryString();
-            
-            if (queryString == null) {
-            	collection_context.setQuery(requestURL.toString());
-            } else {
-            	collection_context.setQuery(requestURL.append('?').append(queryString).toString());
-            }
-            collection_context.setLimit(limit);
-            collection_context.setOffset(offset);
-            
-            collection_context.setTotal_count(org.dspace.content.Collection.getCount(context));
-            
+            org.dspace.rest.common.Context collection_context = new org.dspace.rest.common.Context(request, Ints.checkedCast(org.dspace.content.Collection.getCount(context)), limit, offset);
             collection_return.setContext(collection_context);
+
             collection_return.setCollection(collectionArrayList);
             
             return collection_return;
@@ -132,7 +120,12 @@ public class CollectionsResource {
             	if(writeStatistics){
     				writeStats(context, collection, user_ip, user_agent, xforwarderfor, headers, request);
     			}
-                return new org.dspace.rest.common.Collection(collection, expand, context, limit, offset);
+
+                org.dspace.rest.common.Collection restCollection = new org.dspace.rest.common.Collection(collection, expand, context, limit, offset);
+                org.dspace.rest.common.Context collection_context = new org.dspace.rest.common.Context(request, collection.countItems(), limit, offset);
+                restCollection.setContext(collection_context);
+
+                return restCollection;
             } else {
                 throw new WebApplicationException(Response.Status.UNAUTHORIZED);
             }

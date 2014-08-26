@@ -106,7 +106,8 @@ public class CommunitiesResource {
             }
         }
     }
-    
+
+    //handle prefix/suffix
     @GET
     @Path("/{prefix}/{suffix}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
