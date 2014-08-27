@@ -1,0 +1,35 @@
+.ds-artifact-list li {
+    display: inline;
+    list-style-type: none;
+    float: left;
+    margin: 5px;
+    height: 155px;
+    width: 150px !important;
+    border: 1px solid #000000;
+    line-height: 1.1em !important;
+}
+
+.recentSubmissionViewMore {
+    clear: both;
+}
+
+.emphasis-gallery-item-wrapper {
+    height:100%;
+    width:100%;
+    position:relative;
+    overflow:hidden;
+}
+
+.emphasis-gallery-item-wrapper .thumbnail {
+    padding:0px;
+}
+
+.gallery-item-title {
+    position: absolute;
+    bottom: 0;
+    height: 15px;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    width:100%;
+}

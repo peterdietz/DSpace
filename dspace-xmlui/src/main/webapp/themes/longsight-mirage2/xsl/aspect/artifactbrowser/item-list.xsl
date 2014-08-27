@@ -46,11 +46,9 @@
             </xsl:choose>
         </xsl:variable>
 
-        <!-- confman:getProperty('xmlui.theme.mirage.item-list.emphasis') -->
-        <xsl:variable name="emphasis" select="'file'"/>
+        <xsl:variable name="emphasis" select="confman:getProperty('xmlui.theme.mirage.item-list.emphasis')"/>
         <xsl:choose>
             <xsl:when test="'file' = $emphasis">
-
 
                 <div class="item-wrapper row">
                     <div class="col-sm-3 hidden-xs">
@@ -67,6 +65,27 @@
                     </div>
 
                 </div>
+            </xsl:when>
+            <xsl:when test="'gallery' = $emphasis">
+                <div class="item-wrapper emphasis-gallery-item-wrapper">
+                    <xsl:apply-templates select="./mets:fileSec" mode="artifact-preview">
+                        <xsl:with-param name="href" select="$href"/>
+                    </xsl:apply-templates>
+
+
+
+
+                    <!--<div class="textportion">
+
+                        <xsl:apply-templates select="./mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim"
+                                             mode="itemSummaryList-DIM-metadata">
+                            <xsl:with-param name="href" select="$href"/>
+                        </xsl:apply-templates>
+                    </div>-->
+                    <div class="gallery-item-title">Title of object</div>
+                </div>
+
+
             </xsl:when>
             <xsl:otherwise>
                 <xsl:apply-templates select="./mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim"

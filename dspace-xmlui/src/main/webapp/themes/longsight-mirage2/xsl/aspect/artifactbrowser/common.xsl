@@ -60,19 +60,9 @@
         preserving the pioneer model. -->
     <xsl:template match="dri:referenceSet[@type = 'summaryList']" priority="2">
         <xsl:apply-templates select="dri:head"/>
-        <!-- Here we decide whether we have a hierarchical list or a flat one -->
-        <xsl:choose>
-            <xsl:when test="descendant-or-self::dri:referenceSet/@rend='hierarchy' or ancestor::dri:referenceSet/@rend='hierarchy'">
-                <ul class="ds-artifact-list list-unstyled">
-                    <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
-                </ul>
-            </xsl:when>
-            <xsl:otherwise>
-                <ul class="ds-artifact-list list-unstyled">
-                    <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
-                </ul>
-            </xsl:otherwise>
-        </xsl:choose>
+        <ul class="ds-artifact-list list-unstyled">
+            <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
+        </ul>
     </xsl:template>
 
     <!-- Generate the logo, if present, from the file section -->
