@@ -19,7 +19,8 @@
 	xmlns:mods="http://www.loc.gov/mods/v3"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns="http://www.w3.org/1999/xhtml"
-	exclude-result-prefixes="i18n dri mets xlink xsl dim xhtml mods dc">
+    xmlns:confman="org.dspace.core.ConfigurationManager"
+	exclude-result-prefixes="i18n dri mets xlink xsl dim xhtml mods dc confman">
 
     <xsl:output indent="yes"/>
 
@@ -46,6 +47,18 @@
                     <xsl:when test="contains(@type, 'Collection')">
                         <xsl:text>collection </xsl:text>
                     </xsl:when>
+                </xsl:choose>
+                <xsl:variable name="emphasis" select="confman:getProperty('xmlui.theme.mirage.item-list.emphasis')"/>
+                <xsl:choose>
+                    <xsl:when test="'file' = $emphasis">
+                        <xsl:text>emphasis-file </xsl:text>
+                    </xsl:when>
+                    <xsl:when test="'gallery' = $emphasis">
+                        <xsl:text>emphasis-gallery </xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>emphasis-other </xsl:text>
+                    </xsl:otherwise>
                 </xsl:choose>
                 <xsl:choose>
                     <xsl:when test="position() mod 2 = 0">even</xsl:when>

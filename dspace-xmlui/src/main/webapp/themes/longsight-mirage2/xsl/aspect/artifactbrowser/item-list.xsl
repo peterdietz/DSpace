@@ -77,7 +77,6 @@
                         <xsl:apply-templates select="./mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim"
                                              mode="item-title">
                             <xsl:with-param name="href" select="$href"/>
-
                         </xsl:apply-templates>
 
                     </div>
@@ -100,6 +99,9 @@
             </xsl:attribute>
             <xsl:choose>
                 <xsl:when test="dim:field[@element='title']">
+                    <xsl:attribute name="title">
+                        <xsl:value-of select="dim:field[@element='title'][1]/node()"/>
+                    </xsl:attribute>
                     <xsl:value-of select="dim:field[@element='title'][1]/node()"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -115,20 +117,10 @@
         <xsl:param name="href"/>
         <div class="artifact-description">
             <h4 class="artifact-title">
-                <!-- call template item-title-->
-                <xsl:element name="a">
-                    <xsl:attribute name="href">
-                        <xsl:value-of select="$href"/>
-                    </xsl:attribute>
-                    <xsl:choose>
-                        <xsl:when test="dim:field[@element='title']">
-                            <xsl:value-of select="dim:field[@element='title'][1]/node()"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <i18n:text>xmlui.dri2xhtml.METS-1.0.no-title</i18n:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:element>
+                <xsl:apply-templates select="." mode="item-title">
+                    <xsl:with-param name="href" select="$href"/>
+                </xsl:apply-templates>
+
                 <span class="Z3988">
                     <xsl:attribute name="title">
                         <xsl:call-template name="renderCOinS"/>

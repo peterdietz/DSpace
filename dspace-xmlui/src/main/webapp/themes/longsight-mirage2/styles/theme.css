@@ -1,4 +1,4 @@
-.ds-artifact-list li {
+li.ds-artifact-item.emphasis-gallery {
     float: left;
     margin: 5px;
     height: 155px;
@@ -22,7 +22,7 @@
 }
 
 /* Hack to make the image border fill the rectangle, i.e. short images */
-.emphasis-gallery-item-wrapper .thumbnail>img, .thumbnail a>img {
+.emphasis-gallery-item-wrapper .thumbnail>img, .emphasis-gallery-item-wrapper .thumbnail a>img {
     min-height: 100%;
 }
 
