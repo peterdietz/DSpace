@@ -1,11 +1,8 @@
 .ds-artifact-list li {
-    display: inline;
-    list-style-type: none;
     float: left;
     margin: 5px;
     height: 155px;
-    width: 150px !important;
-    border: 1px solid #000000;
+    width: 200px !important;
     line-height: 1.1em !important;
 }
 
@@ -24,12 +21,21 @@
     padding:0px;
 }
 
+/* Hack to make the image border fill the rectangle, i.e. short images */
+.emphasis-gallery-item-wrapper .thumbnail>img, .thumbnail a>img {
+    min-height: 100%;
+}
+
 .gallery-item-title {
     position: absolute;
     bottom: 0;
-    height: 15px;
-    background-color: black;
+    height: 16px;
+    background-color: #607890;
     color: white;
     overflow: hidden;
     width:100%;
+    padding: 1px 0px 0px 5px;
+}
+.gallery-item-title a {
+    color: white;
 }

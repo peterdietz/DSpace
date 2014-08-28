@@ -73,16 +73,14 @@
                     </xsl:apply-templates>
 
 
-
-
-                    <!--<div class="textportion">
-
+                    <div class="gallery-item-title">
                         <xsl:apply-templates select="./mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim"
-                                             mode="itemSummaryList-DIM-metadata">
+                                             mode="item-title">
                             <xsl:with-param name="href" select="$href"/>
+
                         </xsl:apply-templates>
-                    </div>-->
-                    <div class="gallery-item-title">Title of object</div>
+
+                    </div>
                 </div>
 
 
@@ -94,12 +92,30 @@
         </xsl:choose>
     </xsl:template>
 
+    <xsl:template match="dim:dim" mode="item-title">
+        <xsl:param name="href"/>
+        <xsl:element name="a">
+            <xsl:attribute name="href">
+                <xsl:value-of select="$href"/>
+            </xsl:attribute>
+            <xsl:choose>
+                <xsl:when test="dim:field[@element='title']">
+                    <xsl:value-of select="dim:field[@element='title'][1]/node()"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.no-title</i18n:text>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:element>
+    </xsl:template>
+
     <!--handles the rendering of a single item in a list in file mode-->
     <!--handles the rendering of a single item in a list in metadata mode-->
     <xsl:template match="dim:dim" mode="itemSummaryList-DIM-metadata">
         <xsl:param name="href"/>
         <div class="artifact-description">
             <h4 class="artifact-title">
+                <!-- call template item-title-->
                 <xsl:element name="a">
                     <xsl:attribute name="href">
                         <xsl:value-of select="$href"/>
@@ -198,7 +214,7 @@
 
                 <xsl:choose>
                     <xsl:when test="mets:fileGrp[@USE='THUMBNAIL']">
-                        <img alt="Thumbnail" class="img-responsive">
+                        <img alt="Thumbnail" class="img-responsive img-thumbnail">
                             <xsl:attribute name="src">
                                 <xsl:value-of
                                         select="mets:fileGrp[@USE='THUMBNAIL']/mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
