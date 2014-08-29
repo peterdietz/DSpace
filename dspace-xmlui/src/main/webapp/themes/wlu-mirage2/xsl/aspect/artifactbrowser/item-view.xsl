@@ -345,7 +345,8 @@
                         </xsl:choose>
                 </xsl:variable>
 
-                <xsl:for-each select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file">
+                <xsl:for-each select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file[@MIMETYPE != 'image/tiff']">
+                    <!-- WLU Hide Tiff files -->
                     <div>
                     <a>
                     <xsl:attribute name="href">
