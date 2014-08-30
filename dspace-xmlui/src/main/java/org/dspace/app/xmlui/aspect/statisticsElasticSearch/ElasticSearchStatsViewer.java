@@ -58,10 +58,10 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
 
     protected static TermFilterBuilder justOriginals = FilterBuilders.termFilter("bundleName", "ORIGINAL");
 
-    protected static FacetBuilder facetTopCountries = FacetBuilders.termsFacet("top_countries").field("country.untouched").size(150)
+    protected static FacetBuilder facetTopCountries = FacetBuilders.termsFacet("top_countries").field("countryCode").size(150)
             .facetFilter(FilterBuilders.andFilter(
                 justOriginals,
-                FilterBuilders.notFilter(FilterBuilders.termFilter("country.untouched", "")))
+                FilterBuilders.notFilter(FilterBuilders.termFilter("countryCode", "")))
             );
 
     protected static FacetBuilder facetMonthlyDownloads = FacetBuilders.dateHistogramFacet("monthly_downloads").field("time").interval("month")
@@ -130,13 +130,12 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
             // If we are on the homepage of the statistics portal, then we just show the summary report
             // Otherwise we will show a form to let user enter more information for deeper detail.
             if(requestURIElements[requestURIElements.length-1].trim().equalsIgnoreCase(elasticStatisticsPath)) {
-                //Homepage will show the last 5 years worth of Data, and no form generator.
+                //Homepage will show the last 1 years worth of Data, and no form generator.
                 Calendar cal = Calendar.getInstance();
                 dateEnd = cal.getTime();
 
-                //Roll back to Jan 1 0:00.000 five years ago.
-                cal.roll(Calendar.YEAR, -5);
-                cal.set(Calendar.MONTH, 0);
+                //Roll back to 12 mo.s ago
+                cal.set(Calendar.MONTH, -12);
                 cal.set(Calendar.DAY_OF_MONTH, 1);
                 cal.set(Calendar.HOUR_OF_DAY,0);
                 cal.set(Calendar.MINUTE, 0);
@@ -145,7 +144,7 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
                 dateStart = cal.getTime();
 
                 division.addHidden("reportDepth").setValue("summary");
-                String dateRange = "Last Five Years";
+                String dateRange = "Last Year";
                 division.addPara("Showing Data ( " + dateRange + " )");
                 division.addHidden("timeRangeString").setValue("Data Range: " + dateRange);
                 if(dateStart != null) {
@@ -340,7 +339,7 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
         Row facetTableHeaderRow = facetTable.addRow(Row.ROLE_HEADER);
         if(termName.equalsIgnoreCase("bitstream")) {
             facetTableHeaderRow.addCellContent("Title");
-            facetTableHeaderRow.addCellContent("Creator");
+            facetTableHeaderRow.addCellContent("Author");
             facetTableHeaderRow.addCellContent("Publisher");
             facetTableHeaderRow.addCellContent("Date");
         } else {
@@ -361,7 +360,7 @@ public class ElasticSearchStatsViewer extends AbstractDSpaceTransformer {
                 Bitstream bitstream = Bitstream.find(context, Integer.parseInt(facetEntry.getTerm().string()));
                 Item item = (Item) bitstream.getParentObject();
                 row.addCell().addXref(contextPath + "/handle/" + item.getHandle(), item.getName());
-                row.addCellContent(getFirstMetadataValue(item, "dc.creator"));
+                row.addCellContent(getFirstMetadataValue(item, "dc.contributor.author"));
                 row.addCellContent(getFirstMetadataValue(item, "dc.publisher"));
                 row.addCellContent(getFirstMetadataValue(item, "dc.date.issued"));
             } else if(termName.equalsIgnoreCase("country")) {
