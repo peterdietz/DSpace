@@ -77,6 +77,18 @@ footer {
 
 }
 
+div.main-content a, div.trail-wrapper a {
+    color: #711d0c;
+}
+
+#sidebar .ds-option a {
+    color:#555;
+}
+
+footer a {
+    color: #f5b23e;
+}
+
 a.rollover_blair {
     display: block;
     width: 675px;

@@ -486,7 +486,7 @@
                             </ul>
                         </li>
 
-                        <li><a href="http://archives.kennesaw.edu">KSU Archives</a></li>
+                        <li><a href="http://archives.kennesaw.edu" target="_blank">KSU Archives</a></li>
                         <li><a href="#">Contact</a></li>
 
                     </ul>
@@ -711,7 +711,7 @@
                     </div>
                     <div class="col-md-6">
                         <span class="vcard">
-                            <span class="org"><a class="url" href="http://archives.kennesaw.edu">KSU Archives</a></span><br/>
+                            <span class="org"><a class="url" href="http://archives.kennesaw.edu" target="_blank">KSU Archives</a></span><br/>
                             Phone: <span class="tel">(770) 423-6289</span><br/>
                             Email: <span class="email"><a class="email" href="mailto:archives@kennesaw.edu">archives@kennesaw.edu</a></span>
                         </span>
