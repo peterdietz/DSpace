@@ -14,7 +14,11 @@
 
     (function ($) {
         // ## Add jQuery datepicker functionality to the ReportGenerator
-        $(".date-picker").datepicker({dateFormat: "mm/dd/yy"});
+        $("input.slick").datepicker({dateFormat: "mm/dd/yy"});
+        $("input.slick[name='from']").before("<label for='from'>Start Date</label>");
+        $("input.slick[name='to']").before("<label for='to'>End Date</label>");
+
+
 
 
         var dateStart = new Date($('input[name=dateStart]').val());

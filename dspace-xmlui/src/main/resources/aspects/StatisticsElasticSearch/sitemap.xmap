@@ -55,7 +55,6 @@ The Dashboard Aspect is responsible providing a dashboard for statistical inquir
                             <map:parameter name="stylesheet.screen.statisticsElasticSearch#1" value="../../static/css/statisticsElasticSearch/style.css"/>
                             <map:parameter name="javascript.url#1" value="https://www.google.com/jsapi" />
                             <map:parameter name="javascript.static#1" value="loadJQuery.js"/>
-                            <map:parameter name="javascript.static#2" value="static/js/statisticsElasticSearch/jquery.ui.datepicker-accessible.min.js"/>
                             <map:parameter name="javascript.static#3" value="static/js/statisticsElasticSearch/visualizeData.js"/>
                         </map:transform>
                         <map:transform type="ElasticSearchStatsViewer"/>
@@ -66,7 +65,6 @@ The Dashboard Aspect is responsible providing a dashboard for statistical inquir
                                 <map:parameter name="stylesheet.screen.statisticsElasticSearch#1" value="../../static/css/statisticsElasticSearch/style.css"/>
                                 <map:parameter name="javascript.url#1" value="https://www.google.com/jsapi" />
                                 <map:parameter name="javascript.static#1" value="loadJQuery.js"/>
-                                <map:parameter name="javascript.static#2" value="static/js/statisticsElasticSearch/jquery.ui.datepicker-accessible.min.js"/>
                                 <map:parameter name="javascript.static#3" value="static/js/statisticsElasticSearch/visualizeData.js"/>
                             </map:transform>
                             <map:transform type="ElasticSearchStatsViewer"/>
@@ -99,7 +97,6 @@ The Dashboard Aspect is responsible providing a dashboard for statistical inquir
                             <map:parameter name="stylesheet.screen.statisticsElasticSearch#1" value="../../static/css/statisticsElasticSearch/style.css"/>
                             <map:parameter name="javascript.url#1" value="https://www.google.com/jsapi" />
                             <map:parameter name="javascript.static#1" value="loadJQuery.js"/>
-                            <map:parameter name="javascript.static#2" value="static/js/statisticsElasticSearch/jquery.ui.datepicker-accessible.min.js"/>
                             <map:parameter name="javascript.static#3" value="static/js/statisticsElasticSearch/visualizeData.js"/>
                         </map:transform>
                         <map:transform type="ElasticSearchStatsViewer"/>
@@ -110,7 +107,6 @@ The Dashboard Aspect is responsible providing a dashboard for statistical inquir
                                 <map:parameter name="stylesheet.screen.statisticsElasticSearch#1" value="../../static/css/statisticsElasticSearch/style.css"/>
                                 <map:parameter name="javascript.url#1" value="https://www.google.com/jsapi" />
                                 <map:parameter name="javascript.static#1" value="loadJQuery.js"/>
-                                <map:parameter name="javascript.static#2" value="static/js/statisticsElasticSearch/jquery.ui.datepicker-accessible.min.js"/>
                                 <map:parameter name="javascript.static#3" value="static/js/statisticsElasticSearch/visualizeData.js"/>
                             </map:transform>
                             <map:transform type="ElasticSearchStatsViewer"/>

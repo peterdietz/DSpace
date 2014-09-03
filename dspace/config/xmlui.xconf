@@ -98,7 +98,7 @@
              aspect and COMMENT OUT the default "Statistics" aspect above.
              You must also enable the ElasticSearchLoggerEventListener.
         -->
-        <!-- <aspect name="Statistics - Elastic Search" path="resource://aspects/StatisticsElasticSearch/" /> -->
+        <aspect name="Statistics - Elastic Search" path="resource://aspects/StatisticsElasticSearch/" />
 
         <!-- =========================
              Approval Workflow Systems
