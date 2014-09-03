@@ -1,12 +1,4 @@
-.word-break {
-  -ms-word-break: break-all;
-  word-break: break-all;
-  /* Non standard for webkit */
-  word-break: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
-}
+/* peterdietz Removed word-break code since KSU didn't like the look */
 
 .margin-animated {
   -webkit-transition-property: margin;
