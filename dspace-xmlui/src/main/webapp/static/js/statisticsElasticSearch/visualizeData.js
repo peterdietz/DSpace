@@ -98,7 +98,7 @@
 
               newEntry = [];
               if (c.chartData.getColumnType(0) == 'date') {
-                newEntry.push(new Date(entry[c.keyField]));
+                newEntry.push(dateGMT(entry[c.keyField] ));
               } else {
                 newEntry.push(entry[c.keyField]);
               }
@@ -393,4 +393,15 @@ function isValidDate(d) {
     if ( Object.prototype.toString.call(d) !== "[object Date]" )
         return false;
     return !isNaN(d.getTime());
+}
+
+/**
+ * Elasticsearch stores data in UTC, where as javascript date's are in local timezone.
+ * This fudges a date to show up on the user's screen as Sept 1, not Aug 31. (Assuming timezone -4h )
+ * @param d
+ * @returns {Date}
+ */
+function dateGMT(d) {
+    var date = new Date(d);
+    return new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
 }
