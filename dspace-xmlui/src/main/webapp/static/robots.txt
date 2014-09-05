@@ -19,3 +19,7 @@ Disallow: /search-filter
 #KJZ-893386 SUNY Block a thesis
 Disallow: /bitstream/handle/1951/56015/*
 Disallow: /handle/1951/56015*
+
+#IWB-336881 SUNY Block a student newspaper
+Disallow: /bitstream/handle/1951/25993/*
+Disallow: /handle/1951/25993*
