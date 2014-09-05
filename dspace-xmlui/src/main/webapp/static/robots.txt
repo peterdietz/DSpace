@@ -8,13 +8,13 @@ Disallow: /search-filter
 
 # You also may wish to disallow access to the following paths, in order
 # to stop web spiders from accessing user-based content:
-# Disallow: /advanced-search
-# Disallow: /contact
-# Disallow: /feedback
-# Disallow: /forgot
-# Disallow: /login
-# Disallow: /register
-# Disallow: /search
+Disallow: /advanced-search
+Disallow: /contact
+Disallow: /feedback
+Disallow: /forgot
+Disallow: /login
+Disallow: /register
+Disallow: /search
 
 #KJZ-893386 SUNY Block a thesis
 Disallow: /bitstream/handle/1951/56015/*
