@@ -159,6 +159,10 @@
         </xsl:variable>
 
         <table>
+            <xsl:attribute name="id">
+                <xsl:value-of select="@id"/>
+            </xsl:attribute>
+            <xsl:apply-templates select="dri:head" mode="cell-check"></xsl:apply-templates>
             <xsl:call-template name="copy-attributes"/>
             <xsl:apply-templates select="dri:row" mode="cell-check">
                 <xsl:with-param name="cols" select="$cols"/>
@@ -179,6 +183,12 @@
             </xsl:if>
         </row>
 
+    </xsl:template>
+
+    <xsl:template match="dri:head" mode="cell-check">
+        <head>
+            <xsl:apply-templates/>
+        </head>
     </xsl:template>
 
     <xsl:template name="add-empty-cells">
