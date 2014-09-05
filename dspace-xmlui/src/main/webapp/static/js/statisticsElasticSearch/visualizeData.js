@@ -21,8 +21,8 @@
 
 
 
-        var dateStart = new Date($('input[name=dateStart]').val());
-        var dateEnd = new Date($('input[name=dateEnd]').val());
+        var dateStart = dateGMT($('input[name=dateStart]').val());
+        var dateEnd = dateGMT($('input[name=dateEnd]').val());
 
         // ### Chart Maker
         //
