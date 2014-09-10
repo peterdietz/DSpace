@@ -1374,7 +1374,17 @@ table.discovery-filters th.new-filter-header
     color: #999999;
 }
 
+.didYouMean{
+    font-size: 18px;
+}
 
+.didYouMean a{
+    font-weight: bold;
+}
+
+.recentSubmissionViewMore {
+    text-align: right;
+    font-size: 100%;
 
 /* Custom MBL by Longsight */
 a, a:active, a:visited {
