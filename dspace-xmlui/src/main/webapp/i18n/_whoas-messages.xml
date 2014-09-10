@@ -137,6 +137,7 @@
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_publisher">Publisher</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_relation">Relation</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject">Keyword</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_type">Type</message>
 
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_ANY">Full Text</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.and">AND</message>
