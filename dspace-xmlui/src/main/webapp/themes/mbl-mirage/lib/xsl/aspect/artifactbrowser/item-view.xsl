@@ -606,35 +606,32 @@
         <xsl:param name="context" select="."/>
         <div class="file-wrapper clearfix">
             <div class="thumbnail-wrapper" style="width: {$thumbnail.maxwidth}px;">
-                <a class="image-link">
-                    <xsl:attribute name="href">
-                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
-                    </xsl:attribute>
-                    <xsl:choose>
-                        <xsl:when test="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
-                        mets:file[@GROUPID=current()/@GROUPID]">
-                            <img alt="Thumbnail">
-                                <xsl:attribute name="src">
-                                    <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
-                                    mets:file[@GROUPID=current()/@GROUPID]/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
-                                </xsl:attribute>
-                            </img>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <img alt="Icon" src="{concat($theme-path, '/images/mime.png')}" style="height: {$thumbnail.maxheight}px;"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                    <xsl:if test="contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n')">
+                <xsl:choose>
+                    <xsl:when test="contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n')">
+                        <!-- Accessing object not allowed, don't link to it -->
+                        <xsl:call-template name="bitstream-thumbnail">
+                            <xsl:with-param name="context" select="$context"/>
+                        </xsl:call-template>
                         <img>
                             <xsl:attribute name="src">
                                 <xsl:value-of select="$context-path"/>
                                 <xsl:text>/static/icons/lock24.png</xsl:text>
                             </xsl:attribute>
-                           <xsl:attribute name="alt">xmlui.dri2xhtml.METS-1.0.blocked</xsl:attribute>
-                           <xsl:attribute name="attr" namespace="http://apache.org/cocoon/i18n/2.1">alt</xsl:attribute>
+                            <xsl:attribute name="alt">xmlui.dri2xhtml.METS-1.0.blocked</xsl:attribute>
+                            <xsl:attribute name="title">Note: This file is not publicly accessible.</xsl:attribute>
+                            <xsl:attribute name="attr" namespace="http://apache.org/cocoon/i18n/2.1">alt</xsl:attribute>
                         </img>
-                     </xsl:if>
-                </a>
+
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <a class="image-link">
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                            </xsl:attribute>
+                            <xsl:call-template name="bitstream-thumbnail"/>
+                        </a>
+                    </xsl:otherwise>
+                </xsl:choose>
             </div>
             <div class="file-metadata" style="height: {$thumbnail.maxheight}px;">
                 <div>
@@ -722,13 +719,39 @@
         </div>
     </xsl:template>
 
+    <xsl:template name="bitstream-thumbnail">
+        <xsl:param name="context" select="."/>
+        <xsl:choose>
+            <xsl:when test="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
+                                mets:file[@GROUPID=current()/@GROUPID]">
+                <img alt="Thumbnail">
+                    <xsl:attribute name="src">
+                        <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
+                                            mets:file[@GROUPID=current()/@GROUPID]/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                    </xsl:attribute>
+                </img>
+            </xsl:when>
+            <xsl:otherwise>
+                <img alt="Icon" src="{concat($theme-path, '/images/mime.png')}" style="height: {$thumbnail.maxheight}px;"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
     <xsl:template name="view-open">
-        <a>
-            <xsl:attribute name="href">
-                <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
-            </xsl:attribute>
-            <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
-        </a>
+        <xsl:choose>
+            <xsl:when test="contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n')">
+                <!-- MBL Don't show link to restricted file -->
+                <i18n:text>xmlui.BitstreamReader.auth_header</i18n:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <a>
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                    </xsl:attribute>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
+                </a>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template name="display-rights">
