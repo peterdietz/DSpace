@@ -1385,6 +1385,7 @@ table.discovery-filters th.new-filter-header
 .recentSubmissionViewMore {
     text-align: right;
     font-size: 100%;
+}
 
 /* Custom MBL by Longsight */
 a, a:active, a:visited {
@@ -1400,4 +1401,14 @@ a, a:active, a:visited {
 }
 div.altmetric-embed {
   padding: 8px;
+}
+
+/* Embargo liftdate */
+div.simple-item-view-liftdate {
+    margin-top: 20px;
+}
+
+div.simple-item-view-liftdate h3 {
+    border-bottom: 1px solid #D8E8EB;
+    margin-bottom: 3px;
 }

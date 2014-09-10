@@ -485,14 +485,9 @@
           <xsl:when test="$clause = 15 and (dim:field[@element='embargo' and @qualifier='liftdate'])">
                 <div class="simple-item-view-liftdate">
 	                <h3 class="bold">Publisher Embargo:</h3>
-	                <div>
-        	<table class="ds-includeset-table">
-			<tr>
-				<td><br/>The publisher requires that this item be embargoed until <xsl:value-of select="dim:field[@element='embargo' and @qualifier='liftdate']" />.
-				Please check back after <xsl:value-of select="dim:field[@element='embargo' and @qualifier='liftdate']" />.<br/><br/></td>
-			</tr>
-		</table>
-	                </div>
+	                <div>The publisher requires that this item be embargoed until <strong><xsl:value-of select="dim:field[@element='embargo' and @qualifier='liftdate']" /></strong>.
+				Please check back after <strong><xsl:value-of select="dim:field[@element='embargo' and @qualifier='liftdate']" /></strong>.
+			        </div>
 	         </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
