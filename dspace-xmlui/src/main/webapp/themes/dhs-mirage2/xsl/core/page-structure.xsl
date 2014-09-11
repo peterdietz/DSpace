@@ -316,6 +316,8 @@
 
                         <a href="{$context-path}/" class="navbar-brand">
                             <img src="{$theme-path}/images/logo.png" />
+                            <span class="hidden-xs">Dennis Historical Society Archive</span>
+                            <span class="hidden-sm hidden-md hidden-lg">DHS Archive</span>
                         </a>
 
 
@@ -624,9 +626,32 @@
     <!-- Like the header, the footer contains various miscellaneous text, links, and image placeholders -->
     <xsl:template name="buildFooter">
         <footer>
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
-                    <a href="http://www.dspace.org/" target="_blank">DSpace software</a> Copyright&#160;&#169;&#160;2014&#160; <a href="http://www.duraspace.org/" target="_blank">Duraspace</a>
+                    <div class="pull-right">
+                        <a href="http://www.facebook.com/#!/groups/116988411646078/" title="Find the Dennis Historical Society on Facebook" target="_blank">
+                            <img alt="Find us on FaceBook Icon" class="facebook-icon">
+                                <xsl:attribute name="src">
+                                    <xsl:value-of select="$theme-path"/>
+                                    <xsl:text>images/FB_FindUsOnFacebook-144.png</xsl:text>
+                                </xsl:attribute>
+                            </img>
+                        </a>
+                    </div>
+
+                    <div id="" class="vcard">
+                        <div class="org">Dennis Historical Society</div>
+                        <a class="email" href="mailto:info@DennisHistoricalSociety.org">info@DennisHistoricalSociety.org</a>
+                        <div class="adr">
+                            <div class="street-address">PO box 607 So.</div>
+                            <span class="locality">Dennis</span>,
+                            <span class="region">MA</span>,
+                            <span class="postal-code">02660</span>
+                        </div>
+                        <div class="tel">508-385-2232</div>
+                    </div>
+
+
                 </div>
                 <div class="row">
                     <a>
