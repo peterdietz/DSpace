@@ -211,9 +211,6 @@
             </xsl:if>
 
 
-        <!-- SC Custom August 2013 Mobile Detection -->
-        <script type="text/javascript" src="/themes/mobile/lib/cookies.js">&#160;</script>
-        <script type="text/javascript" src="/themes/mobile/lib/detectmobile.js">&#160;</script>
 
             <!-- The following javascript removes the default text of empty text areas when they are focused on or submitted -->
             <!-- There is also javascript to disable submitting a form when the 'enter' key is pressed. -->
