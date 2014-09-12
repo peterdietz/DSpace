@@ -316,7 +316,7 @@
                         </button>
 
                         <a href="{$context-path}/" class="navbar-brand">
-                            <img src="{$theme-path}/images/wordmark2.gif" />
+                            <img src="{$theme-path}/images/sersol-logo.png" />
                         </a>
 
 
