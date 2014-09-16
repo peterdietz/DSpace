@@ -180,17 +180,18 @@
             </xsl:for-each>
 
             <!--### CLASSIC MIRAGE COLOR SCHEME START ###-->
-            <link rel="stylesheet" href="{concat($theme-path, 'styles/bootstrap-classic-mirage-colors-min.css')}"/>
-            <link rel="stylesheet" href="{concat($theme-path, 'styles/classic-mirage-style.css')}"/>
+            <link rel="stylesheet" href="{concat($theme-path, '../mirage2/styles/bootstrap-classic-mirage-colors-min.css')}"/>
+            <link rel="stylesheet" href="{concat($theme-path, '../mirage2/styles/classic-mirage-style.css')}"/>
             <!--### CLASSIC MIRAGE COLOR SCHEME END ###-->
 
             <!--### BOOTSTRAP COLOR SCHEME START ###-->
             <!--<link rel="stylesheet" href="{concat($theme-path, 'styles/bootstrap-min.css')}"/>-->
             <!--### BOOTSTRAP COLOR SCHEME END ###-->
 
-            <link rel="stylesheet" href="{concat($theme-path, 'styles/dspace-bootstrap-tweaks.css')}"/>
-            <link rel="stylesheet" href="{concat($theme-path, 'styles/jquery-ui-1.10.3.custom.css')}"/>
+            <link rel="stylesheet" href="{concat($theme-path, '../mirage2/styles/dspace-bootstrap-tweaks.css')}"/>
+            <link rel="stylesheet" href="{concat($theme-path, '../mirage2/styles/jquery-ui-1.10.3.custom.css')}"/>
 
+            <!-- Local css -->
             <link rel="stylesheet" href="{concat($theme-path, 'styles/theme.css')}"/>
 
             <!-- Add syndication feeds -->
@@ -260,12 +261,12 @@
             </script>
 
             <xsl:text disable-output-escaping="yes">&lt;!--[if lt IE 9]&gt;
-                &lt;script src="</xsl:text><xsl:value-of select="concat($theme-path, 'vendor/html5shiv/dist/html5shiv.js')"/><xsl:text disable-output-escaping="yes">"&gt;&#160;&lt;/script&gt;
-                &lt;script src="</xsl:text><xsl:value-of select="concat($theme-path, 'vendor/respond/respond.min.js')"/><xsl:text disable-output-escaping="yes">"&gt;&#160;&lt;/script&gt;
+                &lt;script src="</xsl:text><xsl:value-of select="concat($theme-path, '../mirage2/vendor/html5shiv/dist/html5shiv.js')"/><xsl:text disable-output-escaping="yes">"&gt;&#160;&lt;/script&gt;
+                &lt;script src="</xsl:text><xsl:value-of select="concat($theme-path, '../mirage2/vendor/respond/respond.min.js')"/><xsl:text disable-output-escaping="yes">"&gt;&#160;&lt;/script&gt;
                 &lt;![endif]--&gt;</xsl:text>
 
             <!-- Modernizr enables HTML5 elements & feature detects -->
-            <script src="{concat($theme-path, 'vendor/modernizr/modernizr.js')}">&#160;</script>
+            <script src="{concat($theme-path, '../mirage2/vendor/modernizr/modernizr.js')}">&#160;</script>
 
             <!-- Add the title in -->
             <xsl:variable name="page_title" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='title'][last()]" />
@@ -605,7 +606,7 @@
                         >
                     <img class="img-responsive">
                         <xsl:attribute name="src">
-                            <xsl:value-of select="concat($theme-path,'/images/cc-ship.gif')"/>
+                            <xsl:value-of select="concat($theme-path,'../mirage2/images/cc-ship.gif')"/>
                         </xsl:attribute>
                         <xsl:attribute name="alt">
                             <xsl:value-of select="$ccLicenseName"/>
@@ -626,39 +627,39 @@
     <xsl:template name="buildFooter">
         <footer>
             <div class="container-fluid">
-                    <div class="row">
-                        <a href="http://www.dspace.org/" target="_blank">DSpace software</a> Copyright&#160;&#169;&#160;2014&#160; <a href="http://www.duraspace.org/" target="_blank">Duraspace</a>
-                    </div>
-                    <div class="row">
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:value-of
-                                        select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                                <xsl:text>/contact</xsl:text>
-                            </xsl:attribute>
-                            <i18n:text>xmlui.dri2xhtml.structural.contact-link</i18n:text>
-                        </a>
-                        <xsl:text> | </xsl:text>
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:value-of
-                                        select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                                <xsl:text>/feedback</xsl:text>
-                            </xsl:attribute>
-                            <i18n:text>xmlui.dri2xhtml.structural.feedback-link</i18n:text>
-                        </a>
-                    </div>
+                <div class="row">
+                    <a target="_blank" href="http://www.longsight.com/">Longsight</a> is a Registered Service Provider for DSpace, providing hosting, customization, and more to DSpace since 2005.
                 </div>
-                <!--Invisible link to HTML sitemap (for search engines) -->
-                <a class="hidden">
-                    <xsl:attribute name="href">
-                        <xsl:value-of
-                                select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                        <xsl:text>/htmlmap</xsl:text>
-                    </xsl:attribute>
-                    <xsl:text>&#160;</xsl:text>
-                </a>
-                <p>&#160;</p>
+                <div class="row">
+                    <a>
+                        <xsl:attribute name="href">
+                            <xsl:value-of
+                                    select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                            <xsl:text>/contact</xsl:text>
+                        </xsl:attribute>
+                        <i18n:text>xmlui.dri2xhtml.structural.contact-link</i18n:text>
+                    </a>
+                    <xsl:text> | </xsl:text>
+                    <a>
+                        <xsl:attribute name="href">
+                            <xsl:value-of
+                                    select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                            <xsl:text>/feedback</xsl:text>
+                        </xsl:attribute>
+                        <i18n:text>xmlui.dri2xhtml.structural.feedback-link</i18n:text>
+                    </a>
+                </div>
+            </div>
+            <!--Invisible link to HTML sitemap (for search engines) -->
+            <a class="hidden">
+                <xsl:attribute name="href">
+                    <xsl:value-of
+                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                    <xsl:text>/htmlmap</xsl:text>
+                </xsl:attribute>
+                <xsl:text>&#160;</xsl:text>
+            </a>
+            <p>&#160;</p>
         </footer>
     </xsl:template>
 
@@ -726,7 +727,7 @@
             <xsl:text>if(!window.DSpace){window.DSpace={};}window.DSpace.context_path='</xsl:text><xsl:value-of select="$context-path"/><xsl:text>';window.DSpace.theme_path='</xsl:text><xsl:value-of select="$theme-path"/><xsl:text>';</xsl:text>
         </script>
 
-        <script src="{$theme-path}/scripts/theme.js">&#160;</script>
+        <script src="{$theme-path}../mirage2/scripts/theme.js">&#160;</script>
 
         <!-- add "shared" javascript from static, path is relative to webapp root -->
         <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='javascript'][@qualifier='url']">
@@ -756,7 +757,7 @@
                     <script>
                         <xsl:attribute name="src">
                             <xsl:value-of select="$theme-path"/>
-                            <xsl:text>js/choice-support.js</xsl:text>
+                            <xsl:text>../mirage2/js/choice-support.js</xsl:text>
                         </xsl:attribute>&#160;</script>
                 </xsl:when>
                 <xsl:when test="not(starts-with(text(), 'static/js/scriptaculous'))">
