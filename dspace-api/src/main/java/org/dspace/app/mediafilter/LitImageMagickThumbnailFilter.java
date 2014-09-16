@@ -76,7 +76,9 @@ public abstract class LitImageMagickThumbnailFilter extends MediaFilter implemen
     }
 
     public static File inputStreamToTempFile(InputStream source, String prefix, String suffix) throws IOException {
-		File f = File.createTempFile(prefix, suffix);
+        File tempDirectory = new File(ConfigurationManager.getProperty("dspace.dir") + File.separator + "temp" + File.separator);
+        tempDirectory.mkdirs();
+        File f = new File(tempDirectory.getPath() + File.separatorChar + prefix + suffix);
 		f.deleteOnExit();
     	FileOutputStream fos = new FileOutputStream(f);
     	
