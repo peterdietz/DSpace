@@ -91,6 +91,7 @@
                                 </div>
                             </div>
 
+                            <div class="full-width-holder">
                             <div id="main-container" class="container">
                                 <div class="row row-offcanvas row-offcanvas-right">
                                     <div class="horizontal-slider clearfix">
@@ -102,6 +103,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
 
                             <!--
@@ -188,6 +190,8 @@
 
             <link rel="stylesheet" href="{concat($theme-path, 'styles/dspace-bootstrap-tweaks.css')}"/>
             <link rel="stylesheet" href="{concat($theme-path, 'styles/jquery-ui-1.10.3.custom.css')}"/>
+
+            <link rel="stylesheet" href="{concat($theme-path, 'styles/theme.css')}"/>
 
             <!-- Add syndication feeds -->
             <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='feed']">
@@ -312,7 +316,7 @@
                         </button>
 
                         <a href="{$context-path}/" class="navbar-brand">
-                            <img src="{$theme-path}/images/logo.png" />
+                            <img src="{$theme-path}/images/longsight-white.png" />
                         </a>
 
 
