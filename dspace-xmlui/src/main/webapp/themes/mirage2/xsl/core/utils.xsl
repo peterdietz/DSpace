@@ -29,7 +29,7 @@
             <xsl:text>cocoon:/</xsl:text>
             <xsl:value-of select="@url"/>
             <!-- Since this is a summary only grab the descriptive metadata, and the thumbnails -->
-            <xsl:text>?sections=dmdSec,fileSec&amp;fileGrpTypes=THUMBNAIL</xsl:text>
+            <xsl:text>?sections=dmdSec,fileSec&amp;fileGrpTypes=THUMBNAIL,ORIGINAL</xsl:text>
             <!-- An example of requesting a specific metadata standard (MODS and QDC crosswalks only work for items)->
             <xsl:if test="@type='DSpace Item'">
                 <xsl:text>&amp;dmdTypes=DC</xsl:text>
@@ -74,6 +74,96 @@
             <xsl:attribute name="placeholder"><xsl:value-of select="$placeholder"/></xsl:attribute>
             <xsl:attribute name="i18n:attr">placeholder</xsl:attribute>
         </xsl:if>
+    </xsl:template>
+
+    <!-- Helper for showing mime-type-icon for item in lieu of thumbnail -->
+    <xsl:template name="getFileFormatIcon">
+        <xsl:param name="mimetype"/>
+
+        <img class="mimeicon">
+            <xsl:attribute name="width"><xsl:value-of select="$thumbnail.maxwidth"/></xsl:attribute>
+            <xsl:attribute name="height"><xsl:value-of select="$thumbnail.maxheight"/></xsl:attribute>
+            <xsl:attribute name="alt"><xsl:value-of select="$mimetype"/></xsl:attribute>
+            <xsl:attribute name="src">
+                <xsl:value-of select="$theme-path"/>
+                <xsl:text>../mirage2</xsl:text>
+
+                <xsl:choose>
+                    <xsl:when test="$mimetype='application/pdf'">
+                        <xsl:text>/images/mimeicons/pdf.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='application/html'">
+                        <xsl:text>/images/mimeicons/html.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='text/xml'">
+                        <xsl:text>/images/mimeicons/xml.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='text/plain'">
+                        <xsl:text>/images/mimeicons/plain.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='text/html'">
+                        <xsl:text>/images/mimeicons/html.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='application/msword' or $mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document'">
+                        <xsl:text>/images/mimeicons/msword.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='application/vnd.ms-powerpoint' or $mimetype='application/vnd.openxmlformats-officedocument.presentationml.presentation'">
+                        <xsl:text>/images/mimeicons/vnd.ms-powerpoint.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='application/vnd.ms-excel' or $mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'">
+                        <xsl:text>/images/mimeicons/vnd.ms-excel.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='image/jpeg'">
+                        <xsl:text>/images/mimeicons/jpeg.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='image/gif'">
+                        <xsl:text>/images/mimeicons/gif.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='image/png'">
+                        <xsl:text>/images/mimeicons/png.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='image/tiff'">
+                        <xsl:text>/images/mimeicons/other_image.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='audio/x-aiff'">
+                        <xsl:text>/images/mimeicons/other_audio.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='audio/basic'">
+                        <xsl:text>/images/mimeicons/other_audio.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='audio/x-wav'">
+                        <xsl:text>/images/mimeicons/other_audio.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='video/mpeg'">
+                        <xsl:text>/images/mimeicons/mpeg.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='text/richtext'">
+                        <xsl:text>/images/mimeicons/richtext.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='image/x-ms-bmp'">
+                        <xsl:text>/images/mimeicons/x-ms-bmp.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='application/postscript'">
+                        <xsl:text>/images/mimeicons/plain.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='video/quicktime'">
+                        <xsl:text>/images/mimeicons/mov.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='audio/x-mpeg'">
+                        <xsl:text>/images/mimeicons/mpeg.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='application/x-dvi'">
+                        <xsl:text>/images/mimeicons/other_movie.png</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$mimetype='audio/x-pn-realaudio'">
+                        <xsl:text>/images/mimeicons/real.png</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>/images/mimeicons/mime.png</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+        </img>
     </xsl:template>
 
 

@@ -174,26 +174,24 @@
         <xsl:param name="href"/>
         <div class="thumbnail artifact-preview">
             <a class="image-link" href="{$href}">
-                <!--<img data-src="holder.js/100%x180" alt="100%x180" style="max-width: 178px; width: 100%; display: block; margin:auto;" src="data:image/png;base64,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"/>-->
-
                 <xsl:choose>
                     <xsl:when test="mets:fileGrp[@USE='THUMBNAIL']">
-                        <img alt="Thumbnail" class="img-responsive">
+                        <img alt="Thumbnail">
                             <xsl:attribute name="src">
                                 <xsl:value-of
                                         select="mets:fileGrp[@USE='THUMBNAIL']/mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
                             </xsl:attribute>
+                            <xsl:attribute name="class">
+                                <xsl:text>img-responsive</xsl:text>
+                            </xsl:attribute>
                         </img>
                     </xsl:when>
                     <xsl:otherwise>
-                        <!--<i class="glyphicon glyphicon-file" aria-hidden="true"/>-->
-                        <img alt="Thumbnail">
-                            <xsl:attribute name="data-src">
-                                <xsl:text>holder.js/100%x</xsl:text>
-                                <xsl:value-of select="$thumbnail.maxheight"/>
-                                <xsl:text>/text:No Thumbnail</xsl:text>
-                            </xsl:attribute>
-                        </img>
+                        <xsl:call-template name="getFileFormatIcon">
+                            <xsl:with-param name="mimetype">
+                                <xsl:value-of select="mets:fileGrp[@USE='CONTENT']/mets:file/@MIMETYPE"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
                     </xsl:otherwise>
                 </xsl:choose>
             </a>
