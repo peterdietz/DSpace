@@ -29,7 +29,7 @@ public class ElasticSearchLoggerEventListener extends AbstractUsageEventListener
                 EPerson currentUser = ue.getContext() == null ? null : ue.getContext().getCurrentUser();
 
                 ElasticSearchLogger.getInstance().post(ue.getObject(), ue.getRequest(), currentUser);
-                log.info("Successfully logged " + ue.getObject().getTypeText() + "_" + ue.getObject().getID() + " " + ue.getObject().getName());
+                log.debug("Successfully logged " + ue.getObject().getTypeText() + "_" + ue.getObject().getID() + " " + ue.getObject().getName());
             }
             catch(Exception e)
             {
