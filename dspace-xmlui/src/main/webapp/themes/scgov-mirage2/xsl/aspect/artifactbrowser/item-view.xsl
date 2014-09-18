@@ -26,6 +26,7 @@
     xmlns:jstring="java.lang.String"
     xmlns:rights="http://cosimo.stanford.edu/sdr/metsrights/"
     xmlns:confman="org.dspace.core.ConfigurationManager"
+    xmlns:url="http://whatever/java/java.net.URLEncoder"
     exclude-result-prefixes="xalan encoder i18n dri mets dim xlink xsl util jstring rights confman">
 
     <xsl:output indent="yes"/>
@@ -114,8 +115,10 @@
                     </xsl:if>
                 </div>
                 <div class="col-sm-8">
+                    <xsl:call-template name="itemSummaryView-DIM-subject"/>
                     <xsl:call-template name="itemSummaryView-DIM-abstract"/>
                     <xsl:call-template name="itemSummaryView-DIM-URI"/>
+                    <xsl:call-template name="itemSummaryView-DIM-tombstone"/>
                     <xsl:call-template name="itemSummaryView-collections"/>
                 </div>
             </div>
@@ -264,6 +267,8 @@
                             <xsl:attribute name="href">
                                 <xsl:copy-of select="./node()"/>
                             </xsl:attribute>
+                            <span class="glyphicon glyphicon-link"></span>
+                            <xsl:text> </xsl:text>
                             <xsl:copy-of select="./node()"/>
                         </a>
                         <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='uri']) != 0">
@@ -291,12 +296,158 @@
         </xsl:if>
     </xsl:template>
 
+    <xsl:template name="itemSummaryView-DIM-subject">
+        <xsl:if test="dim:field[@element='subject' and not(@qualifier) and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-subject</i18n:text>
+                </h5>
+                <span>
+                    <xsl:if test="count(dim:field[@element='subject' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='subject' and @qualifier='abstract']) &gt; 1)">
+                        <span class="spacer">&#160;</span>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='subject' and not(@qualifier)]">
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$context-path"/>
+                                <xsl:text>/browse?value=</xsl:text>
+                                <xsl:value-of select="url:encode(./node())" />
+                                <xsl:text>&amp;type=subject</xsl:text>
+                            </xsl:attribute>
+                            <xsl:copy-of select="./node()"/>
+                        </a>
+                        <xsl:if test="count(following-sibling::dim:field[@element='subject' and not(@qualifier)]) != 0">
+                            <span class="spacer">;</span>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='subject' and not(@qualifier)]) &gt; 1">
+                        <span class="spacer">&#160;</span>
+                    </xsl:if>
+                </span>
+            </div>
+        </xsl:if>
+    </xsl:template>
+
+    <xsl:template name="itemSummaryView-DIM-tombstone">
+        <!-- ts.plotid, ts.firstname, ts.middlename, ts.lastname, ts.birthday, ts.deathday, ts.cemetery, ts.text, *.notes -->
+        <xsl:if test="dim:field[@mdschema='ts' and @element='plotid' and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-plotid</i18n:text>
+                </h5>
+                <xsl:for-each select="dim:field[@mdschema='ts' and @element='plotid' and descendant::text()]">
+                    <xsl:copy-of select="./node()"/>
+                </xsl:for-each>
+            </div>
+        </xsl:if>
+
+        <xsl:if test="dim:field[@mdschema='ts' and @element='firstname' and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-firstname</i18n:text>
+                </h5>
+                <xsl:for-each select="dim:field[@mdschema='ts' and @element='firstname' and descendant::text()]">
+                    <xsl:copy-of select="./node()"/>
+                </xsl:for-each>
+            </div>
+        </xsl:if>
+
+        <xsl:if test="dim:field[@mdschema='ts' and @element='middlename' and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-middlename</i18n:text>
+                </h5>
+                <xsl:for-each select="dim:field[@mdschema='ts' and @element='middlename' and descendant::text()]">
+                    <xsl:copy-of select="./node()"/>
+                </xsl:for-each>
+            </div>
+        </xsl:if>
+
+        <xsl:if test="dim:field[@mdschema='ts' and @element='lastname' and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-lastname</i18n:text>
+                </h5>
+                <xsl:for-each select="dim:field[@mdschema='ts' and @element='lastname' and descendant::text()]">
+                    <xsl:copy-of select="./node()"/>
+                </xsl:for-each>
+            </div>
+        </xsl:if>
+
+        <xsl:if test="dim:field[@mdschema='ts' and @element='birthday' and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-birthday</i18n:text>
+                </h5>
+                <xsl:for-each select="dim:field[@mdschema='ts' and @element='birthday' and descendant::text()]">
+                    <xsl:copy-of select="./node()"/>
+                </xsl:for-each>
+            </div>
+        </xsl:if>
+
+        <xsl:if test="dim:field[@mdschema='ts' and @element='deathday' and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-deathday</i18n:text>
+                </h5>
+                <xsl:for-each select="dim:field[@mdschema='ts' and @element='deathday' and descendant::text()]">
+                    <xsl:copy-of select="./node()"/>
+                </xsl:for-each>
+            </div>
+        </xsl:if>
+
+        <xsl:if test="dim:field[@mdschema='ts' and @element='cemetery' and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-cemetery</i18n:text>
+                </h5>
+                <xsl:for-each select="dim:field[@mdschema='ts' and @element='cemetery' and descendant::text()]">
+                    <xsl:copy-of select="./node()"/>
+                </xsl:for-each>
+            </div>
+        </xsl:if>
+
+        <xsl:if test="dim:field[@mdschema='ts' and @element='text' and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-text</i18n:text>
+                </h5>
+                <xsl:for-each select="dim:field[@mdschema='ts' and @element='text' and descendant::text()]">
+                    <xsl:copy-of select="./node()"/>
+                </xsl:for-each>
+            </div>
+        </xsl:if>
+
+        <xsl:if test="dim:field[@element='notes' and not(@qualifier) and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                    Notes:
+                </h5>
+                <xsl:if test="count(dim:field[@element='notes' and not(@qualifier) and descendant::text()]) &gt; 1 and not(count(dim:field[@element='notes' and @qualifier='abstract' and descendant::text()]) &gt; 1)">
+                    <div class="spacer">&#160;</div>
+                </xsl:if>
+                <xsl:for-each select="dim:field[@element='notes' and not(@qualifier) and descendant::text()]">
+                    <xsl:copy-of select="./node()"/>
+                    <xsl:if test="count(following-sibling::dim:field[@element='notes' and not(@qualifier) and descendant::text()]) != 0">
+                        <div class="spacer">&#160;</div>
+                    </xsl:if>
+                </xsl:for-each>
+                <xsl:if test="count(dim:field[@element='notes' and not(@qualifier) and descendant::text()]) &gt; 1">
+                    <div class="spacer">&#160;</div>
+                </xsl:if>
+            </div>
+        </xsl:if>
+    </xsl:template>
+
     <xsl:template name="itemSummaryView-show-full">
         <div class="simple-item-view-show-full item-page-field-wrapper table">
             <h5>Metadata</h5> <!-- TODO i18n -->
             <a>
                 <xsl:attribute name="href"><xsl:value-of select="$ds_item_view_toggle_url"/></xsl:attribute>
+                <span class="glyphicon glyphicon-list-alt"></span>
+                <xsl:text> </xsl:text>
                 <i18n:text>xmlui.ArtifactBrowser.ItemViewer.show_full</i18n:text>
+
             </a>
         </div>
     </xsl:template>
@@ -423,31 +574,68 @@
     </xsl:template>
 
     <xsl:template match="dim:field" mode="itemDetailView-DIM">
-            <tr>
-                <xsl:attribute name="class">
-                    <xsl:text>ds-table-row </xsl:text>
-                    <xsl:if test="(position() div 2 mod 2 = 0)">even </xsl:if>
-                    <xsl:if test="(position() div 2 mod 2 = 1)">odd </xsl:if>
-                </xsl:attribute>
-                <td class="label-cell">
-                    <xsl:value-of select="./@mdschema"/>
+        <tr>
+            <xsl:attribute name="class">
+                <xsl:text>ds-table-row</xsl:text>
+                <xsl:if test="(position() div 2 mod 2 = 0)">even</xsl:if>
+                <xsl:if test="(position() div 2 mod 2 = 1)">odd</xsl:if>
+            </xsl:attribute>
+            <xsl:variable name="metadata-field">
+                <xsl:value-of select="./@mdschema"/>
+                <xsl:text>.</xsl:text>
+                <xsl:value-of select="./@element"/>
+                <xsl:if test="./@qualifier">
                     <xsl:text>.</xsl:text>
-                    <xsl:value-of select="./@element"/>
-                    <xsl:if test="./@qualifier">
-                        <xsl:text>.</xsl:text>
-                        <xsl:value-of select="./@qualifier"/>
+                    <xsl:value-of select="./@qualifier"/>
+                </xsl:if>
+            </xsl:variable>
+            <td class="metadata-key label-cell">
+                <!-- title for hover over -->
+                <xsl:attribute name="title">
+                    <xsl:value-of select="$metadata-field"/>
+                    <xsl:if test="./@language">
+                        <xsl:text>[</xsl:text>
+                        <xsl:value-of select="./@language"/>
+                        <xsl:text>]</xsl:text>
                     </xsl:if>
-                </td>
-            <td class="word-break">
-              <xsl:copy-of select="./node()"/>
-              <!--<xsl:if test="./@authority and ./@confidence">-->
-                <!--<xsl:call-template name="authorityConfidenceIcon">-->
-                  <!--<xsl:with-param name="confidence" select="./@confidence"/>-->
-                <!--</xsl:call-template>-->
-              <!--</xsl:if>-->
+                </xsl:attribute>
+                <!-- i18n for translating metadata key to human readable -->
+                <i18n:text>
+                    <xsl:text>xmlui.metadata.</xsl:text>
+                    <xsl:value-of select="$metadata-field"/>
+                </i18n:text>
+
             </td>
-                <td><xsl:value-of select="./@language"/></td>
-            </tr>
+            <td class="metadata-field word-break">
+                <!-- Linkify certain fields-->
+                <xsl:choose>
+                    <xsl:when test="@element='subject' and not(@qualifier)">
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$context-path"/>
+                                <xsl:text>/browse?value=</xsl:text>
+                                <xsl:value-of select="url:encode(./node())" />
+                                <xsl:text>&amp;type=subject</xsl:text>
+                            </xsl:attribute>
+                            <xsl:copy-of select="./node()"/>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="./node()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+
+                <!--<xsl:if test="./@authority and ./@confidence">-->
+                <!--<xsl:call-template name="authorityConfidenceIcon">-->
+                <!--<xsl:with-param name="confidence" select="./@confidence"/>-->
+                <!--</xsl:call-template>-->
+                <!--</xsl:if>-->
+            </td>
+            <!-- want to maybe be able to hide the language column -->
+            <td class="metadata-language">
+                <xsl:value-of select="./@language"/>
+            </td>
+        </tr>
     </xsl:template>
 
     <!-- don't render the item-view-toggle automatically in the summary view, only when it gets called -->

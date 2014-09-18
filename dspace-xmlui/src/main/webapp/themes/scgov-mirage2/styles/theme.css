@@ -218,3 +218,7 @@ footer h3 {
 .sidebar-offcanvas {
     float:left;
 }
+
+.metadata-language {
+    display:none;
+}

@@ -2249,6 +2249,55 @@
 	<message key="xmlui.dri2xhtml.METS-1.0.item-deathday">Date of death</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-cemetery">Cemetery</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-text">Transcription of tombstone</message>
+
+    <!-- Mirage 2 - Use schema.element.qualifer -->
+    <!-- dc - Dublin Core -->
+    <message key="xmlui.metadata.dc.abstract">Abstract</message>
+    <message key="xmlui.metadata.dc.author">Author</message>
+    <message key="xmlui.metadata.dc.author-corporate">Corporate Author</message>
+    <message key="xmlui.metadata.dc.author-of-text">Author of Text</message>
+    <message key="xmlui.metadata.dc.composer">Composer</message>
+    <message key="xmlui.metadata.dc.contributor">Contributor</message>
+    <message key="xmlui.metadata.dc.creator">Creator</message>
+    <message key="xmlui.metadata.dc.date">Date</message>
+    <message key="xmlui.metadata.dc.date.accessioned">Date Accessioned</message>
+    <message key="xmlui.metadata.dc.date.available">Date Available</message>
+    <message key="xmlui.metadata.dc.date.created">Date Created</message>
+    <message key="xmlui.metadata.dc.date.issued">Date of Issue</message>
+    <message key="xmlui.metadata.dc.description">Description</message>
+    <message key="xmlui.metadata.dc.description.abstract">Description</message>
+    <message key="xmlui.metadata.dc.description.provenance">Provenance</message>
+    <message key="xmlui.metadata.dc.first-line-of-chorus">First Line of Chorus</message>
+    <message key="xmlui.metadata.dc.first-line-of-text">First Line of Text</message>
+    <message key="xmlui.metadata.dc.format">Format</message>
+    <message key="xmlui.metadata.dc.identifier.uri">Identifier</message>
+    <message key="xmlui.metadata.dc.language.iso">Language</message>
+    <message key="xmlui.metadata.dc.publisher">Publisher</message>
+    <message key="xmlui.metadata.dc.relation.ispartof">Digital Collection</message>
+    <message key="xmlui.metadata.dc.rights">Rights</message>
+    <message key="xmlui.metadata.dc.source">Source</message>
+    <message key="xmlui.metadata.dc.subject">Subject</message>
+    <message key="xmlui.metadata.dc.title">Title</message>
+    <message key="xmlui.metadata.dc.type">Type</message>
+    <message key="xmlui.metadata.dc.uri">URI</message>
+    <!-- sd - South Carolina -->
+    <message key="xmlui.metadata.sd.county">SC County</message>
+    <message key="xmlui.metadata.sd.holding">Holding Institution</message>
+    <message key="xmlui.metadata.sd.mediatype">Media Type</message>
+    <message key="xmlui.metadata.sd.notes">Notes</message>
+    <message key="xmlui.metadata.sd.region">SC Region</message>
+    <message key="xmlui.metadata.sd.specifications">Digitization Specifications</message>
+    <message key="xmlui.metadata.sd.website">Website</message>
+    <!-- ts - Tombstone -->
+    <message key="xmlui.metadata.ts.birthday">Birthday</message>
+    <message key="xmlui.metadata.ts.cemetery">Cemetery</message>
+    <message key="xmlui.metadata.ts.deathday">Date of death</message>
+    <message key="xmlui.metadata.ts.firstname">First name</message>
+    <message key="xmlui.metadata.ts.lastname">Last name</message>
+    <message key="xmlui.metadata.ts.middlename">Middle name</message>
+    <message key="xmlui.metadata.ts.notes">Notes</message>
+    <message key="xmlui.metadata.ts.plotid">Plot ID</message>
+    <message key="xmlui.metadata.ts.text">Transcription of tombstone</message>
 	
 
 	<message key="xmlui.dri2xhtml.METS-1.0.item-files-head">Files in this item</message>
