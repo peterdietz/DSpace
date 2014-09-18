@@ -593,7 +593,7 @@
                 <!-- title for hover over -->
                 <xsl:attribute name="title">
                     <xsl:value-of select="$metadata-field"/>
-                    <xsl:if test="./@language">
+                    <xsl:if test="./@language and @language!=''">
                         <xsl:text>[</xsl:text>
                         <xsl:value-of select="./@language"/>
                         <xsl:text>]</xsl:text>
