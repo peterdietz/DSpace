@@ -91,6 +91,7 @@
                                 </div>
                             </div>
 
+                            <div class="full-width-holder">
                             <div id="main-container" class="container">
                                 <div class="row row-offcanvas row-offcanvas-right">
                                     <div class="horizontal-slider clearfix">
@@ -102,6 +103,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
 
                             <!--
@@ -191,6 +193,9 @@
 
             <!-- Local css -->
             <link rel="stylesheet" href="{concat($theme-path, 'styles/theme.css')}"/>
+
+            <meta http-equiv="cleartype" content="on"/>
+            <link href='http://fonts.googleapis.com/css?family=Oswald:300,400,700' rel='stylesheet' type='text/css'/>
 
             <!-- Add syndication feeds -->
             <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='feed']">
@@ -315,7 +320,7 @@
                         </button>
 
                         <a href="{$context-path}/" class="navbar-brand">
-                            <img src="{$theme-path}/images/logo.png" />
+                            <img src="{$theme-path}/images/scsldc_final.jpg" />
                         </a>
 
 
@@ -624,9 +629,10 @@
     <!-- Like the header, the footer contains various miscellaneous text, links, and image placeholders -->
     <xsl:template name="buildFooter">
         <footer>
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
-                    <a href="http://www.dspace.org/" target="_blank">DSpace software</a> Copyright&#160;&#169;&#160;2014&#160; <a href="http://www.duraspace.org/" target="_blank">Duraspace</a>
+                    <h3>SC State Library Information</h3>
+                    &#169; 2014 <a href="http://statelibrary.sc.gov">South Carolina State Library</a>
                 </div>
                 <div class="row">
                     <a>

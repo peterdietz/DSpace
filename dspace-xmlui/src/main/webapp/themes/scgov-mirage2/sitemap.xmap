@@ -42,8 +42,8 @@
         -->
         <map:component-configurations>
             <global-variables>
-                <theme-path>_template-mirage2</theme-path>
-                <theme-name>Mirage 2 Precompiled</theme-name>
+                <theme-path>scgov-mirage2</theme-path>
+                <theme-name>Mirage 2 South Carolina State Library</theme-name>
             </global-variables>
         </map:component-configurations>
 
