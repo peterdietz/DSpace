@@ -79,7 +79,7 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:call-template name="buildHeader"/>
-                            <xsl:call-template name="buildTrail"/>
+                            <xsl:call-template name="buildNavbar"/>
                             <!--javascript-disabled warning, will be invisible if javascript is enabled-->
                             <div id="no-js-warning-wrapper" class="hidden">
                                 <div id="no-js-warning">
@@ -103,6 +103,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <xsl:call-template name="buildTrail"/>
 
                             <!--
                         The footer div, dropping whatever extra information is needed on the page. It will
@@ -270,8 +272,8 @@
             <xsl:variable name="page_title" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='title'][last()]" />
             <title>
                 <xsl:choose>
-                    <xsl:when test="starts-with($request-uri, 'page/about')">
-                        <xsl:text>About This Repository</xsl:text>
+                    <xsl:when test="starts-with($request-uri, 'page/primary-communities')">
+                        <xsl:text>Primary Communities</xsl:text>
                     </xsl:when>
                     <xsl:when test="not($page_title)">
                         <xsl:text>  </xsl:text>
@@ -315,7 +317,7 @@
                         </button>
 
                         <a href="{$context-path}/" class="navbar-brand">
-                            <img src="{$theme-path}/images/logo.png" />
+                            <img src="{$theme-path}/images/logo.png" class="img-responsive" />
                         </a>
 
 
@@ -430,11 +432,14 @@
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <li>
-                                        <a href="{/dri:document/dri:meta/dri:userMeta/
-                            dri:metadata[@element='identifier' and @qualifier='loginURL']}">
-                                            <span class="hidden-xs">
-                                                <i18n:text>xmlui.dri2xhtml.structural.login</i18n:text>
-                                            </span>
+                                        <a>
+                                            <xsl:attribute name="href">
+                                                <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                                <xsl:text>/submit</xsl:text>
+                                            </xsl:attribute>
+                                            <button type="button" class="btn btn-default btn-lg soar-submit">
+                                                <span class="glyphicon glyphicon-upload"></span> Upload to SOAR
+                                            </button>
                                         </a>
                                     </li>
                                 </xsl:otherwise>
@@ -455,6 +460,51 @@
 
     </xsl:template>
 
+    <xsl:template name="buildNavbar">
+        <nav class="navbar navbar-default custom-nav" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav menu-navbar">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Title</a></li>
+                                <li><a href="#">Communities</a></li>
+                                <li><a href="#">Subject</a></li>
+                                <li><a href="#">Format</a></li>
+                                <li><a href="#">Author/Creator</a></li>
+                                <li><a href="#">Date Range</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="http://archives.kennesaw.edu" target="_blank">KSU Archives</a></li>
+                        <li><a href="#">Contact</a></li>
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search"/>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </xsl:template>
 
     <!-- The header (distinct from the HTML head element) contains the title, subtitle, login box and various
         placeholders for header images -->
@@ -624,40 +674,54 @@
     <!-- Like the header, the footer contains various miscellaneous text, links, and image placeholders -->
     <xsl:template name="buildFooter">
         <footer>
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
-                    <a href="http://www.dspace.org/" target="_blank">DSpace software</a> Copyright&#160;&#169;&#160;2014&#160; <a href="http://www.duraspace.org/" target="_blank">Duraspace</a>
-                </div>
-                <div class="row">
-                    <a>
-                        <xsl:attribute name="href">
-                            <xsl:value-of
-                                    select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                            <xsl:text>/contact</xsl:text>
-                        </xsl:attribute>
-                        <i18n:text>xmlui.dri2xhtml.structural.contact-link</i18n:text>
-                    </a>
-                    <xsl:text> | </xsl:text>
-                    <a>
-                        <xsl:attribute name="href">
-                            <xsl:value-of
-                                    select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                            <xsl:text>/feedback</xsl:text>
-                        </xsl:attribute>
-                        <i18n:text>xmlui.dri2xhtml.structural.feedback-link</i18n:text>
-                    </a>
+                    <div class="col-md-6">
+                        <!-- AddThis Button BEGIN -->
+                        <div class="row">
+                            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                                <a class="addthis_button_preferred_1"></a>
+                                <a class="addthis_button_preferred_2"></a>
+                                <a class="addthis_button_preferred_3"></a>
+                                <a class="addthis_button_preferred_4"></a>
+                                <a class="addthis_button_compact"></a>
+                                <a class="addthis_counter addthis_bubble_style"></a>
+                            </div>
+                        </div>
+                        <!-- AddThis Button END -->
+                        <div class="row vcard">
+                            <span class="logo"><img class="logo img-responsive footer-logo">
+                                <xsl:attribute name="src">
+                                    <xsl:value-of select="concat($theme-path,'/images/KSUMtn_LogoWhite.gif')"/>
+                                </xsl:attribute>
+                            </img></span>
+                            <span class="org">Kennesaw State University</span>, <span class="adr"><span class="street-address">1000 Chastain Road</span>, <span class="locality">Kennesaw</span>, <span class="region">GA</span> <span class="postal-code">30144</span></span><br/>
+                            (c) 2014 Kennesaw State University. All rights reserved.
+                        </div>
+
+                        <!--Invisible link to HTML sitemap (for search engines) -->
+                        <a class="hidden">
+                            <xsl:attribute name="href">
+                                <xsl:value-of
+                                        select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                <xsl:text>/htmlmap</xsl:text>
+                            </xsl:attribute>
+                            <xsl:text>&#160;</xsl:text>
+                        </a>
+                        <p>&#160;</p>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="vcard">
+                            <span class="org"><a class="url" href="http://archives.kennesaw.edu" target="_blank">KSU Archives</a></span><br/>
+                            Phone: <span class="tel">(770) 423-6289</span><br/>
+                            Email: <span class="email"><a class="email" href="mailto:archives@kennesaw.edu">archives@kennesaw.edu</a></span>
+                        </span>
+
+
+                    </div>
+
                 </div>
             </div>
-            <!--Invisible link to HTML sitemap (for search engines) -->
-            <a class="hidden">
-                <xsl:attribute name="href">
-                    <xsl:value-of
-                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                    <xsl:text>/htmlmap</xsl:text>
-                </xsl:attribute>
-                <xsl:text>&#160;</xsl:text>
-            </a>
-            <p>&#160;</p>
         </footer>
     </xsl:template>
 
@@ -670,9 +734,9 @@
 
 
     <!--
-        The template to handle the dri:body element. It simply creates the ds-body div and applies
-        templates of the body's child elements (which consists entirely of dri:div tags).
-    -->
+    The template to handle the dri:body element. It simply creates the ds-body div and applies
+    templates of the body's child elements (which consists entirely of dri:div tags).
+-->
     <xsl:template match="dri:body">
         <div>
             <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='alert'][@qualifier='message']">
@@ -684,14 +748,31 @@
 
             <!-- Check for the custom pages -->
             <xsl:choose>
-                <xsl:when test="starts-with($request-uri, 'page/about')">
+                <xsl:when test="starts-with($request-uri, 'page/primary-communities')">
                     <div class="hero-unit">
-                        <h1>About This Repository</h1>
-                        <p>To add your own content to this page, edit webapps/xmlui/themes/Mirage/lib/xsl/core/page-structure.xsl and
-                            add your own content to the title, trail, and body. If you wish to add additional pages, you
-                            will need to create an additional xsl:when block and match the request-uri to whatever page
-                            you are adding. Currently, static pages created through altering XSL are only available
-                            under the URI prefix of page/.</p>
+                        <h1>Primary Communities</h1>
+                        <div class="main_categories">
+                            <a href="/handle/1803/244" alt="Blair School of Music" class="rollover_blair">
+                                <span class="displace">Blair School of Music</span>
+                            </a>
+                            <p class="category_description">
+                                The Blair School of Music serves as the focal point within Vanderbilt University for the study of music as a human endeavor and as a performing art.
+                            </p>
+                            <p class="category_link">
+                                <a href="/handle/1803/244" target="_self" class="read_more">read more...</a>
+                            </p>
+                        </div>
+                        <div class="main_categories">
+                            <a href="/handle/1803/3706" alt="College of Arts and Science" target="_self" class="rollover_artsscience">
+                                <span class="displace">College of Arts and Science</span>
+                            </a>
+                            <p class="category_description">
+                                The College of Arts and Science at Vanderbilt University is a highly selective liberal arts college at the heart of a major research university.
+                            </p>
+                            <p class="category_link">
+                                <a href="/handle/1803/3706" target="_self" class="read_more">read more...</a>
+                            </p>
+                        </div>
                     </div>
                 </xsl:when>
                 <!-- Otherwise use default handling of body -->
@@ -787,6 +868,8 @@
                   ga('send', 'pageview');
            </xsl:text></script>
         </xsl:if>
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-538ca3c07d0ff968"></script>
     </xsl:template>
 
     <xsl:template name="languageSelection">

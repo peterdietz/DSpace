@@ -209,7 +209,7 @@
 	                	<hr class="metadata-separator"/>
 	                </xsl:if>
 	                <xsl:for-each select="dim:field[@mdschema='dc' and @element='description' and @qualifier='abstract']">
-		                <xsl:copy-of select="./node()"/>
+                        <xsl:value-of select="./node()"  disable-output-escaping="yes"/>
 		                <xsl:if test="count(following-sibling::dim:field[@mdschema='dc' and @element='description' and @qualifier='abstract']) != 0">
 	                    	<hr class="metadata-separator"/>
 	                    </xsl:if>
