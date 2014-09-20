@@ -191,6 +191,7 @@
 
             <!-- Local css -->
             <link rel="stylesheet" href="{concat($theme-path, 'styles/theme.css')}"/>
+            <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'/>
 
             <!-- Add syndication feeds -->
             <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='feed']">
@@ -640,7 +641,7 @@
                     </div>
 
                     <div id="" class="vcard">
-                        <div class="org">Dennis Historical Society</div>
+                        <div class="org"><a class="url" href="http://www.dennishistsoc.org/">Dennis Historical Society</a></div>
                         <a class="email" href="mailto:info@DennisHistoricalSociety.org">info@DennisHistoricalSociety.org</a>
                         <div class="adr">
                             <div class="street-address">PO box 607 So.</div>
