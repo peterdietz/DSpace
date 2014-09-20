@@ -231,7 +231,7 @@
             <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
                 <property name="metadataSortField" value="dc.date.accessioned" />
                 <property name="type" value="date"/>
-                <property name="max" value="5"/>
+                <property name="max" value="20"/>
                 <property name="useAsHomePage" value="false"/>
             </bean>
         </property>

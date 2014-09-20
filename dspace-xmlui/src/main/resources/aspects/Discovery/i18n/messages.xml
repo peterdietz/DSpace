@@ -41,7 +41,7 @@
     <!-- Site Leve Recently Added Content -->
     <message key="xmlui.ArtifactBrowser.SiteViewer.head_recent_submissions">Recently Added</message>
 
-    <message key="xmlui.ArtifactBrowser.AbstractRecentSubmissionTransformer.recent_submissions_more">View more</message>
+    <message key="xmlui.ArtifactBrowser.AbstractRecentSubmissionTransformer.recent_submissions_more">View more submissions ></message>
     <message key="xmlui.Discovery.RecentSubmissions.RecentSubmissionTransformer.head">{0}: Recent submissions</message>
     <message key="xmlui.Discovery.RecentSubmissions.RecentSubmissionTransformer.trail">Recent submissions</message>
     <message key="xmlui.Discovery.RecentSubmissions.RecentSubmissionTransformer.recent.head">Recently added</message>
