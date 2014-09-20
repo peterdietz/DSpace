@@ -14,6 +14,7 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import org.apache.log4j.Logger;
 import org.dspace.app.mediafilter.MediaFilter;
 import org.dspace.app.mediafilter.SelfRegisterInputFormats;
 import org.dspace.content.Bitstream;
@@ -34,6 +35,8 @@ import org.dspace.core.ConfigurationManager;
  */
 public abstract class LitImageMagickThumbnailFilter extends MediaFilter implements SelfRegisterInputFormats
 {
+    private static Logger log = Logger.getLogger(LitImageMagickThumbnailFilter.class);
+
     static int width;
     static int height;
 
@@ -97,10 +100,13 @@ public abstract class LitImageMagickThumbnailFilter extends MediaFilter implemen
     	f2.deleteOnExit();
     	ConvertCmd cmd = new ConvertCmd();
 		IMOperation op = new IMOperation();
+        op.size(width*2, height*2);
 		op.addImage(f.getAbsolutePath());
-		op.thumbnail(width, height);
+        op.thumbnail(width, height, "^");
+        op.gravity("center");
+        op.extent(width, height);
 		op.addImage(f2.getAbsolutePath());
-		//System.out.println("THUMB: "+op);
+        log.debug("THUMB: " + op);
 		cmd.run(op);
 		return f2;
     }
@@ -113,7 +119,7 @@ public abstract class LitImageMagickThumbnailFilter extends MediaFilter implemen
 		String s = "[" + page + "]";
 		op.addImage(f.getAbsolutePath()+s);
 		op.addImage(f2.getAbsolutePath());
-		//System.out.println("IMAGE: "+op);
+		log.info("IMAGE: "+op);
 		cmd.run(op);
 		return f2;
     }
