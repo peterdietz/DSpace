@@ -92,7 +92,7 @@
                     <xsl:variable name="prev-page" select="parent::node()/@previousPage"/>
                     <xsl:variable name="next-page" select="parent::node()/@nextPage"/>
                     <xsl:if test="not($position = 'top') and ($prev-page or $next-page)">
-                        <ul class="pagination">
+                        <ul class="pagination pagination-lg">
                             <li>
                                 <xsl:attribute name="class">
                                     <xsl:text>previous</xsl:text>
@@ -105,7 +105,7 @@
                                     <xsl:attribute name="href">
                                         <xsl:value-of select="$prev-page"/>
                                     </xsl:attribute>
-                                    <xsl:text>&#171;</xsl:text>
+                                    <xsl:text>&#171; Previous</xsl:text>
                                 </a>
                             </li>
                             <li>
@@ -120,7 +120,7 @@
                                     <xsl:attribute name="href">
                                         <xsl:value-of select="$next-page"/>
                                     </xsl:attribute>
-                                    <xsl:text>&#187;</xsl:text>
+                                    <xsl:text>Next &#187;</xsl:text>
                                 </a>
                             </li>
                         </ul>
