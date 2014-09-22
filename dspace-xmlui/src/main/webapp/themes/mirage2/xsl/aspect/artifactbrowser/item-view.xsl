@@ -488,31 +488,68 @@
     </xsl:template>
 
     <xsl:template match="dim:field" mode="itemDetailView-DIM">
-            <tr>
-                <xsl:attribute name="class">
-                    <xsl:text>ds-table-row </xsl:text>
-                    <xsl:if test="(position() div 2 mod 2 = 0)">even </xsl:if>
-                    <xsl:if test="(position() div 2 mod 2 = 1)">odd </xsl:if>
-                </xsl:attribute>
-                <td class="label-cell">
-                    <xsl:value-of select="./@mdschema"/>
+        <tr>
+            <xsl:attribute name="class">
+                <xsl:text>ds-table-row</xsl:text>
+                <xsl:if test="(position() div 2 mod 2 = 0)">even</xsl:if>
+                <xsl:if test="(position() div 2 mod 2 = 1)">odd</xsl:if>
+            </xsl:attribute>
+            <xsl:variable name="metadata-field">
+                <xsl:value-of select="./@mdschema"/>
+                <xsl:text>.</xsl:text>
+                <xsl:value-of select="./@element"/>
+                <xsl:if test="./@qualifier">
                     <xsl:text>.</xsl:text>
-                    <xsl:value-of select="./@element"/>
-                    <xsl:if test="./@qualifier">
-                        <xsl:text>.</xsl:text>
-                        <xsl:value-of select="./@qualifier"/>
+                    <xsl:value-of select="./@qualifier"/>
+                </xsl:if>
+            </xsl:variable>
+            <td class="metadata-key label-cell">
+                <!-- title for hover over -->
+                <xsl:attribute name="title">
+                    <xsl:value-of select="$metadata-field"/>
+                    <xsl:if test="./@language and @language!=''">
+                        <xsl:text>[</xsl:text>
+                        <xsl:value-of select="./@language"/>
+                        <xsl:text>]</xsl:text>
                     </xsl:if>
-                </td>
-            <td class="word-break">
-              <xsl:copy-of select="./node()"/>
-              <!--<xsl:if test="./@authority and ./@confidence">-->
-                <!--<xsl:call-template name="authorityConfidenceIcon">-->
-                  <!--<xsl:with-param name="confidence" select="./@confidence"/>-->
-                <!--</xsl:call-template>-->
-              <!--</xsl:if>-->
+                </xsl:attribute>
+                <!-- i18n for translating metadata key to human readable -->
+                <i18n:text>
+                    <xsl:text>xmlui.metadata.</xsl:text>
+                    <xsl:value-of select="$metadata-field"/>
+                </i18n:text>
+
             </td>
-                <td><xsl:value-of select="./@language"/></td>
-            </tr>
+            <td class="metadata-field word-break">
+                <!-- Linkify certain fields-->
+                <xsl:choose>
+                    <xsl:when test="@element='subject' and not(@qualifier)">
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$context-path"/>
+                                <xsl:text>/browse?value=</xsl:text>
+                                <xsl:value-of select="url:encode(./node())" />
+                                <xsl:text>&amp;type=subject</xsl:text>
+                            </xsl:attribute>
+                            <xsl:copy-of select="./node()"/>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="./node()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+
+                <!--<xsl:if test="./@authority and ./@confidence">-->
+                <!--<xsl:call-template name="authorityConfidenceIcon">-->
+                <!--<xsl:with-param name="confidence" select="./@confidence"/>-->
+                <!--</xsl:call-template>-->
+                <!--</xsl:if>-->
+            </td>
+            <!-- want to maybe be able to hide the language column -->
+            <td class="metadata-language">
+                <xsl:value-of select="./@language"/>
+            </td>
+        </tr>
     </xsl:template>
 
     <!-- don't render the item-view-toggle automatically in the summary view, only when it gets called -->
