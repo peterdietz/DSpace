@@ -1048,6 +1048,7 @@
     <message key="xmlui.administrative.Navigation.administrative_private">Private Items</message>
     <message key="xmlui.administrative.Navigation.administrative_control_panel">Control Panel</message>
     <message key="xmlui.administrative.Navigation.statistics">Statistics</message>
+    <message key="xmlui.administrative.Navigation.administrative_batch_import">Batch Import (ZIP)</message>
         <message key="xmlui.administrative.Navigation.administrative_import_metadata">Import Metadata</message>
         <message key="xmlui.administrative.Navigation.administrative_curation">Curation Tasks</message>
 
@@ -1466,6 +1467,41 @@
 	<message key="xmlui.administrative.authorization.DeletePoliciesConfirm.head_id">ID</message>
 	<message key="xmlui.administrative.authorization.DeletePoliciesConfirm.head_action">Action</message>
 	<message key="xmlui.administrative.authorization.DeletePoliciesConfirm.head_group">Group</message>
+
+
+    <!-- Batch Import Tool -->
+    <!-- org.dspace.app.xmlui.administrative.batchimport -->
+    <message key="xmlui.administrative.batchimport.general.select_collection">Select a collection</message>
+    <message key="xmlui.administrative.batchimport.general.collection">Collection</message>
+    <message key="xmlui.administrative.batchimport.general.collection_help">Select the collection you wish to submit an item to.</message>
+    <message key="xmlui.administrative.batchimport.general.collection_default">Select a collection...</message>
+
+    <message key="xmlui.administrative.batchimport.general.title">Import Batch Load (ZIP)</message>
+    <message key="xmlui.administrative.batchimport.general.head1">Import Batch Load (ZIP)</message>
+    <message key="xmlui.administrative.batchimport.general.trail">Import Batch Load (ZIP)</message>
+    <message key="xmlui.administrative.batchimport.general.changes">changes</message>
+    <message key="xmlui.administrative.batchimport.general.no_changes">No changes were detected</message>
+    <message key="xmlui.administrative.batchimport.general.new_item">New item</message>
+    <message key="xmlui.administrative.batchimport.flow.upload_successful">Upload successful</message>
+    <message key="xmlui.administrative.batchimport.flow.upload_failed">Upload failed or no file selected</message>
+    <message key="xmlui.administrative.batchimport.flow.upload_badschema">Unknown metadata schema in heading</message>
+    <message key="xmlui.administrative.batchimport.flow.upload_badelement">Unknown metadata element in heading</message>
+    <message key="xmlui.administrative.batchimport.flow.import_successful">Import successful</message>
+    <message key="xmlui.administrative.batchimport.flow.import_failed">Import failed</message>
+    <message key="xmlui.administrative.batchimport.flow.failed_no_collection">No Destination Collection Specified</message>
+
+    <!-- org.dspace.app.xmlui.administrative.batchimport.BatchImportConfirm -->
+    <message key="xmlui.administrative.batchimport.BatchmportMain.submit_upload">Upload SimpleArchiveFormat ZIP</message>
+
+    <!-- org.dspace.app.xmlui.administrative.batchimport.BatchImportConfirm -->
+    <message key="xmlui.administrative.batchimport.BatchImportConfirm.success">Successfully processed</message>
+    <message key="xmlui.administrative.batchimport.BatchImportConfirm.changes_committed">Changes applied to item</message>
+    <message key="xmlui.administrative.batchimport.BatchImportConfirm.item_added">Added: </message>
+    <message key="xmlui.administrative.batchimport.BatchImportConfirm.item_removed">Removed: </message>
+
+    <!-- org.dspace.app.xmlui.administrative.batchimport.BatchImportUpload -->
+    <message key="xmlui.administrative.batchimport.BatchImportUpload.item_add">Add: </message>
+    <message key="xmlui.administrative.batchimport.BatchImportUpload.item_remove">Remove: </message>
 
 	<!-- general edit item messages -->
 	<message key="xmlui.administrative.item.general.item_trail">Items</message>
@@ -2181,6 +2217,38 @@
 	<message key="xmlui.dri2xhtml.METS-1.0.item-date">Date</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-publisher">Publisher</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-subject">Subject</message>
+    <!-- Mirage 2 - Use schema.element.qualifer -->
+    <!-- dc - Dublin Core -->
+    <message key="xmlui.metadata.dc.abstract">Abstract</message>
+    <message key="xmlui.metadata.dc.author">Author</message>
+    <message key="xmlui.metadata.dc.author-corporate">Corporate Author</message>
+    <message key="xmlui.metadata.dc.author-of-text">Author of Text</message>
+    <message key="xmlui.metadata.dc.composer">Composer</message>
+    <message key="xmlui.metadata.dc.contributor">Contributor</message>
+    <message key="xmlui.metadata.dc.creator">Creator</message>
+    <message key="xmlui.metadata.dc.date">Date</message>
+    <message key="xmlui.metadata.dc.date.accessioned">Date Accessioned</message>
+    <message key="xmlui.metadata.dc.date.available">Date Available</message>
+    <message key="xmlui.metadata.dc.date.created">Date Created</message>
+    <message key="xmlui.metadata.dc.date.issued">Date of Issue</message>
+    <message key="xmlui.metadata.dc.description">Description</message>
+    <message key="xmlui.metadata.dc.description.abstract">Description</message>
+    <message key="xmlui.metadata.dc.description.provenance">Provenance</message>
+    <message key="xmlui.metadata.dc.first-line-of-chorus">First Line of Chorus</message>
+    <message key="xmlui.metadata.dc.first-line-of-text">First Line of Text</message>
+    <message key="xmlui.metadata.dc.format">Item Format</message>
+    <message key="xmlui.metadata.dc.format.mimetype">Mimetype</message>
+    <message key="xmlui.metadata.dc.identifier.uri">Identifier</message>
+    <message key="xmlui.metadata.dc.language">Item Language</message>
+    <message key="xmlui.metadata.dc.language.iso">Language</message>
+    <message key="xmlui.metadata.dc.publisher">Publisher</message>
+    <message key="xmlui.metadata.dc.relation.ispartof">Digital Collection</message>
+    <message key="xmlui.metadata.dc.rights">Rights</message>
+    <message key="xmlui.metadata.dc.source">Source</message>
+    <message key="xmlui.metadata.dc.subject">Subject</message>
+    <message key="xmlui.metadata.dc.title">Title</message>
+    <message key="xmlui.metadata.dc.type">Type</message>
+    <message key="xmlui.metadata.dc.uri">URI</message>
 
 	<message key="xmlui.dri2xhtml.METS-1.0.item-files-head">Files in this item</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-files-file">Files</message>
