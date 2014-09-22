@@ -26,6 +26,7 @@
     xmlns:jstring="java.lang.String"
     xmlns:rights="http://cosimo.stanford.edu/sdr/metsrights/"
     xmlns:confman="org.dspace.core.ConfigurationManager"
+    xmlns:url="http://whatever/java/java.net.URLEncoder"
     exclude-result-prefixes="xalan encoder i18n dri mets dim xlink xsl util jstring rights confman">
 
     <xsl:output indent="yes"/>
@@ -114,7 +115,9 @@
                     </xsl:if>
                 </div>
                 <div class="col-sm-8">
+                    <xsl:call-template name="itemSummaryView-DIM-subject"/>
                     <xsl:call-template name="itemSummaryView-DIM-abstract"/>
+                    <xsl:call-template name="itemSummaryView-DIM-description"/>
                     <xsl:call-template name="itemSummaryView-DIM-URI"/>
                     <xsl:call-template name="itemSummaryView-collections"/>
                 </div>
@@ -192,7 +195,7 @@
     <xsl:template name="itemSummaryView-DIM-abstract">
         <xsl:if test="dim:field[@element='description' and @qualifier='abstract']">
             <div class="simple-item-view-description item-page-field-wrapper table">
-                <h5 class="visible-xs"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-abstract</i18n:text></h5>
+                <h5><i18n:text>xmlui.dri2xhtml.METS-1.0.item-abstract</i18n:text></h5>
                 <div>
                     <xsl:for-each select="dim:field[@element='description' and @qualifier='abstract']">
                         <xsl:choose>
@@ -208,6 +211,32 @@
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:if test="count(dim:field[@element='description' and @qualifier='abstract']) &gt; 1">
+                        <div class="spacer">&#160;</div>
+                    </xsl:if>
+                </div>
+            </div>
+        </xsl:if>
+    </xsl:template>
+
+    <xsl:template name="itemSummaryView-DIM-description">
+        <xsl:if test="dim:field[@element='description' and not(@qualifier)]">
+            <div class="simple-item-view-description item-page-field-wrapper table">
+                <h5><i18n:text>xmlui.metadata.dc.description</i18n:text></h5>
+                <div>
+                    <xsl:for-each select="dim:field[@element='description' and not(@qualifier)]">
+                        <xsl:choose>
+                            <xsl:when test="node()">
+                                <xsl:copy-of select="node()"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>&#160;</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="count(following-sibling::dim:field[@element='description' and not(@qualifier)]) != 0">
+                            <div class="spacer">&#160;</div>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='description' and not(@qualifier)]) &gt; 1">
                         <div class="spacer">&#160;</div>
                     </xsl:if>
                 </div>
@@ -264,6 +293,8 @@
                             <xsl:attribute name="href">
                                 <xsl:copy-of select="./node()"/>
                             </xsl:attribute>
+                            <span class="glyphicon glyphicon-link"></span>
+                            <xsl:text> </xsl:text>
                             <xsl:copy-of select="./node()"/>
                         </a>
                         <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='uri']) != 0">
@@ -291,12 +322,46 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template name="itemSummaryView-show-full">
+    <xsl:template name="itemSummaryView-DIM-subject">
+        <xsl:if test="dim:field[@element='subject' and not(@qualifier) and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-subject</i18n:text>
+                </h5>
+                <span>
+                    <xsl:if test="count(dim:field[@element='subject' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='subject' and @qualifier='abstract']) &gt; 1)">
+                        <span class="spacer">&#160;</span>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='subject' and not(@qualifier)]">
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$context-path"/>
+                                <xsl:text>/browse?value=</xsl:text>
+                                <xsl:value-of select="url:encode(./node())" />
+                                <xsl:text>&amp;type=subject</xsl:text>
+                            </xsl:attribute>
+                            <xsl:copy-of select="./node()"/>
+                        </a>
+                        <xsl:if test="count(following-sibling::dim:field[@element='subject' and not(@qualifier)]) != 0">
+                            <span class="spacer">;</span>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='subject' and not(@qualifier)]) &gt; 1">
+                        <span class="spacer">&#160;</span>
+                    </xsl:if>
+                </span>
+            </div>
+        </xsl:if>
+    </xsl:template>    
+<xsl:template name="itemSummaryView-show-full">
         <div class="simple-item-view-show-full item-page-field-wrapper table">
             <h5>Metadata</h5> <!-- TODO i18n -->
             <a>
                 <xsl:attribute name="href"><xsl:value-of select="$ds_item_view_toggle_url"/></xsl:attribute>
+                <span class="glyphicon glyphicon-list-alt"></span>
+                <xsl:text> </xsl:text>
                 <i18n:text>xmlui.ArtifactBrowser.ItemViewer.show_full</i18n:text>
+
             </a>
         </div>
     </xsl:template>
