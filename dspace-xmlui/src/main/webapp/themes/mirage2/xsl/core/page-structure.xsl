@@ -91,6 +91,7 @@
                                 </div>
                             </div>
 
+                            <div class="full-width-holder">
                             <div id="main-container" class="container">
                                 <div class="row row-offcanvas row-offcanvas-right">
                                     <div class="horizontal-slider clearfix">
@@ -102,6 +103,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
 
                             <!--
