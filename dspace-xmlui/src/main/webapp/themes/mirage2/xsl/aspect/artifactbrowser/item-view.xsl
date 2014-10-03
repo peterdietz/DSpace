@@ -343,7 +343,7 @@
                             <xsl:copy-of select="./node()"/>
                         </a>
                         <xsl:if test="count(following-sibling::dim:field[@element='subject' and not(@qualifier)]) != 0">
-                            <span class="spacer">;</span>
+                            <span class="spacer">; </span>
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:if test="count(dim:field[@element='subject' and not(@qualifier)]) &gt; 1">
