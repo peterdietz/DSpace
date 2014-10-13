@@ -42,7 +42,7 @@
         -->
         <map:component-configurations>
             <global-variables>
-                <theme-path>kennesaw-mirage2</theme-path>
+                <theme-path>kennesaw-mirage2-spsu</theme-path>
                 <theme-name>Kennesaw Mirage 2</theme-name>
             </global-variables>
         </map:component-configurations>
