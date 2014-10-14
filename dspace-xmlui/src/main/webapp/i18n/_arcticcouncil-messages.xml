@@ -241,7 +241,7 @@
 	<message key="xmlui.ArtifactBrowser.Contact.title">Contact us</message>
 	<message key="xmlui.ArtifactBrowser.Contact.trail">Contact us</message>
 	<message key="xmlui.ArtifactBrowser.Contact.head">Contact us</message>
-	<message key="xmlui.ArtifactBrowser.Contact.para1">{0} administrators may be contacted at:</message>
+	<message key="xmlui.ArtifactBrowser.Contact.para1">While populating this archive we have done our utmost to respect international copyright laws. However, if you find material in the repository which should be removed for any reason, please notify us and we will address the issue immediately. <br/><br/>{0} administrators may be contacted at:</message>
 	<message key="xmlui.ArtifactBrowser.Contact.feedback_label">On-line form</message>
 	<message key="xmlui.ArtifactBrowser.Contact.feedback_link">Feedback</message>
 	<message key="xmlui.ArtifactBrowser.Contact.email">Email</message>
@@ -250,7 +250,7 @@
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.title">Give feedback</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.trail">Give feedback</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.head">Give feedback</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.para1">Thanks for sharing your feedback about the Arctic Council Archive system. Your comments are appreciated!</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.para1">While populating this archive we have done our utmost to respect international copyright laws. However, if you find material in the repository which should be removed for any reason, please notify us and we will address the issue immediately. <br/><br/>Thanks for sharing your feedback about the Arctic Council Archive system. Your comments are appreciated!</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.email">Your Email</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.email_help">This address will be used to follow up on your feedback.</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.comments">Comments</message>
