@@ -157,6 +157,8 @@ footer a {
     margin-bottom: -99979px;
   }
 }
+
+/* This breaks jQuery / bootstrap modal
 #main-container .horizontal-slider {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
@@ -164,6 +166,8 @@ footer a {
   -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
+*/
+
 @media (min-width: 768px) and (max-width: 991px) {
   #main-container .horizontal-slider #sidebar {
     -webkit-box-shadow: inset 2px 2px 1px rgba(0, 0, 0, 0.05);

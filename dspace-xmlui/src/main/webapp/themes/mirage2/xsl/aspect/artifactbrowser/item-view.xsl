@@ -31,6 +31,17 @@
 
     <xsl:output indent="yes"/>
 
+    <!--
+        baseurl including scheme, servername and port with no trailing slash.
+    -->
+    <xsl:variable name="baseurl">
+        <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='scheme']"/>
+        <xsl:text>://</xsl:text>
+        <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='serverName']"/>
+        <xsl:text>:</xsl:text>
+        <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='serverPort']"/>
+    </xsl:variable>
+
     <xsl:template name="itemSummaryView-DIM">
         <!-- Generate the info about the item from the metadata section -->
         <xsl:apply-templates select="./mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim"
@@ -120,6 +131,9 @@
                     <xsl:call-template name="itemSummaryView-DIM-description"/>
                     <xsl:call-template name="itemSummaryView-DIM-URI"/>
                     <xsl:call-template name="itemSummaryView-collections"/>
+
+                    <!-- Add a snazy presentation section -->
+                    <xsl:call-template name="itemSummaryView-DIM-file-section-snazy"/>
                 </div>
             </div>
         </div>
@@ -195,7 +209,7 @@
     <xsl:template name="itemSummaryView-DIM-abstract">
         <xsl:if test="dim:field[@element='description' and @qualifier='abstract']">
             <div class="simple-item-view-description item-page-field-wrapper table">
-                <h5><i18n:text>xmlui.dri2xhtml.METS-1.0.item-abstract</i18n:text></h5>
+                <h5 class="visible-xs"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-abstract</i18n:text></h5>
                 <div>
                     <xsl:for-each select="dim:field[@element='description' and @qualifier='abstract']">
                         <xsl:choose>
@@ -412,6 +426,18 @@
                     <xsl:attribute name="href">
                         <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
                     </xsl:attribute>
+                    <xsl:if test="mets:FLocat[@LOCTYPE='URL']/@xlink:label and not(mets:FLocat[@LOCTYPE='URL']/@xlink:label = '')">
+                        <xsl:attribute name="title">
+                            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
+                        </xsl:attribute>
+                    </xsl:if>
+                    <xsl:choose>
+                        <xsl:when test="contains('image/jpeg', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))">
+                            <xsl:attribute name="class">
+                                <xsl:text>imagebitstream</xsl:text>
+                            </xsl:attribute>
+                        </xsl:when>
+                    </xsl:choose>
                     <xsl:call-template name="getFileIcon">
                         <xsl:with-param name="mimetype">
                             <xsl:value-of select="substring-before(@MIMETYPE,'/')"/>
@@ -419,17 +445,17 @@
                             <xsl:value-of select="substring-after(@MIMETYPE,'/')"/>
                         </xsl:with-param>
                     </xsl:call-template>
-                                    <xsl:choose>
-                                        <xsl:when test="contains($label-1, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label">
-                                            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
-                                        </xsl:when>
-                                        <xsl:when test="contains($label-1, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title">
-                                            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
-                                        </xsl:when>
-                                        <xsl:when test="contains($label-2, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label">
-                                            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
-                                        </xsl:when>
-                                        <xsl:when test="contains($label-2, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title">
+                            <xsl:choose>
+                                <xsl:when test="contains($label-1, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label and not(mets:FLocat[@LOCTYPE='URL']/@xlink:label = '')">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
+                                </xsl:when>
+                                <xsl:when test="contains($label-1, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title and not(mets:FLocat[@LOCTYPE='URL']/@xlink:title = '')">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
+                                </xsl:when>
+                                <xsl:when test="contains($label-2, 'label') and mets:FLocat[@LOCTYPE='URL']/@xlink:label and not(mets:FLocat[@LOCTYPE='URL']/@xlink:label = '')">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
+                                </xsl:when>
+                                <xsl:when test="contains($label-2, 'title') and mets:FLocat[@LOCTYPE='URL']/@xlink:title and not(mets:FLocat[@LOCTYPE='URL']/@xlink:title = '')">
                                             <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
                                         </xsl:when>
                                         <xsl:otherwise>
@@ -490,9 +516,9 @@
     <xsl:template match="dim:field" mode="itemDetailView-DIM">
         <tr>
             <xsl:attribute name="class">
-                <xsl:text>ds-table-row</xsl:text>
-                <xsl:if test="(position() div 2 mod 2 = 0)">even</xsl:if>
-                <xsl:if test="(position() div 2 mod 2 = 1)">odd</xsl:if>
+                <xsl:text>ds-table-row </xsl:text>
+                <xsl:if test="(position() div 2 mod 2 = 0)">even </xsl:if>
+                <xsl:if test="(position() div 2 mod 2 = 1)">odd </xsl:if>
             </xsl:attribute>
             <xsl:variable name="metadata-field">
                 <xsl:value-of select="./@mdschema"/>
@@ -769,6 +795,264 @@
                 </xsl:attribute>
             </i>
         <xsl:text> </xsl:text>
+    </xsl:template>
+
+    <!-- Import from Snazy -->
+    <xsl:template name="itemSummaryView-DIM-file-section-snazy">
+        <xsl:param name="context" />
+        <xsl:param name="primaryBitstream" />
+
+        <!-- If there are images, maybe show the archive.org viewer first -->
+        <span id="ds-firstpage-side">
+            <xsl:choose>
+                <xsl:when test="dim:field[@mdschema='ds' and @element='firstpage' and @qualifier='side']">
+                    <xsl:attribute name="data-side">
+                        <xsl:text>left</xsl:text>
+                    </xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
+        </span>
+
+        <!-- Only show the BookReader when there are accessible images in the bitstreams -->
+        <xsl:if test="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file[contains('image/jpeg', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))]">
+            <div id="BookReader"></div>
+        </xsl:if>
+
+        <ul id="file_list" class="snazy ds-file-list no-js">
+            <xsl:apply-templates select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file" mode="snazy">
+                <xsl:with-param name="context" select="$context"/>
+            </xsl:apply-templates>
+        </ul>
+    </xsl:template>
+
+    <xsl:template match="mets:file" mode="snazy">
+        <xsl:variable name="googleplayer" select="'audio/mpeg audio/basic audio/x-wav'" />
+        <xsl:variable name="html5video" select="'video/webm'" />
+        <xsl:variable name="flashvideo" select="'video/mp4 video/mpeg'" />
+        <xsl:variable name="googledocsviewer" select="'application/jsjsjsj'" />
+        <xsl:variable name="embedwithfallback" select="'application/x-pdf application/pdf'" />
+        <xsl:variable name="image" select="'image/OFFjpeg'"/>
+        <xsl:variable name="mview">
+            <xsl:choose>
+                <xsl:when test="contains($googleplayer, @MIMETYPE)">
+                    <xsl:text>googleplayer</xsl:text>
+                </xsl:when>
+                <xsl:when test="contains($html5video, @MIMETYPE)">
+                    <xsl:text>html5video</xsl:text>
+                </xsl:when>
+                <xsl:when test="contains($flashvideo, @MIMETYPE)">
+                    <xsl:text>flashvideo</xsl:text>
+                </xsl:when>
+                <xsl:when test="contains($googledocsviewer, @MIMETYPE)">
+                    <xsl:text>googledocsviewer</xsl:text>
+                </xsl:when>
+                <xsl:when test="contains($embedwithfallback, @MIMETYPE)">
+                    <xsl:text>embedwithfallback</xsl:text>
+                </xsl:when>
+                <xsl:when test="contains($image, @MIMETYPE)">
+                    <xsl:text>image</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>default</xsl:text>
+                </xsl:otherwise>
+
+            </xsl:choose>
+        </xsl:variable>
+
+        <!-- CSS class names based on MIME type -->
+        <xsl:variable name="mimetypeForCSS" select="translate(@MIMETYPE, '/', '-')" />
+        <xsl:variable name="mimetypeType" select="substring-before(@MIMETYPE, '/')" />
+        <xsl:variable name="mimetypeFormat" select="substring-after(@MIMETYPE, '/')" />
+        <li>
+            <xsl:attribute name="class">
+                <xsl:text>file-entry </xsl:text>
+                <xsl:value-of select="$mview" />
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="$mimetypeType" />
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="$mimetypeFormat" />
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="$mimetypeForCSS" />
+                <xsl:if test="(position() mod 2 = 0)"> even</xsl:if>
+                <xsl:if test="(position() mod 2 = 1)"> odd</xsl:if>
+            </xsl:attribute>
+            <!--<xsl:text>Filename: </xsl:text>-->
+            <div class="file-item file-link file-name">
+                <span class="label">File:</span>
+                <a>
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                    </xsl:attribute>
+                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
+                </a>
+                <span class="file-size">
+                    <xsl:choose>
+                        <xsl:when test="@SIZE &lt; 1024">
+                            <xsl:value-of select="@SIZE"/>
+                            <i18n:text>xmlui.dri2xhtml.METS-1.0.size-bytes</i18n:text>
+                        </xsl:when>
+                        <xsl:when test="@SIZE &lt; 1024 * 1024">
+                            <xsl:value-of select="substring(string(@SIZE div 1024),1,5)"/>
+                            <i18n:text>xmlui.dri2xhtml.METS-1.0.size-kilobytes</i18n:text>
+                        </xsl:when>
+                        <xsl:when test="@SIZE &lt; 1024 * 1024 * 1024">
+                            <xsl:value-of select="substring(string(@SIZE div (1024 * 1024)),1,5)"/>
+                            <i18n:text>xmlui.dri2xhtml.METS-1.0.size-megabytes</i18n:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="substring(string(@SIZE div (1024 * 1024 * 1024)),1,5)"/>
+                            <i18n:text>xmlui.dri2xhtml.METS-1.0.size-gigabytes</i18n:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </span>
+            </div>
+
+            <div class="slide-arrow show">
+                <div class="showhide" data-toggle="modal">
+                    <!-- Button trigger modal -->
+                    <xsl:attribute name="data-target">
+                        <xsl:text>#myModal_</xsl:text>
+                        <xsl:value-of select="@ID"/>
+                    </xsl:attribute>
+                    Show File
+                </div>
+            </div>
+
+
+            <xsl:attribute name="id">
+                <xsl:text>myModal_</xsl:text>
+                <xsl:value-of select="@ID"/>
+            </xsl:attribute>
+
+            <div class="file-item file-mimetype last">
+                <span class="label">MIME type:</span>
+                <span class="value">
+                    <xsl:value-of select="@MIMETYPE" />
+                </span>
+            </div>
+            <!-- Display file based on MIME type -->
+            <div class="file-view">
+                <div class="file-view-container">
+                    <xsl:choose>
+                        <xsl:when test="$mview='googleplayer'">
+                            <embed class="googleplayer" type="application/x-shockwave-flash" wmode="transparent" height="27" width="320">
+                                <xsl:attribute name="src">
+                                    <xsl:text>http://www.google.com/reader/ui/3523697345-audio-player.swf?audioUrl=</xsl:text>
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="mime">
+                                    <xsl:value-of select="@MIMETYPE" />
+                                </xsl:attribute>
+                            </embed>
+                        </xsl:when>
+                        <xsl:when test="$mview='html5video'">
+                            <video class="html5video" preload="none" controls="controls">
+                                <xsl:attribute name="src">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href" />
+                                </xsl:attribute>
+                                <a>
+                                    <xsl:attribute name="href">
+                                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                    </xsl:attribute>
+                                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
+                                </a>
+                            </video>
+                        </xsl:when>
+                        <xsl:when test="$mview='flashvideo'">
+                            <object class="flashvideo" type="application/x-shockwave-flash" data="https://library.osu.edu/assets/inc/player.swf">
+                                <param value="player" name="name" />
+                                <param value="true" name="allowfullscreen" />
+                                <param value="always" name="allowscriptaccess" />
+                                <param name="flashvars">
+                                    <xsl:attribute name="value">
+                                        <xsl:text>file=</xsl:text>
+                                        <xsl:value-of select="$baseurl"/>
+                                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                    </xsl:attribute>
+                                </param>
+                                <param value="https://library.osu.edu/assets/inc/player.swf" name="src" />
+                            </object>
+                        </xsl:when>
+                        <xsl:when test="$mview='googledocsviewer'">
+                            <iframe class="googledocsviewer">
+                                <xsl:attribute name="src">
+                                    <xsl:text>http://docs.google.com/viewer?url=</xsl:text>
+                                    <!--<xsl:text>http://labs.google.com/papers/bigtable-osdi06.pdf</xsl:text>-->
+                                    <xsl:value-of select="$baseurl" />
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href" />
+                                    <xsl:text>&#38;embedded=true</xsl:text>
+                                </xsl:attribute>
+                            </iframe>
+                        </xsl:when>
+                        <xsl:when test="$mview='embedwithfallback'">
+                            <!-- Modal -->
+                            <div class="modal modal-lg fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                <xsl:attribute name="id">
+                                    <xsl:text>myModal_</xsl:text>
+                                    <xsl:value-of select="@ID"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="aria-labelledby">
+                                    <xsl:text>myModalLabel_</xsl:text>
+                                    <xsl:value-of select="@ID"/>
+                                </xsl:attribute>
+
+
+                                <div class="modal-dialog modal-dialog-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">
+                                                <xsl:attribute name="id">
+                                                    <xsl:text>myModalLabel_</xsl:text>
+                                                    <xsl:value-of select="@ID"/>
+                                                </xsl:attribute>
+                                                
+                                                <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <object class="embedwithfallback">
+                                                <xsl:attribute name="data">
+                                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                                </xsl:attribute>
+                                                <xsl:attribute name="type">
+                                                    <xsl:value-of select="@MIMETYPE" />
+                                                </xsl:attribute>
+                                                <a>
+                                                    <xsl:attribute name="href">
+                                                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                                    </xsl:attribute>
+                                                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
+                                                </a>
+                                            </object>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </xsl:when>
+                        <xsl:when test="$mview='image'">
+                            <img class="smalldisplay">
+                                <xsl:attribute name="src">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                </xsl:attribute>
+                            </img>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <a>
+                                <xsl:attribute name="href">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                </xsl:attribute>
+                                <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
+                            </a>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </div>
+            </div>
+        </li>
     </xsl:template>
 
     <!-- Generate the license information from the file section -->

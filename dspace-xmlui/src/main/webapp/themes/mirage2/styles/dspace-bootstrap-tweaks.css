@@ -118,3 +118,16 @@ table#aspect_administrative_ControlPanel_table_users a {
 #aspect_eperson_StartRegistration_list_registration-progress .arrow, #aspect_eperson_StartForgotPassword_list_forgot-password-progress .arrow {
     padding-left: 0px;
 }
+
+@media (min-width: 992px) {
+    .modal-dialog-lg {
+        width: 900px;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .modal-lg {
+        width: auto
+    }
+}
