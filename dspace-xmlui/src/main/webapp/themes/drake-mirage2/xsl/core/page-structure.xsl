@@ -315,7 +315,7 @@
                         </button>
 
                         <a href="{$context-path}/" class="navbar-brand">
-                            <img src="{$theme-path}/images/logo.png" />
+                            <img src="{$theme-path}/images/escholarshare.png" alt="Drake eScholarShare" id="drakelogo" />
                         </a>
 
 

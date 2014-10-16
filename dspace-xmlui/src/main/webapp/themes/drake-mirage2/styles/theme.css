@@ -23,13 +23,22 @@ header .navbar-default {
 }
 
 .trail-wrapper {
-    background-color: #aab8c6;
+    background-color: #9FADBD;
+    border-bottom: 1px solid #18477B;
+    border-top: 1px solid #ddd;
+    color: #333;
+}
+.trail-wrapper .breadcrumb a {
+    color: #333;
 }
 .trail-wrapper .breadcrumb > li + li:before {
-    color: #eaf1f7;
+    color: #333;
 }
 .trail-wrapper .breadcrumb > .active {
-    color: #eee;
+    color: #333;
+}
+.breadcrumb, .breadcrumb a {
+    color: #333;
 }
 .trail-wrapper .sidebar-toggle .icon-bar {
     background-color: #607890;
@@ -160,4 +169,74 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 }
 .panel-primary > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #607890
+}
+
+
+/** Local Local Custom  TODO remove*/
+div.navbar {
+    min-height: 90px;
+    background: url('../images/escholarshare_bg.png') repeat-x;
+    color: #18477B;
+}
+img#drakelogo {
+    width: 352px;
+    height: 70px;
+}
+
+a {
+    color: #18477B;
+    text-decoration: none;
+}
+#main-container #sidebar,
+#main-container .row-offcanvas
+{
+    background-color: #DEDEDE;
+}
+header .navbar-default .navbar-toggle > li > a, header .navbar-default .navbar-nav > li > a {
+    color: #18477B;
+}
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+    background-color: #9FADBD;
+    border-color: #9FADBD;
+}
+.btn-primary {
+    background-color: #9FADBD;
+    border-color: #9FADBD;
+}
+
+footer hr {
+    display: none;
+}
+footer .row > div {
+    padding-top: 20px;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+}
+@media (min-width: 992px) {
+    footer .row > div {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+footer > .container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #e5e5e5;
+    padding-left: 0;
+    padding-right: 0;
+}
+@media (max-width: 991px) {
+    footer > .container {
+        margin-top: 20px;
+        width: 100%;
+    }
+}
+@media (max-width: 767px) {
+    footer > .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+footer > .container .pull-right {
+    text-align: center;
 }
