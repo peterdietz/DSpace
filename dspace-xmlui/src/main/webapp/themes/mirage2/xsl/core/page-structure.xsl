@@ -191,6 +191,9 @@
             <link rel="stylesheet" href="{concat($theme-path, 'styles/dspace-bootstrap-tweaks.css')}"/>
             <link rel="stylesheet" href="{concat($theme-path, 'styles/jquery-ui-1.10.3.custom.css')}"/>
 
+            <link rel="stylesheet" href="{concat($theme-path, 'vendor/BookReader/BookReader.css')}"/>
+            <link rel="stylesheet" href="{concat($theme-path, 'styles/snazy.css')}"/>
+
             <!-- Add syndication feeds -->
             <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='feed']">
                 <link rel="alternate" type="application">

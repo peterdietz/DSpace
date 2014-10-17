@@ -1009,7 +1009,7 @@
                                                     <xsl:text>myModalLabel_</xsl:text>
                                                     <xsl:value-of select="@ID"/>
                                                 </xsl:attribute>
-                                                
+
                                                 <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
                                             </h4>
                                         </div>
@@ -1038,7 +1038,7 @@
 
                         </xsl:when>
                         <xsl:when test="$mview='image'">
-                            <img class="lazy smalldisplay" src="{concat($theme-path,'/images/loading-lg.gif')}">
+                            <img class="lazy smalldisplay" src="{concat($theme-path,'../mirage2/images/loading-lg.gif')}">
                                 <xsl:attribute name="data-original">
                                     <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
                                 </xsl:attribute>
