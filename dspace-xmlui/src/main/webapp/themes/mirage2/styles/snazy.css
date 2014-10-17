@@ -6,7 +6,9 @@
 /* Some custom variables */
 ul.snazy {
     font-size: 1em;
-    line-height: 1em; }
+    line-height: 1em;
+    padding-left: 0;
+}
 ul.snazy li.file-entry {
     /* Generic file-entry styling */
     position: relative;

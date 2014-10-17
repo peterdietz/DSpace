@@ -765,3 +765,47 @@ input[type='text'].ui-autocomplete-loading {
   background-position: 99% 50%;
   background-size: 25px 25px;
 }
+
+/* For emphasis:gallery */
+/* Emphasis Grid */
+li.ds-artifact-item.emphasis-gallery:not(.community):not(.collection) {
+    float: left;
+    margin: 5px;
+    height: 155px;
+    width: 200px !important;
+    line-height: 1.1em !important;
+}
+
+.recentSubmissionViewMore {
+    clear: both;
+}
+
+.emphasis-gallery-item-wrapper {
+    height:100%;
+    width:100%;
+    position:relative;
+    overflow:hidden;
+}
+
+.emphasis-gallery-item-wrapper .thumbnail {
+    padding:0px;
+}
+
+/* Hack to make the image border fill the rectangle, i.e. short images */
+.emphasis-gallery-item-wrapper .thumbnail>img, .emphasis-gallery-item-wrapper .thumbnail a>img {
+    min-height: 100%;
+}
+
+.gallery-item-title {
+    position: absolute;
+    bottom: 0;
+    height: 16px;
+    background-color: #344C78;
+    color: white;
+    overflow: hidden;
+    width:100%;
+    padding: 1px 0px 0px 5px;
+}
+.gallery-item-title a {
+    color: white;
+}
