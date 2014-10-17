@@ -133,7 +133,10 @@
                     <xsl:call-template name="itemSummaryView-collections"/>
 
                     <!-- Add a snazy presentation section -->
-                    <xsl:call-template name="itemSummaryView-DIM-file-section-snazy"/>
+                    <xsl:if test="confman:getProperty('mirage2','snazy')">
+                        <xsl:call-template name="itemSummaryView-DIM-file-section-snazy"/>
+                    </xsl:if>
+
                 </div>
             </div>
         </div>
@@ -366,7 +369,7 @@
                 </span>
             </div>
         </xsl:if>
-    </xsl:template>    
+    </xsl:template>
 <xsl:template name="itemSummaryView-show-full">
         <div class="simple-item-view-show-full item-page-field-wrapper table">
             <h5>Metadata</h5> <!-- TODO i18n -->
@@ -814,7 +817,7 @@
         </span>
 
         <!-- Only show the BookReader when there are accessible images in the bitstreams -->
-        <xsl:if test="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file[contains('image/jpeg', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))]">
+        <xsl:if test="count(//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file[contains('image/jpeg', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))]) > 1">
             <div id="BookReader"></div>
         </xsl:if>
 
@@ -831,7 +834,7 @@
         <xsl:variable name="flashvideo" select="'video/mp4 video/mpeg'" />
         <xsl:variable name="googledocsviewer" select="'application/jsjsjsj'" />
         <xsl:variable name="embedwithfallback" select="'application/x-pdf application/pdf'" />
-        <xsl:variable name="image" select="'image/OFFjpeg'"/>
+        <xsl:variable name="image" select="'image/jpeg'"/>
         <xsl:variable name="mview">
             <xsl:choose>
                 <xsl:when test="contains($googleplayer, @MIMETYPE)">
