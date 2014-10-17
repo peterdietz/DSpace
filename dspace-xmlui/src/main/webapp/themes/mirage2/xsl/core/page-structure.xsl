@@ -725,7 +725,7 @@
         </script>
 
         <script src="{$theme-path}/scripts/theme.js">&#160;</script>
-	<!-- TODO: Load bookreader only conditionally, use theme.js or not... -->
+	    <!-- TODO: Load bookreader only conditionally, use theme.js or not... -->
         <script src="//code.jquery.com/jquery-1.8.3.min.js"></script>
         <script src="{$theme-path}/scripts/bootstrap.min.js">&#160;</script>
         <script src="{$theme-path}/scripts/holder.js">&#160;</script>
@@ -737,7 +737,10 @@
         <script src="{$theme-path}/vendor/BookReader/jquery.bt.min.js"></script>
         <script src="{$theme-path}/vendor/BookReader/BookReader.js"></script>
         <script src="{$theme-path}/vendor/BookReader/BookReaderJSSimple.js"></script>
+
+        <!-- Snazy -->
         <script src="{$theme-path}/scripts/snazy.js"></script>
+        <script src="{$theme-path}/scripts/jquery.lazyload.min.js"></script>
 
         <!-- add "shared" javascript from static, path is relative to webapp root -->
         <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='javascript'][@qualifier='url']">

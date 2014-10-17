@@ -72,7 +72,9 @@ ul.snazy li.file-entry .file-view object, ul.snazy li.file-entry .file-view embe
     max-width: 570px; }
 ul.snazy li.file-entry .embedwithfallback {
     width: 570px;
-    height: 500px; }
+    height: 500px;
+    background: transparent url(../images/loading.gif) no-repeat center;
+}
 
 /* Embed large when inside modal */
 @media (min-width: 992px) {

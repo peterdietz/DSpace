@@ -26,6 +26,9 @@
             }
         })();
 
+        //LazyLoad of images (within modal, or click usually)
+        $("img.lazy").lazyload();
+
         (function() {
             var audio = document.createElement("audio");
             if(typeof(audio.canPlayType) == 'undefined' || audio.canPlayType('audio/mpeg') == '') {
