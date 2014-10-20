@@ -19,8 +19,10 @@
 -- DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST.
 -- DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST.
 -- DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST. DUMP YOUR DATABASE FIRST.
-
+BEGIN;
 ------------------------------------------------------------------
 -- Remove unused / obsolete sequence 'dctyperegistry_seq' (DS-729)
 ------------------------------------------------------------------
 DROP SEQUENCE dctyperegistry_seq;
+
+COMMIT;
