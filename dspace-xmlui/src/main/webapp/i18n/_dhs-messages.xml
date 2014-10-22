@@ -2503,15 +2503,17 @@
     <!-- End Versioning -->
 
   <message key="dhs.copyright.notice">
-   <h3><u>Copyright Notice</u></h3>
-
-   <p>This Archive and its content is copyrighted by the <em>Dennis Historical Society, Inc.</em>, or by individuals and other contributors or may be subject to copyright if not in the public domain. This copyright extends to the <em>Dennis Historical Society, Inc.’s</em> successors and assigns. Exceptions are contained below. All rights reserved.</p>
-
-   <p>Any redistribution or reproduction of part or all of the contents in any form is prohibited other than you may print or download to a local hard disk extracts only for your personal and non-commercial use. </p>
-   <p>You may not, except with our express written permission, distribute or commercially exploit the content. Nor may you transmit it or store it in any other website or other form of electronic retrieval system.</p>
+   <h4><u>Copyright Notice</u></h4>
+   <small>
+       This Archive and its content is copyrighted by the <em>Dennis Historical Society, Inc.</em>, or by individuals and other contributors or may be subject to copyright if not in the public domain. This copyright extends to the <em>Dennis Historical Society, Inc.’s</em> successors and assigns. Exceptions are contained below. All rights reserved.
+       <br/>
+       Any redistribution or reproduction of part or all of the contents in any form is prohibited other than you may print or download to a local hard disk extracts only for your personal and non-commercial use.
+      <br/>
+      You may not, except with our express written permission, distribute or commercially exploit the content. Nor may you transmit it or store it in any other website or other form of electronic retrieval system.
+   </small>
    
-    <h3 id="dhs-copyright-header"><u>Copyright Exceptions</u></h3>
-    <table class="table" id="dhs-copyright-exceptions">
+   <h4 id="dhs-copyright-header"><u>Copyright Exceptions</u></h4>
+    <table class="table table-condensed" id="dhs-copyright-exceptions">
     <tr>
      <td>Annual Town Meeting Warrants</td>
      <td>Expenses of the Town of Dennis</td>
