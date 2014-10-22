@@ -183,7 +183,8 @@ footer {
 li.ds-artifact-item.emphasis-gallery:not(.community):not(.collection) {
     float: left;
     margin: 5px;
-    height: 155px;
+    /* Rectangle grid looks nice at 200w x 155h. Otherwise 200w x 220h is a more square look */
+    height: 210px;
     width: 200px !important;
     line-height: 1.1em !important;
 }
