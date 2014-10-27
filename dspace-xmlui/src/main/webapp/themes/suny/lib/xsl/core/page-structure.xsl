@@ -167,6 +167,10 @@
                 </xsl:if>
               </xsl:attribute>
             </meta>
+
+            <!-- Google Webmaster Tools -->
+            <meta name="google-site-verification" content="88gXtDbZ8tcx8o8syuNrdsBoTMalMWUrn6pxB-atdHQ" />
+
             <!-- Add stylesheets -->
             <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='stylesheet']">
                 <link rel="stylesheet" type="text/css">
