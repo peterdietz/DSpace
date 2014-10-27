@@ -23,3 +23,7 @@ Disallow: /handle/1951/56015*
 #IWB-336881 SUNY Block a student newspaper
 Disallow: /bitstream/handle/1951/25993/*
 Disallow: /handle/1951/25993*
+
+#GDN-654591 SUNY Block
+Disallow: /bitstream/handle/1951/25718/*
+Disallow: /handle/1951/25718*
