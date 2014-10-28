@@ -633,8 +633,36 @@
     <xsl:template name="buildFooter">
         <footer>
             <div class="container">
-                <div class="row">
-                    <div class="pull-right">
+                <div class="col-md-3">
+                    <!-- Left-->
+                    <div class="row">
+                        <h4>Dennis Historical Society</h4>
+                        <div class="vcard">
+                            <dl>
+                                <dt>Website</dt>
+                                <dd><div class="org"><a class="url" href="http://www.dennishistsoc.org/" title="Dennis Historical Society main website">Dennis Historical Society</a></div></dd>
+
+                                <dt>Email</dt>
+                                <dd><a class="email" href="mailto:info@DennisHistoricalSociety.org">info@DennisHistoricalSociety.org</a></dd>
+
+                                <dt>Address</dt>
+                                <dd>
+                                    <div class="adr">
+                                        <div class="street-address">PO box 607 So.</div>
+                                        <span class="locality">Dennis</span>,
+                                        <span class="region">MA</span>,
+                                        <span class="postal-code">02660</span>
+                                    </div>
+                                </dd>
+
+                                <dt>Phone</dt>
+                                <dd><div class="tel">508-385-2232</div></dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <br/>
                         <a href="http://www.facebook.com/#!/groups/116988411646078/" title="Find the Dennis Historical Society on Facebook" target="_blank">
                             <img alt="Find us on FaceBook Icon" class="facebook-icon">
                                 <xsl:attribute name="src">
@@ -645,50 +673,76 @@
                         </a>
                     </div>
 
-                    <div id="" class="vcard">
-                        <div class="org"><a class="url" href="http://www.dennishistsoc.org/">Dennis Historical Society</a></div>
-                        <a class="email" href="mailto:info@DennisHistoricalSociety.org">info@DennisHistoricalSociety.org</a>
-                        <div class="adr">
-                            <div class="street-address">PO box 607 So.</div>
-                            <span class="locality">Dennis</span>,
-                            <span class="region">MA</span>,
-                            <span class="postal-code">02660</span>
-                        </div>
-                        <div class="tel">508-385-2232</div>
+                    <div class="row">
+                        <br/>
+                        Archive is funded By Town of Dennis Community Preservation Grants
+                    </div>
+
+                    <div class="row">
+                        <br/>
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:value-of
+                                        select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                <xsl:text>/contact</xsl:text>
+                            </xsl:attribute>
+                            <i18n:text>xmlui.dri2xhtml.structural.contact-link</i18n:text>
+                        </a>
+                        <xsl:text> | </xsl:text>
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:value-of
+                                        select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                <xsl:text>/feedback</xsl:text>
+                            </xsl:attribute>
+                            <i18n:text>xmlui.dri2xhtml.structural.feedback-link</i18n:text>
+                        </a>
                     </div>
 
 
-                </div>
-                <div class="row">
-                    <a>
+                    <!--Invisible link to HTML sitemap (for search engines) -->
+                    <a class="hidden">
                         <xsl:attribute name="href">
                             <xsl:value-of
                                     select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                            <xsl:text>/contact</xsl:text>
+                            <xsl:text>/htmlmap</xsl:text>
                         </xsl:attribute>
-                        <i18n:text>xmlui.dri2xhtml.structural.contact-link</i18n:text>
+                        <xsl:text>&#160;</xsl:text>
                     </a>
-                    <xsl:text> | </xsl:text>
-                    <a>
-                        <xsl:attribute name="href">
-                            <xsl:value-of
-                                    select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                            <xsl:text>/feedback</xsl:text>
-                        </xsl:attribute>
-                        <i18n:text>xmlui.dri2xhtml.structural.feedback-link</i18n:text>
-                    </a>
+                    <p>&#160;</p>
                 </div>
+
+                <div class="col-md-5">
+                    <!--Center-->
+                    <h4>Copyright Notice</h4>
+                    <small>
+                        This Archive and its content is copyrighted by the <em>Dennis Historical Society, Inc.</em>, or by individuals and other contributors or may be subject to copyright if not in the public domain. This copyright extends to the <em>Dennis Historical Society, Inc.'s</em> successors and assigns. Exceptions are contained below. All rights reserved.
+                        <br/>
+                        Any redistribution or reproduction of part or all of the contents in any form is prohibited other than you may print or download to a local hard disk extracts only for your personal and non-commercial use.
+                        <br/>
+                        You may not, except with our express written permission, distribute or commercially exploit the content. Nor may you transmit it or store it in any other website or other form of electronic retrieval system.
+                    </small>
+                </div>
+                <div class="col-md-4">
+                    <!-- Right -->
+                    <h4 id="dhs-copyright-header">Copyright Exceptions</h4>
+                    <ul class="list-unstyled">
+                        <li>Annual Town Meeting Warrants</li>
+                        <li>Annual Town Reports</li>
+                        <li>Articles For The Town Warrant</li>
+                        <li>Expenses of the Town of Dennis</li>
+                        <li>Census Records</li>
+                        <li>Dennis Fire Dept. Reports</li>
+                        <li>Dennis Annual Town Meeting Material</li>
+                        <li>Recommendations of the Finance Committee</li>
+                        <li>Reports of the Superintendent of Schools</li>
+                        <li>School Committee Reports</li>
+                        <li><b>Any and all public records not included above</b></li>
+
+                    </ul>
+                </div>
+
             </div>
-            <!--Invisible link to HTML sitemap (for search engines) -->
-            <a class="hidden">
-                <xsl:attribute name="href">
-                    <xsl:value-of
-                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
-                    <xsl:text>/htmlmap</xsl:text>
-                </xsl:attribute>
-                <xsl:text>&#160;</xsl:text>
-            </a>
-            <p>&#160;</p>
         </footer>
     </xsl:template>
 
