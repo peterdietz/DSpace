@@ -152,12 +152,15 @@ public class EmbargoManager
                             + result.toString());
         }
 
-        // sanity check: do not allow an embargo lift date in the past.
-        if (liftDate.before(new Date()))
-        {
-            throw new IllegalArgumentException(
-                    "Embargo lift date must be in the future, but this is in the past: "
-                            + result.toString());
+        //Allow past embargo dates. For batch editing many lifts, you might need to set past lift date, to perform lift
+        if(!ConfigurationManager.getBooleanProperty("embargo.pastSet", false)) {
+            // sanity check: do not allow an embargo lift date in the past.
+            if (liftDate.before(new Date()))
+            {
+                throw new IllegalArgumentException(
+                        "Embargo lift date must be in the future, but this is in the past: "
+                                + result.toString());
+            }
         }
         return result;
     }
@@ -236,6 +239,7 @@ public class EmbargoManager
 
         options.addOption("a", "adjust", false,
                 "Function: Adjust bitstreams policies");
+        options.addOption("r", "recompute", false, "Function: Recompute the user-defined embargo to computed lift-date");
 
         options.addOption("h", "help", false, "help");
         CommandLine line = null;
@@ -294,6 +298,15 @@ public class EmbargoManager
                         }
                     }
                 }
+            }
+            else if(line.hasOption('r')) {
+                //Recompute the user-supplied embargo term to a computed lift term
+                ItemIterator ii = Item.findByMetadataField(context, terms_schema, terms_element, terms_qualifier, Item.ANY);
+                while (ii.hasNext())
+                {
+                    setter.setEmbargo(context, ii.next());
+                }
+
             }
             else
             {
