@@ -142,7 +142,7 @@ public class MetadataImport
                     for (String md : line.keys())
                     {
                         // Get the values we already have
-                        if (!"id".equals(md))
+                        if (!"id".equals(md) && !"bitstream".equals(md))
                         {
                             // Get the values from the CSV
                             String[] fromCSV = line.get(md).toArray(new String[line.get(md).size()]);

@@ -11,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 import org.dspace.content.*;
 import org.dspace.content.Collection;
 import org.dspace.core.ConfigurationManager;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
 
 import java.util.*;
@@ -126,6 +127,10 @@ public class DSpaceCSV implements Serializable
                 else if ("action".equals(element))
                 {
                     // Store the heading
+                    headings.add(element);
+                }
+                else if ("bitstream".equals(element))
+                {
                     headings.add(element);
                 }
                 else if (!"id".equals(element))
@@ -407,6 +412,19 @@ public class DSpaceCSV implements Serializable
             if (!c.getHandle().equals(owningCollectionHandle))
             {
                 line.add("collection", c.getHandle());
+            }
+        }
+
+        //Add the filenames (requested by WLU)
+        if(ConfigurationManager.getBooleanProperty("bulkedit", "showBitstreams", false)) {
+            if (!headings.contains("bitstream"))
+            {
+                headings.add("bitstream");
+            }
+            for (Bundle bundle : i.getBundles(Constants.CONTENT_BUNDLE_NAME)) {
+                for (Bitstream bitstream : bundle.getBitstreams()) {
+                    line.add("bitstream", bitstream.getName());
+                }
             }
         }
 
