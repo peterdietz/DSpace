@@ -34,6 +34,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.PosixParser;
 import org.apache.commons.collections.ComparatorUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -844,6 +845,9 @@ public class ItemImport
         Item myitem = null;
         WorkspaceItem wi = null;
 
+        //If item has a /collections file, make that the collections that this item will go to
+        mycollections = processCollectionsFile(c, path + File.separatorChar + itemname, "collections");
+
         if (!isTest)
         {
             wi = WorkspaceItem.create(c, mycollections[0], template);
@@ -1451,6 +1455,16 @@ public class ItemImport
         }
         
         return options;
+    }
+
+    public Collection[] processCollectionsFile(Context context, String path, String filename) throws IOException, SQLException {
+        File collectionsFile = new File(path + File.separatorChar + filename);
+        List<Collection> collectionList = new ArrayList<>();
+        for(String collectionLine : FileUtils.readLines(collectionsFile)) {
+            Collection collection = (Collection)HandleManager.resolveToObject(context, collectionLine);
+            collectionList.add(collection);
+        }
+        return collectionList.toArray(new Collection[collectionList.size()]);
     }
 
     /**
