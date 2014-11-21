@@ -42,17 +42,8 @@ import org.apache.xpath.XPathAPI;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.AuthorizeManager;
 import org.dspace.authorize.ResourcePolicy;
-import org.dspace.content.Bitstream;
-import org.dspace.content.BitstreamFormat;
-import org.dspace.content.Bundle;
+import org.dspace.content.*;
 import org.dspace.content.Collection;
-import org.dspace.content.FormatIdentifier;
-import org.dspace.content.InstallItem;
-import org.dspace.content.Item;
-import org.dspace.content.ItemIterator;
-import org.dspace.content.MetadataField;
-import org.dspace.content.MetadataSchema;
-import org.dspace.content.WorkspaceItem;
 import org.dspace.core.ConfigurationManager;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
@@ -846,7 +837,10 @@ public class ItemImport
         WorkspaceItem wi = null;
 
         //If item has a /collections file, make that the collections that this item will go to
-        mycollections = processCollectionsFile(c, path + File.separatorChar + itemname, "collections");
+        File collectionsFile = new File(path + File.separatorChar + itemname + File.separatorChar + "collections");
+        if(collectionsFile.exists()) {
+            mycollections = processCollectionsFile(c, collectionsFile);
+        }
 
         if (!isTest)
         {
@@ -1457,12 +1451,24 @@ public class ItemImport
         return options;
     }
 
-    public Collection[] processCollectionsFile(Context context, String path, String filename) throws IOException, SQLException {
-        File collectionsFile = new File(path + File.separatorChar + filename);
+    /**
+     * If SAF has a /collections file inside this record/item we will change the destination collection to that collection
+     * One handle of collection per line
+     * @param context
+     * @param collectionsFile
+     * @return
+     * @throws IOException If can't read file
+     * @throws SQLException If handle is not a collection handle
+     */
+    public Collection[] processCollectionsFile(Context context, File collectionsFile) throws IOException, SQLException {
         List<Collection> collectionList = new ArrayList<>();
         for(String collectionLine : FileUtils.readLines(collectionsFile)) {
-            Collection collection = (Collection)HandleManager.resolveToObject(context, collectionLine);
-            collectionList.add(collection);
+            DSpaceObject dso = HandleManager.resolveToObject(context, collectionLine);
+            if(dso instanceof Collection) {
+                collectionList.add((Collection) dso);
+            } else {
+                throw new SQLException("Invalid collection specified in: " + collectionsFile.getAbsolutePath() + " -- " + collectionLine + " is of type: " + dso.getTypeText());
+            }
         }
         return collectionList.toArray(new Collection[collectionList.size()]);
     }
